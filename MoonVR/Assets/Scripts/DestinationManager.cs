@@ -22,7 +22,6 @@ public class DestinationManager : MonoBehaviour
     public DestinationEvent onAddDestination = new DestinationEvent();
     public DestinationEvent onRemoveDestination = new DestinationEvent();
     public DestinationsEvent onReorderDestination = new DestinationsEvent();
-    public float distanceFromGround = 0.3f;
 
     private List<Destination> destinations = new List<Destination>();
 
@@ -30,13 +29,31 @@ public class DestinationManager : MonoBehaviour
     {
         current = this;
     }
-    
+
+    void Update()
+    {
+        Destination currentDestination;
+        if ((currentDestination = CurrentDestination()) != null)
+        {
+            float distanceToTarget = Vector3.Distance(Camera.main.transform.position, currentDestination.GetPosition());
+            Debug.Log("Distance to " + currentDestination.GetName() + ": " + distanceToTarget);
+        }
+    }
+
     public Destination[] GetDestinations()
     {
         return destinations.ToArray();
     }
 
-    
+    public Destination CurrentDestination()
+    {
+        if (destinations.Count > 0)
+        {
+            return destinations[destinations.Count - 1];
+        }
+        return null;
+    }
+
     public void AddDestination(Destination destination)
     {
         destinations.Add(destination);
@@ -47,7 +64,6 @@ public class DestinationManager : MonoBehaviour
     }
     public void RemoveDestination(int i)
     {
-        i = (int) Mathf.Clamp((float)i, 0, (float)destinations.Count);
         destinations.RemoveAt(i);
         if (onRemoveDestination != null)
         {
@@ -57,10 +73,6 @@ public class DestinationManager : MonoBehaviour
 
     public void SwapDestinations(int i1, int i2)
     {
-        // Clamp the indices to valid values.
-        i1 = (int) Mathf.Clamp((float)i1, 0, (float)destinations.Count);
-        i2 = (int) Mathf.Clamp((float)i2, 0, (float)destinations.Count);
-
         // Swap the destinations.
         Destination tmp = destinations[i1];
         destinations[i1] = destinations[i2];
@@ -72,7 +84,7 @@ public class DestinationManager : MonoBehaviour
         }
     }
 
-    public Vector3[] GetWaypoints(int n)
+    public Destination[] GetActiveDestinations()
     {
         List<Destination> activeDestinations = new List<Destination>();
         foreach (Destination d in destinations)
@@ -83,47 +95,11 @@ public class DestinationManager : MonoBehaviour
             }
         }
 
-        List<Vector3> waypoints = new List<Vector3>();
-        for (int i = 0; i < activeDestinations.Count - 1; ++i)
-        {
-            waypoints.Add(activeDestinations[i].GetPosition());
-
-            Vector3 p1 = activeDestinations[i].GetPosition();
-            Vector3 p2 = activeDestinations[i + 1].GetPosition();
-            float length = (p1 - p2).magnitude;
-            float stepSize = length / (n + 1);
-
-            for (int j = 1; j <= n; ++j)
-            {
-                Vector3 lerp = Vector3.Lerp(p1, p2, stepSize * j / length);
-
-                Ray ray = new Ray(lerp + Vector3.up * 100, Vector3.down);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    waypoints.Add(hit.point + Vector3.up * distanceFromGround);
-                }
-                else
-                {
-                    waypoints.Add(lerp);
-                }
-
-
-            }
-        }
-
-        waypoints.Add(activeDestinations[activeDestinations.Count - 1].GetPosition());
-
-        foreach (Vector3 v in waypoints)
-        {
-            Debug.DrawLine(v, v + Vector3.up * 5, Color.red, 20);
-        }
-
-        return waypoints.ToArray();
+        return activeDestinations.ToArray();
     }
 }
 
-public class Destination 
+public class Destination
 {
     private string name;
     private Vector3 position;
@@ -131,7 +107,7 @@ public class Destination
 
     // The actual game object the player sees.
     public GameObject visualObject;
-    
+
     public Destination(string newName, Vector3 pos, bool active = false, bool visited = false)
     {
         name = newName;
@@ -141,11 +117,11 @@ public class Destination
 
         // Place the destination marker.
         visualObject = Object.Instantiate(DestinationManager.current.destinationPrefab);
-        visualObject.transform.position = position; 
+        visualObject.transform.position = position;
         visualObject.SetActive(true);
     }
 
-    public string GetName() 
+    public string GetName()
     {
         return name;
     }
@@ -153,7 +129,7 @@ public class Destination
     public Vector3 GetPosition()
     {
         return position;
-    } 
+    }
 
     public void SetName(string newName)
     {
@@ -172,12 +148,11 @@ public class Destination
 
     public void SetActive(bool active)
     {
-        isActive = active;             
+        isActive = active;
     }
 
     public void SetVisited(bool visited)
     {
         isVisited = visited;
     }
-
 }
