@@ -17,7 +17,7 @@ public class DestinationManager : MonoBehaviour
 {
     public static DestinationManager current;
 
-    public GameObject destinationPrefab;
+    public GameObject markerPrefab;
 
     public DestinationEvent onAddDestination = new DestinationEvent();
     public DestinationEvent onRemoveDestination = new DestinationEvent();
@@ -32,12 +32,6 @@ public class DestinationManager : MonoBehaviour
 
     void Update()
     {
-        Destination currentDestination;
-        if ((currentDestination = CurrentDestination()) != null)
-        {
-            float distanceToTarget = Vector3.Distance(Camera.main.transform.position, currentDestination.GetPosition());
-            Debug.Log("Distance to " + currentDestination.GetName() + ": " + distanceToTarget);
-        }
     }
 
     public Destination[] GetDestinations()
@@ -116,19 +110,16 @@ public class Destination
         isVisited = visited;
 
         // Place the destination marker.
-        visualObject = Object.Instantiate(DestinationManager.current.destinationPrefab);
-        visualObject.transform.position = position;
+        visualObject = Object.Instantiate(DestinationManager.current.markerPrefab);
+        MoveVisualObject();
         visualObject.SetActive(true);
     }
 
-    public string GetName()
+    private void MoveVisualObject()
     {
-        return name;
-    }
+        Renderer visRend = visualObject.GetComponent<Renderer>();
 
-    public Vector3 GetPosition()
-    {
-        return position;
+        visualObject.transform.position = position + visRend.bounds.extents.y * Vector3.up;
     }
 
     public void SetName(string newName)
@@ -136,14 +127,19 @@ public class Destination
         name = newName;
     }
 
+    public string GetName()
+    {
+        return name;
+    }
+
     public void SetPosition(Vector3 newPos)
     {
         position = newPos;
     }
 
-    public bool GetActive()
+    public Vector3 GetPosition()
     {
-        return isActive;
+        return position;
     }
 
     public void SetActive(bool active)
@@ -151,8 +147,17 @@ public class Destination
         isActive = active;
     }
 
+    public bool GetActive()
+    {
+        return isActive;
+    }
+
     public void SetVisited(bool visited)
     {
         isVisited = visited;
+    }
+    public bool GetVisited()
+    {
+        return isVisited;
     }
 }

@@ -18,8 +18,8 @@ public class DestinationTest : MonoBehaviour
         Destination currentDestination;
         if ((currentDestination = dm.CurrentDestination()) != null)
         {
-            float distanceToTarget = Vector3.Distance(Camera.main.transform.position, currentDestination.GetPosition());
-            Debug.Log("Distance to " + currentDestination.GetName() + ": " + distanceToTarget);
+            //float distanceToTarget = Vector3.Distance(Camera.main.transform.position, currentDestination.GetPosition());
+            //Debug.Log("Distance to " + currentDestination.GetName() + ": " + distanceToTarget);
         }
     }
 
