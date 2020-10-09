@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AltPanel
+  m_Name: MainPanel
   m_Shader: {fileID: 4800000, guid: 5bdea20278144b11916d77503ba1467a, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _BORDER_LIGHT _BORDER_LIGHT_USES_HOVER_COLOR _DISABLE_ALBEDO_MAP
     _HOVER_LIGHT _ROUND_CORNERS _SPECULARHIGHLIGHTS_ON _SPECULAR_HIGHLIGHTS _USEAMBIENT_ON
@@ -97,8 +97,8 @@ Material:
     - _BorderLightOpaqueAlpha: 1
     - _BorderLightReplacesAlbedo: 0
     - _BorderLightUsesHoverColor: 1
-    - _BorderMinValue: 0.409
-    - _BorderWidth: 0.289
+    - _BorderMinValue: 0.528
+    - _BorderWidth: 0.087
     - _BumpScale: 1
     - _CalibrationSpaceReflections: 0
     - _ClippingBorder: 0
@@ -140,8 +140,8 @@ Material:
     - _InnerGlowPower: 4
     - _InstancedColor: 0
     - _Iridescence: 0
-    - _IridescenceAngle: -0.78
-    - _IridescenceIntensity: 0.5
+    - _IridescenceAngle: 0.78
+    - _IridescenceIntensity: 0.183
     - _IridescenceThreshold: 0.05
     - _MainTex_OFFSET: 0
     - _MainTex_SCALE: 0
@@ -163,10 +163,10 @@ Material:
     - _RimLight: 0
     - _RimPower: 0.7
     - _RoundCornerMargin: 0
-    - _RoundCornerRadius: 0.5
+    - _RoundCornerRadius: 0.084
     - _RoundCorners: 1
     - _Shade4: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0.776
     - _SmoothnessTextureChannel: 0
     - _Specular: 10
     - _SpecularHighlights: 1
@@ -205,7 +205,7 @@ Material:
     - _ClipPlane: {r: 0, g: 1, b: 0, a: 0}
     - _ClippingBorderColor: {r: 1, g: 0.2, b: 0, a: 1}
     - _ClippingPlaneBorderColor: {r: 1, g: 0.2, b: 0, a: 1}
-    - _Color: {r: 0.086863644, g: 0.16709623, b: 0.3018868, a: 0.50980395}
+    - _Color: {r: 0.027767893, g: 0.045364384, b: 0.1509434, a: 0.9019608}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EnvironmentColorX: {r: 1, g: 0, b: 0, a: 1}
