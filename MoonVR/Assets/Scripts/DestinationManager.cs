@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using Microsoft.MixedReality.Toolkit.UI;
 
 [System.Serializable]
 public class DestinationEvent : UnityEvent<Destination>
@@ -21,6 +22,7 @@ public class DestinationManager : MonoBehaviour
 
     public DestinationEvent onAddDestination = new DestinationEvent();
     public DestinationEvent onRemoveDestination = new DestinationEvent();
+    public DestinationEvent onChangeActive = new DestinationEvent();
     public DestinationsEvent onReorderDestination = new DestinationsEvent();
 
     private List<Destination> destinations = new List<Destination>();
@@ -56,12 +58,13 @@ public class DestinationManager : MonoBehaviour
             onAddDestination.Invoke(destination);
         }
     }
-    public void RemoveDestination(int i)
+
+    public void RemoveDestination(Destination destination)
     {
-        destinations.RemoveAt(i);
+        destinations.Remove(destination);
         if (onRemoveDestination != null)
         {
-            onRemoveDestination.Invoke(destinations[i]);
+            onRemoveDestination.Invoke(destination);
         }
     }
 
@@ -93,33 +96,45 @@ public class DestinationManager : MonoBehaviour
     }
 }
 
-public class Destination
+public class Destination 
 {
     private string name;
     private Vector3 position;
     private bool isActive, isVisited;
+    private DestinationManager dm;
 
     // The actual game object the player sees.
-    public GameObject visualObject;
+    public GameObject marker;
+    public DestinationElement destinationElement;
 
     public Destination(string newName, Vector3 pos, bool active = false, bool visited = false)
     {
+        dm = DestinationManager.current;
         name = newName;
         position = pos;
         isActive = active;
         isVisited = visited;
 
         // Place the destination marker.
-        visualObject = Object.Instantiate(DestinationManager.current.markerPrefab);
+        marker = Object.Instantiate(dm.markerPrefab);
         MoveVisualObject();
-        visualObject.SetActive(true);
+        marker.SetActive(true);
+    }
+
+    public void Destroy()
+    {
+        destinationElement.closeButton.OnClick.RemoveAllListeners();
+        marker.transform.parent = null;
+        destinationElement.gameObject.transform.parent = null;
+        GameObject.Destroy(marker);
+        GameObject.Destroy(destinationElement.gameObject);
     }
 
     private void MoveVisualObject()
     {
-        Renderer visRend = visualObject.GetComponent<Renderer>();
+        Renderer visRend = marker.GetComponent<Renderer>();
 
-        visualObject.transform.position = position + visRend.bounds.extents.y * Vector3.up;
+        marker.transform.position = position + visRend.bounds.extents.y * Vector3.up;
     }
 
     public void SetName(string newName)
@@ -145,6 +160,12 @@ public class Destination
     public void SetActive(bool active)
     {
         isActive = active;
+        if (destinationElement.checkBox != null)
+        {
+            destinationElement.checkBox.IsToggled = isActive;
+            marker.SetActive(active);
+            dm.onChangeActive.Invoke(this);
+        }
     }
 
     public bool GetActive()
@@ -159,5 +180,11 @@ public class Destination
     public bool GetVisited()
     {
         return isVisited;
+    }
+
+    public float GetDistance()
+    {
+        // TODO
+        return 1;
     }
 }
