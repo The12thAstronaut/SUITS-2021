@@ -23,6 +23,9 @@ public class SplineGenerator : MonoBehaviour
 
         dm = DestinationManager.current;
         dm.onAddDestination.AddListener((d) => UpdateSpline());
+        dm.onRemoveDestination.AddListener((d) => UpdateSpline());
+        dm.onReorderDestination.AddListener((d) => UpdateSpline());
+        dm.onChangeActive.AddListener((d) => UpdateSpline());
 
         UpdateSpline();
     }
