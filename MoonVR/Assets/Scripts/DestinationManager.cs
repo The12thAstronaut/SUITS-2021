@@ -32,10 +32,6 @@ public class DestinationManager : MonoBehaviour
         current = this;
     }
 
-    void Update()
-    {
-    }
-
     public Destination[] GetDestinations()
     {
         return destinations.ToArray();

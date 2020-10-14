@@ -7,7 +7,6 @@ public class SplineGenerator : MonoBehaviour
 {
 
     public float distanceFromGround = 0.3f;
-    public int intermediateCuvePoints = 1;
     public float reachedThreshhold = 8;
     public int splineResolution = 30;
 
@@ -32,37 +31,16 @@ public class SplineGenerator : MonoBehaviour
 
     void UpdateSpline()
     {
-        Vector3[] waypoints = GetCorePoints(intermediateCuvePoints);
-        List<Vector3> points = new List<Vector3>();
+        Vector3[] waypoints = GetCorePoints();
+       
         
         if (waypoints.Length > 2)
         {
             line.enabled = true;
             line.positionCount = splineResolution * (waypoints.Length - 1);
-            for (int i = 0; i < waypoints.Length - 1; i++)
-            {
-                for (int t = 0; t < splineResolution; t++)
-                {
-                    Vector3 tmpPos = GetCatmullRomPosition(t / (float)splineResolution,
-                                    waypoints[Mathf.Clamp(i - 1, 0, waypoints.Length - 1)],
-                                    waypoints[Mathf.Clamp(i + 0, 0, waypoints.Length - 1)],
-                                    waypoints[Mathf.Clamp(i + 1, 0, waypoints.Length - 1)],
-                                    waypoints[Mathf.Clamp(i + 2, 0, waypoints.Length - 1)]);
+            
 
-                    Ray ray = new Ray(tmpPos + Vector3.up * 100, Vector3.down);
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        points.Add(hit.point + Vector3.up * distanceFromGround);
-                    }
-                    else
-                    {
-                        points.Add(tmpPos);
-                    }
-                }
-            }
-
-            line.SetPositions(points.ToArray());
+            line.SetPositions(GetSplinePoints(waypoints));
         }
         else
         {
@@ -70,31 +48,60 @@ public class SplineGenerator : MonoBehaviour
         }
     }
 
-    public Vector3[] GetCorePoints(int n)
+    public float GetSplineDistance(Vector3[] waypoints)
     {
-        Destination[] activeDestinations = dm.GetActiveDestinations();
-        List<Vector3> waypoints = new List<Vector3>();
+        Vector3[] points = GetSplinePoints(waypoints);
+        float distance = 0;
 
-        if (activeDestinations.Length < 2)
+
+        for (int i = 0; i < points.Length - 1; i++)
         {
-            return new Vector3[0];
+            distance += (points[i] - points[i + 1]).magnitude;
         }
 
-        for (int i = 0; i < activeDestinations.Length - 1; ++i)
-        {
-            waypoints.Add(activeDestinations[i].GetPosition());
+        return distance;
+    }
 
-            Vector3 p1 = activeDestinations[i].GetPosition();
-            Vector3 p2 = activeDestinations[i + 1].GetPosition();
-            float length = (p1 - p2).magnitude;
-            float stepSize = length / (n + 1);
-            for (int j = 1; j <= n; ++j)
+    public Vector3[] GetSplinePoints(Vector3[] points)
+    {
+        List<Vector3> outputPoints = new List<Vector3>();
+
+        for (int i = 0; i < points.Length - 1; i++)
+        {
+            for (int t = 0; t < splineResolution; t++)
             {
-                Vector3 lerp = Vector3.Lerp(p1, p2, stepSize * j / length);
-                waypoints.Add(lerp);
+                Vector3 tmpPos = GetCatmullRomPosition(t / (float)splineResolution,
+                                points[Mathf.Clamp(i - 1, 0, points.Length - 1)],
+                                points[Mathf.Clamp(i + 0, 0, points.Length - 1)],
+                                points[Mathf.Clamp(i + 1, 0, points.Length - 1)],
+                                points[Mathf.Clamp(i + 2, 0, points.Length - 1)]);
+
+                Ray ray = new Ray(tmpPos + Vector3.up * 100, Vector3.down);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    outputPoints.Add(hit.point + Vector3.up * distanceFromGround);
+                }
+                else
+                {
+                    outputPoints.Add(tmpPos);
+                }
             }
         }
-        waypoints.Add(activeDestinations[activeDestinations.Length - 1].GetPosition());
+
+        return outputPoints.ToArray();
+    }
+
+    public Vector3[] GetCorePoints()
+    {
+        Destination[] activeDestinations = dm.GetActiveDestinations();
+
+        List<Vector3> waypoints = new List<Vector3>();
+
+        foreach (Destination dest in activeDestinations)
+        {
+            waypoints.Add(dest.GetPosition());
+        }
 
         return waypoints.ToArray();
     }
