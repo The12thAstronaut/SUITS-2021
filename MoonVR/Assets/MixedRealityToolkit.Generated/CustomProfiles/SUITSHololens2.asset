@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SUITSHololens2
   m_EditorClassIdentifier: 
   isCustomProfile: 1
-  targetExperienceScale: 3
+  targetExperienceScale: 4
   enableCameraSystem: 1
   cameraProfile: {fileID: 11400000, guid: 0447581e7bd59f64fbb28151c65a3dc4, type: 2}
   cameraSystemType:
@@ -33,11 +33,11 @@ MonoBehaviour:
   teleportSystemType:
     reference: Microsoft.MixedReality.Toolkit.Teleport.MixedRealityTeleportSystem,
       Microsoft.MixedReality.Toolkit.Services.TeleportSystem
-  enableSpatialAwarenessSystem: 0
+  enableSpatialAwarenessSystem: 1
   spatialAwarenessSystemType:
     reference: Microsoft.MixedReality.Toolkit.SpatialAwareness.MixedRealitySpatialAwarenessSystem,
       Microsoft.MixedReality.Toolkit.Services.SpatialAwarenessSystem
-  spatialAwarenessSystemProfile: {fileID: 11400000, guid: 97da727944a3d7b4caf42d2273271a24,
+  spatialAwarenessSystemProfile: {fileID: 11400000, guid: baee38124f697d3439407de2aa264696,
     type: 2}
   diagnosticsSystemProfile: {fileID: 11400000, guid: 2603704620da24546990070ddd0900db,
     type: 2}

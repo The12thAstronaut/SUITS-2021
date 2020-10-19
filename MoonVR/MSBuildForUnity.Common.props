@@ -2,12 +2,12 @@
   <PropertyGroup>
     <MSBuildForUnityVersion>0.8.3</MSBuildForUnityVersion>
     
-    <MSBuildForUnityGeneratedOutputDirectory>C:\Users\AJ Bond\Dev\SUITS\MoonVR\MSBuild\Projects</MSBuildForUnityGeneratedOutputDirectory>
-    <UnityProjectAssetsPath>C:\Users\AJ Bond\Dev\SUITS\MoonVR\Assets</UnityProjectAssetsPath>
+    <MSBuildForUnityGeneratedOutputDirectory>C:\Users\memes\Documents\School\SUITS-2021\MoonVR\MSBuild\Projects</MSBuildForUnityGeneratedOutputDirectory>
+    <UnityProjectAssetsPath>C:\Users\memes\Documents\School\SUITS-2021\MoonVR\Assets</UnityProjectAssetsPath>
     <MSBuildForUnityDefaultOutputPath>$(UnityProjectAssetsPath)\Dependencies</MSBuildForUnityDefaultOutputPath>
     
-    <UnityCurrentPlatform>WindowsStandalone64</UnityCurrentPlatform>
-    <UnityCurrentTargetFramework>netstandard2.0</UnityCurrentTargetFramework>
+    <UnityCurrentPlatform>WSA</UnityCurrentPlatform>
+    <UnityCurrentTargetFramework>net46</UnityCurrentTargetFramework>
     
     <UnityMajorVersion>2019</UnityMajorVersion>
     <UnityMinorVersion>4</UnityMinorVersion>
