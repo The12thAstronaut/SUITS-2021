@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Events;
 
 public class ClientAPI : MonoBehaviour
 {
     public string url;
     public TelemetryStream telemetryStream;
+
+    
     
 
     void Update()
@@ -32,11 +35,22 @@ public class ClientAPI : MonoBehaviour
                     result = "{\"result\":" + result + "}";
                     var data = JsonHelper.FromJson<Suit>(result);
 
-                    foreach (var item in data)
-                    {
-                        telemetryStream.DisplayTelemData(item.heart_bpm, item.p_sub, item.p_suit, item.t_sub, item.v_fan, item.p_o2, item.rate_o2, item.p_h2o_g, item.p_h2o_l, item.p_sop, item.t_battery, item.t_oxygen, item.t_water, item.create_date);
-                        break;
-                    }
+                    var item = data[0];
+
+                    telemetryStream.SetBpmText(item.heart_bpm);
+                    telemetryStream.SetPSubText(item.p_sub);
+                    telemetryStream.SetPSuitText(item.p_suit);
+                    telemetryStream.SetTSubText(item.t_sub);
+                    telemetryStream.SetVFanText(item.v_fan);
+                    telemetryStream.SetPO2Text(item.p_o2);
+                    telemetryStream.SetRO2Text(item.rate_o2);
+                    telemetryStream.SetPH2OGText(item.p_h2o_g);
+                    telemetryStream.SetPH2OLText(item.p_h2o_l);
+                    telemetryStream.SetPSOPText(item.p_sop);
+                    telemetryStream.SetBatLifeText(item.t_battery);
+                    telemetryStream.SetOxLifeText(item.t_oxygen);
+                    telemetryStream.SetH2OLifeText(item.t_water);
+                    telemetryStream.SetDateText(item.create_date);
 
                 }
                 else
@@ -46,6 +60,10 @@ public class ClientAPI : MonoBehaviour
                 }
             }
         }
+    }
 
+    void TelemetryUpdate()
+    {
+        Debug.Log("Updated telemetry stream.");
     }
 }
