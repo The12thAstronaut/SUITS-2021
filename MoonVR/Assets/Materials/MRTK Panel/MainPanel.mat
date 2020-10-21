@@ -98,7 +98,7 @@ Material:
     - _BorderLightReplacesAlbedo: 0
     - _BorderLightUsesHoverColor: 1
     - _BorderMinValue: 0.528
-    - _BorderWidth: 0.289
+    - _BorderWidth: 0.087
     - _BumpScale: 1
     - _CalibrationSpaceReflections: 0
     - _ClippingBorder: 0
@@ -163,7 +163,7 @@ Material:
     - _RimLight: 0
     - _RimPower: 0.7
     - _RoundCornerMargin: 0
-    - _RoundCornerRadius: 0.5
+    - _RoundCornerRadius: 0.084
     - _RoundCorners: 1
     - _Shade4: 0
     - _Smoothness: 0.776
