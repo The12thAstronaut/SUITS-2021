@@ -92,3 +92,12 @@ The following packages were updated:
   com.unity.xr.openvr.standalone from version 1.0.5 to 2.0.5
 The following packages were removed:
   com.unity.package-manager-ui@2.0.8
+
+=== Wed Oct 21 17:23:16 2020
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ads from version 3.4.7 to 3.4.9
+  com.unity.purchasing from version 2.0.6 to 2.1.0
