@@ -5725,6 +5725,7 @@ GameObject:
   - component: {fileID: 697844658}
   - component: {fileID: 697844657}
   - component: {fileID: 697844656}
+  - component: {fileID: 697844661}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5854,6 +5855,21 @@ Transform:
   m_Father: {fileID: 1526865501}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &697844661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697844654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e92b57c6d8849f49b31df077406cea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayOrigin: {fileID: 697844660}
+  splinePrefab: {fileID: 0}
+  lastSplineID: 0
 --- !u!1 &702071571
 GameObject:
   m_ObjectHideFlags: 0
