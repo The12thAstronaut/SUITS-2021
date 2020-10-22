@@ -5868,7 +5868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayOrigin: {fileID: 697844660}
-  splinePrefab: {fileID: 0}
+  splinePrefab: {fileID: 5076635862748230841, guid: 581f3090cecbfb84e84256a73b007345,
+    type: 3}
   lastSplineID: 0
 --- !u!1 &702071571
 GameObject:
