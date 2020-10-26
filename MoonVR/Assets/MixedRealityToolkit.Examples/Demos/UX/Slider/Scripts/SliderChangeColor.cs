@@ -12,11 +12,11 @@ namespace Microsoft.MixedReality.Toolkit.Examples.Demos
     public class SliderChangeColor : MonoBehaviour
     {
         [SerializeField]
-        private Renderer TargetRenderer;
+        private MeshRenderer TargetRenderer;
 
         public void OnSliderUpdatedRed(SliderEventData eventData)
         {
-            TargetRenderer = GetComponentInChildren<Renderer>();
+            TargetRenderer = GetComponentInChildren<MeshRenderer>();
             if ((TargetRenderer != null) && (TargetRenderer.material != null))
             {
                 TargetRenderer.material.color = new Color(eventData.NewValue, TargetRenderer.sharedMaterial.color.g, TargetRenderer.sharedMaterial.color.b);
@@ -25,7 +25,7 @@ namespace Microsoft.MixedReality.Toolkit.Examples.Demos
 
         public void OnSliderUpdatedGreen(SliderEventData eventData)
         {
-            TargetRenderer = GetComponentInChildren<Renderer>();
+            TargetRenderer = GetComponentInChildren<MeshRenderer>();
             if ((TargetRenderer != null) && (TargetRenderer.material != null))
             {
                 TargetRenderer.material.color = new Color(TargetRenderer.sharedMaterial.color.r, eventData.NewValue, TargetRenderer.sharedMaterial.color.b);
@@ -34,7 +34,7 @@ namespace Microsoft.MixedReality.Toolkit.Examples.Demos
 
         public void OnSliderUpdateBlue(SliderEventData eventData)
         {
-            TargetRenderer = GetComponentInChildren<Renderer>();
+            TargetRenderer = GetComponentInChildren<MeshRenderer>();
             if ((TargetRenderer != null) && (TargetRenderer.material != null))
             {
                 TargetRenderer.material.color = new Color(TargetRenderer.sharedMaterial.color.r, TargetRenderer.sharedMaterial.color.g, eventData.NewValue);
