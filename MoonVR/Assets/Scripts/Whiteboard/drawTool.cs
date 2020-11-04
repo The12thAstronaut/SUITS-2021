@@ -11,17 +11,19 @@ public class drawTool : MonoBehaviour
     private GameObject currentSpline;
     private objectID objectID;
 
+    public bool drawingMode;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        drawingMode = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Spawn Transparent Sphere on Left Click
-        if(Input.GetMouseButton(0))        {
+        //Spawn Transparent Sphere on Left Click only if drawingMode is true
+        if(Input.GetMouseButton(0) && drawingMode == true){
             updateSplinePen();
         }
     }
@@ -38,10 +40,15 @@ public class drawTool : MonoBehaviour
     void SplineDraw( Vector3 position, Quaternion rotation, int SplineID)
     {
         currentSpline = Instantiate(splinePrefab, position, rotation);
-        Debug.Log(SplineID);
+        // Debug.Log(SplineID);
         //Get objectID component from spline sphere and assign lastSplineID
         objectID = currentSpline.GetComponent(typeof(objectID)) as objectID;
         objectID.ID = SplineID;
     }
 
+    public void toggleDrawingMode()
+    {
+        drawingMode = !drawingMode;
+        Debug.Log("Drawing Mode: " + drawingMode);
+    }
 }
