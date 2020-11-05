@@ -16,5 +16,3 @@ https://microgravityuniversity.jsc.nasa.gov/nasasuits.cfm
 ![Alt text](/Pictures/SUITS-2021.png?raw=true "SUITS 2021 Overview")
 
 ![Alt text](/Pictures/NASA_SUITS_Logov4.png?raw=true "12th Astronaut Logo")
-
-
