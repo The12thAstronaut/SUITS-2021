@@ -1029,8 +1029,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 21701781}
-        m_MethodName: AddLookPoint
+      - m_Target: {fileID: 697844661}
+        m_MethodName: undoDrawing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3465,8 +3465,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 21701781}
-        m_MethodName: AddLookPoint
+      - m_Target: {fileID: 697844661}
+        m_MethodName: redoDrawing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6130,6 +6130,7 @@ MonoBehaviour:
   rayOrigin: {fileID: 697844660}
   splinePrefab: {fileID: 5076635862748230841, guid: 581f3090cecbfb84e84256a73b007345,
     type: 3}
+  splinetoHide: {fileID: 0}
   lastSplineID: 0
   drawingMode: 0
 --- !u!1 &702071571
