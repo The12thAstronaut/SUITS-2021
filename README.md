@@ -18,3 +18,5 @@ https://microgravityuniversity.jsc.nasa.gov/nasasuits.cfm
 ![Alt text](/Pictures/NASA_SUITS_Logov4.png?raw=true "12th Astronaut Logo")
 
 "Hello World" ~Cassie
+
+"You miss 100% of the shots you don't take" - Wayne Gretzky - Michael Scott - Jaime Vives
