@@ -21,6 +21,7 @@ https://microgravityuniversity.jsc.nasa.gov/nasasuits.cfm
 
 "You miss 100% of the shots you don't take" - Wayne Gretzky - Michael Scott - Jaime Vives
 
+"Howdy" - Matt
 
 [//]: # ("Oh YOU are NA NA? - Lucas aka Wong Yukhei, Wong Xuxi ca. 2018.)
 
