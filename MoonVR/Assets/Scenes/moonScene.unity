@@ -5199,6 +5199,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1804524b40cc62947b4c77ee48adb09f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 89bd1f27ef0ce984280d724cde7b09e5, type: 2}
     - target: {fileID: 919132149155446097, guid: 1804524b40cc62947b4c77ee48adb09f,
         type: 3}
       propertyPath: m_Name
@@ -10882,6 +10887,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hologram: {fileID: 1581786312}
   rotateSpeed: 75
+--- !u!114 &1581786317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581786312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb4d24299d1c064b9230c30c58febf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hologramMat: {fileID: 1581786312}
 --- !u!1 &1599252814
 GameObject:
   m_ObjectHideFlags: 0
