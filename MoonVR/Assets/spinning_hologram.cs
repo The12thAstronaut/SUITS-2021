@@ -15,11 +15,6 @@ public class spinning_hologram : MonoBehaviour
     Vector3 posOffset = new Vector3();
     Vector3 tempPos = new Vector3();
 
-    Vector3 rotateVec = new Vector3();
-    public int axisx;
-    public int axisy;
-    public int axisz;
-
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +23,7 @@ public class spinning_hologram : MonoBehaviour
 
         //initial position
         posOffset = Hologram.transform.position;
-        rotateVec.Set(axisx, axisy, axisz);
+
     }
 
     // Update is called once per frame
@@ -37,7 +32,7 @@ public class spinning_hologram : MonoBehaviour
     {
         //rotate around z axis
 
-        transform.Rotate(rotateVec, rotateSpeed * Time.deltaTime, Space.World);
+        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, Space.World);
 
         //sin wave
         tempPos = posOffset;
