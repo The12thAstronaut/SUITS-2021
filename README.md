@@ -28,3 +28,5 @@ https://microgravityuniversity.jsc.nasa.gov/nasasuits.cfm
 "This is Major Tom" -Brock Balthazor
 
 "Whyg does everyone say "Hello World"? Why not "Hello Israel" or "Hello Shark Navigator Powered Lift-Away NV586 (Target) Vacuum Cleaner"?
+
+QR Code comment
