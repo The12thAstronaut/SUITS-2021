@@ -26,3 +26,5 @@ https://microgravityuniversity.jsc.nasa.gov/nasasuits.cfm
 [//]: # ("Oh YOU are NA NA? - Lucas aka Wong Yukhei, Wong Xuxi ca. 2018.)
 
 "This is Major Tom" -Brock Balthazor
+
+"Whyg does everyone say "Hello World"? Why not "Hello Israel" or "Hello Shark Navigator Powered Lift-Away NV586 (Target) Vacuum Cleaner"?
