@@ -106,7 +106,7 @@ public class BoltInSet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(i);
+        
 
         if (Input.GetKey(KeyCode.I))
         {

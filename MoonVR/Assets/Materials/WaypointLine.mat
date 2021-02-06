@@ -8,20 +8,23 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WaypointLine
-  m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _DIRECTIONAL_LIGHT _DISABLE_ALBEDO_MAP _EMISSION
-    _HOVER_LIGHT _NEAR_LIGHT_FADE _REFLECTIONS _SPECULAR_HIGHLIGHTS
+    _FLIPBOOKBLENDING_OFF _HOVER_LIGHT _NEAR_LIGHT_FADE _REFLECTIONS _SPECULAR_HIGHLIGHTS
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses:
   - ALWAYS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -73,6 +76,8 @@ Material:
     m_Floats:
     - _AlbedoAlphaMode: 0
     - _AlbedoAssignedAtRuntime: 0
+    - _AlphaClip: 0
+    - _Blend: 1
     - _BlendOp: 0
     - _BlendedClippingWidth: 1
     - _BorderLight: 0
@@ -116,6 +121,7 @@ Material:
     - _FadeBeginDistance: 7.07
     - _FadeCompleteDistance: 10
     - _FadeMinValue: 0.108
+    - _FlipbookBlending: 0
     - _FlipbookMode: 0
     - _FluentLightIntensity: 1
     - _GlossMapScale: 1
@@ -141,6 +147,7 @@ Material:
     - _ProximityLight: 0
     - _ProximityLightSubtractive: 0
     - _ProximityLightTwoSided: 0
+    - _QueueOffset: 0
     - _Reflections: 1
     - _Refraction: 0
     - _RefractiveIndex: 0
@@ -162,6 +169,7 @@ Material:
     - _StencilComparison: 0
     - _StencilOperation: 0
     - _StencilReference: 0
+    - _Surface: 1
     - _TriplanarMappingBlendSharpness: 4
     - _UVSec: 0
     - _VertexColors: 0
@@ -173,6 +181,8 @@ Material:
     - _ZTest: 4
     - _ZWrite: 0
     m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _ClippingBorderColor: {r: 1, g: 0.2, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
