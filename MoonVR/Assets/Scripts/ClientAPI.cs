@@ -5,12 +5,9 @@ using UnityEngine.Events;
 
 public class ClientAPI : MonoBehaviour
 {
-    public string url;
+    public string url = "";
     public TelemetryStream telemetryStream;
-
     
-    
-
     void Update()
     {
         StartCoroutine(Get(url));
