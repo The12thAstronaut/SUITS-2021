@@ -8,6 +8,7 @@ public class DirectionalArrow : MonoBehaviour
 {
     [SerializeField]
     private Transform target;
+    float lockPos = 0;
 
     private void Update()
     {
@@ -16,5 +17,6 @@ public class DirectionalArrow : MonoBehaviour
 
         // Chooses which gameobject the script will point towards (currently stuck with looking with Z axis of pointer)
         transform.LookAt(targetPosition);
+        transform.rotation = Quaternion.Euler(lockPos, transform.rotation.eulerAngles.y, lockPos);
     }
 }
