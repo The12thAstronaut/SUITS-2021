@@ -21,7 +21,11 @@ https://microgravityuniversity.jsc.nasa.gov/nasasuits.cfm
 
 "You miss 100% of the shots you don't take" - Wayne Gretzky - Michael Scott - Jaime Vives
 
+
+"If you think you can do a thing or think you can't do a thing, you're right." - Henry Ford
+
 "Howdy" - Matt
+
 
 [//]: # ("Oh YOU are NA NA? - Lucas aka Wong Yukhei, Wong Xuxi ca. 2018.)
 
