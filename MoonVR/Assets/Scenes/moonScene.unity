@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.10890762, g: 0.10286509, b: 0.11006748, a: 1}
+  m_IndirectSpecularColor: {r: 0.109008156, g: 0.102824874, b: 0.11018299, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132,6 +132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: useFixedVerticalPosition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -2001,6 +2006,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: useFixedVerticalPosition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_Mesh
@@ -3527,6 +3537,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: useFixedVerticalPosition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_Mesh
@@ -3958,6 +3973,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: referenceDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: useFixedVerticalPosition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: fixedVerticalPosition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -5508,6 +5543,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: useFixedVerticalPosition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -8710,6 +8750,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: useFixedVerticalPosition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_Mesh
@@ -8943,6 +8988,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: useFixedVerticalPosition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -9526,7 +9576,7 @@ MonoBehaviour:
   aspectV: 1
   ignoreAngleClamp: 0
   ignoreDistanceClamp: 0
-  useFixedVerticalPosition: 1
+  useFixedVerticalPosition: 0
   fixedVerticalPosition: -0.23
   orientToReferenceDirection: 0
 --- !u!114 &1436598891
@@ -9669,20 +9719,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2048df4025f81f747a7a5597b41957be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bpmText: {fileID: 0}
-  psubText: {fileID: 0}
-  psuitText: {fileID: 0}
-  tsubText: {fileID: 0}
-  vfanText: {fileID: 0}
-  po2Text: {fileID: 0}
-  ro2Text: {fileID: 0}
-  ph2ogText: {fileID: 0}
-  ph2olText: {fileID: 0}
-  psopText: {fileID: 0}
-  batlifeText: {fileID: 0}
-  oxlifeText: {fileID: 0}
-  h2olifeText: {fileID: 0}
-  dateText: {fileID: 0}
+  onBpmTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPSubTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPSuitTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onTSubTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onVFanTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPO2TextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onRO2TextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPH2OGTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPH2OLTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onPSOPTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onBatLifeTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onOxLifeTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onH2OLifeTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDateTextChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1445326691
 Transform:
   m_ObjectHideFlags: 0
@@ -13951,6 +14029,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: useFixedVerticalPosition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
