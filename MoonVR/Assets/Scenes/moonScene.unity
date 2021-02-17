@@ -138,6 +138,16 @@ PrefabInstance:
       propertyPath: useFixedVerticalPosition
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: moveLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: rotateLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_Mesh
@@ -2011,6 +2021,16 @@ PrefabInstance:
       propertyPath: useFixedVerticalPosition
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: moveLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: rotateLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_Mesh
@@ -3542,6 +3562,16 @@ PrefabInstance:
       propertyPath: useFixedVerticalPosition
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: moveLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: rotateLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_Mesh
@@ -3993,6 +4023,16 @@ PrefabInstance:
         type: 3}
       propertyPath: fixedVerticalPosition
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: moveLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: rotateLerpTime
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -5548,6 +5588,16 @@ PrefabInstance:
         type: 3}
       propertyPath: useFixedVerticalPosition
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: moveLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: rotateLerpTime
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -8755,6 +8805,16 @@ PrefabInstance:
       propertyPath: useFixedVerticalPosition
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: moveLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: rotateLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_Mesh
@@ -8993,6 +9053,21 @@ PrefabInstance:
         type: 3}
       propertyPath: useFixedVerticalPosition
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: updateLinkedTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: moveLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: rotateLerpTime
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -9576,7 +9651,7 @@ MonoBehaviour:
   aspectV: 1
   ignoreAngleClamp: 0
   ignoreDistanceClamp: 0
-  useFixedVerticalPosition: 0
+  useFixedVerticalPosition: 1
   fixedVerticalPosition: -0.23
   orientToReferenceDirection: 0
 --- !u!114 &1436598891
@@ -14034,6 +14109,16 @@ PrefabInstance:
         type: 3}
       propertyPath: useFixedVerticalPosition
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: moveLerpTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 515569770173797686, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: rotateLerpTime
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1929648020480979518, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
