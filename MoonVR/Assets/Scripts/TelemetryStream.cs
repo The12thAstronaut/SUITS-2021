@@ -112,8 +112,6 @@ public class TelemetryStream : MonoBehaviour
         bpmText = newText;
         if (onBpmTextChanged != null)
         {
-            Debug.Log("Bpm Changed!");
-            Debug.Log(bpmText);
             onBpmTextChanged.Invoke();
         } 
     }
