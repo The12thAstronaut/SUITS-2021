@@ -12,7 +12,7 @@ public class setBoxMaterials : MonoBehaviour
     {
         var HologramCubeMat = hologramCube.GetComponent<Renderer>().material;
         
-        HologramCubeMat.SetColor("_EmissionColor", .5f * Color.white);
+        HologramCubeMat.SetColor("_EmissionColor", 1 * Color.white);
         
     }
 
