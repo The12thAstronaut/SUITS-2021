@@ -22,11 +22,6 @@ public class SwitchHologram : MonoBehaviour
         downPos = switchDown.transform.rotation;
         upPos = switchUp.transform.rotation;
 
-        var switchDownColor = switchDown.GetComponent<Renderer>().material.color.a;
-        switchDownColor = 0.25f;
-
-        var switchUpColor = switchUp.GetComponent<Renderer>().material.color.a;
-        switchUpColor = 0.25f;
     }
 
     IEnumerator SwitchAnimator()

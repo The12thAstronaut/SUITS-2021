@@ -4,12 +4,15 @@ using Microsoft.MixedReality.Toolkit.Utilities.Solvers;
 using Microsoft.MixedReality.Toolkit.UI;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class SolverTypeChanger : MonoBehaviour
 {
     public Interactable SolverButton;
     public GameObject Panel;
     private Solver currentSolver;
+    public Microsoft.MixedReality.Toolkit.Utilities.Solvers.SurfaceMagnetism.OrientationMode CurrentOrientationMode { get; set; }
+    
 
 
 
@@ -33,12 +36,14 @@ public class SolverTypeChanger : MonoBehaviour
         {
 
             SetSurfaceMagnetism();
+            
         }
 
         else
         {
             
             SetRadialView();
+            
         }
   
 
@@ -67,7 +72,10 @@ public class SolverTypeChanger : MonoBehaviour
 
         // Modify properties of solver custom to this example
         var surfaceMagnetism = currentSolver as SurfaceMagnetism;
-        surfaceMagnetism.SurfaceNormalOffset = 0.2f;
+        surfaceMagnetism.SurfaceNormalOffset = 0.01f;
+        surfaceMagnetism.CurrentOrientationMode = SurfaceMagnetism.OrientationMode.SurfaceNormal;
+        surfaceMagnetism.MaxRaycastDistance = 10f;
+        surfaceMagnetism.MoveLerpTime = 5f;
 
 
     }
