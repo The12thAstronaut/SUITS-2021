@@ -24,7 +24,13 @@
     "com.unity.timeline": "1.2.17",
     "com.unity.ugui": "1.0.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "com.unity.xr.arfoundation": "4.1.5",
+=======
+    "com.unity.xr.arfoundation": "2.1.16",
+    "com.unity.xr.oculus.standalone": "2.38.4",
+    "com.unity.xr.openvr.standalone": "2.0.5",
+>>>>>>> parent of 8bf0449 (Imported Spatial Anchors & Photon Packages)
 =======
     "com.unity.xr.arfoundation": "2.1.16",
     "com.unity.xr.oculus.standalone": "2.38.4",

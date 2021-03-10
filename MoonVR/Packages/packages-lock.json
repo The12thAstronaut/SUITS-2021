@@ -195,6 +195,7 @@
     "com.unity.xr.oculus.standalone": {
       "version": "2.38.4",
       "depth": 0,
+<<<<<<< HEAD
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -215,6 +216,19 @@
       },
       "url": "https://packages.unity.com"
     },
+=======
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.xr.openvr.standalone": {
+      "version": "2.0.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+>>>>>>> parent of 8bf0449 (Imported Spatial Anchors & Photon Packages)
     "com.unity.xr.windowsmr.metro": {
       "version": "4.2.3",
       "depth": 0,
