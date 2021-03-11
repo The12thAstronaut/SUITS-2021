@@ -43,6 +43,7 @@ public class SwitchHologram : MonoBehaviour
                        
             switchDown.transform.rotation = Quaternion.RotateTowards(switchDown.transform.rotation, upPos, 50 * Time.deltaTime);
 
+
             if (switchDown.transform.rotation == upPos)
             {
                 StartCoroutine (SwitchAnimator());
