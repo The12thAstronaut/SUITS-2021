@@ -26,20 +26,30 @@ public class spinning_hologram : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
 
+    void Spin()
     {
+
+        posOffset = Hologram.transform.position;
+
         //rotate around z axis
 
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, Space.World);
 
         //sin wave
         tempPos = posOffset;
-        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.5f) * 0.02f;
+        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.25f) * 0.0002f;
 
         Hologram.transform.position = tempPos;
+    }
 
+
+    // Update is called once per frame
+    void Update()
+
+    {
+
+        Spin();
 
 
 
