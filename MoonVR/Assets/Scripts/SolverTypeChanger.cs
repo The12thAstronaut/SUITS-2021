@@ -9,14 +9,18 @@ using TMPro;
 public class SolverTypeChanger : MonoBehaviour
 {
     public Interactable SolverButton;
+    public Interactable FollowToggle;
     public GameObject Panel;
     private Solver currentSolver;
     public Microsoft.MixedReality.Toolkit.Utilities.Solvers.SurfaceMagnetism.OrientationMode CurrentOrientationMode { get; set; }
+
+    
     
 
 
 
     private int i = 0;
+    private int j = 0;
 
 
     // Start is called before the first frame update
@@ -25,6 +29,7 @@ public class SolverTypeChanger : MonoBehaviour
         SetRadialView();
         
         SolverButton.OnClick.AddListener(() => ChangeSolver());
+        FollowToggle.OnClick.AddListener(() => NoSolver());
     }
 
     void ChangeSolver()
@@ -46,6 +51,26 @@ public class SolverTypeChanger : MonoBehaviour
             
         }
   
+
+    }
+
+    void NoSolver()
+    {
+        j++;
+
+        if (j % 2 != 0)
+        {
+
+            DestroySolver();
+
+        }
+
+        else
+        {
+
+            SetRadialView();
+
+        }
 
     }
 
@@ -85,8 +110,9 @@ public class SolverTypeChanger : MonoBehaviour
         currentSolver = gameObject.AddComponent<T>();
     }
 
-    private void DestroySolver()
+    public void DestroySolver()
     {
+        
         if (currentSolver != null)
         {
             Destroy(currentSolver);

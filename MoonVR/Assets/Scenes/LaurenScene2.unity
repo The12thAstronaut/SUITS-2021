@@ -3756,7 +3756,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &239650736
 MeshRenderer:
@@ -4154,6 +4154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SolverButton: {fileID: 416192388}
+  FollowToggle: {fileID: 1398299685}
   Panel: {fileID: 245373464}
 --- !u!114 &245373466
 MonoBehaviour:
@@ -4280,6 +4281,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 245373463}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &262121803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 1908414525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &270081532
 GameObject:
   m_ObjectHideFlags: 0
@@ -4764,6 +4777,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &296845812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 1267666186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &296855231
 GameObject:
   m_ObjectHideFlags: 0
@@ -5405,6 +5430,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.032, y: 0.032, z: 0.016}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &305874235 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 1195922578}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &324100890
 GameObject:
   m_ObjectHideFlags: 0
@@ -8228,6 +8265,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385846175}
   m_Mesh: {fileID: 4300010, guid: b566bbce04d66f4428421e81a3af0299, type: 3}
+--- !u!114 &387354783 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 1736233189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &396257080
 GameObject:
   m_ObjectHideFlags: 0
@@ -10591,7 +10640,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &519013327
 MeshRenderer:
@@ -12401,6 +12450,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618226946}
   m_Mesh: {fileID: -5495902117074765545, guid: 7de5f0a6badd765409833cbd4f4d964f, type: 3}
+--- !u!114 &639296202 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 1252713698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &648275386
 GameObject:
   m_ObjectHideFlags: 0
@@ -13917,7 +13978,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &744660094
 MeshRenderer:
@@ -15236,7 +15297,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &804062646
 MeshRenderer:
@@ -17088,6 +17149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SolverButton: {fileID: 800289380}
+  FollowToggle: {fileID: 2058962928}
   Panel: {fileID: 890606681}
 --- !u!114 &890606683
 MonoBehaviour:
@@ -22566,6 +22628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SolverButton: {fileID: 377279665}
+  FollowToggle: {fileID: 305874235}
   Panel: {fileID: 1195922579}
 --- !u!114 &1195922581
 MonoBehaviour:
@@ -23271,6 +23334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SolverButton: {fileID: 1802339540}
+  FollowToggle: {fileID: 639296202}
   Panel: {fileID: 1252713699}
 --- !u!1 &1255495017
 GameObject:
@@ -23802,6 +23866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SolverButton: {fileID: 298851811}
+  FollowToggle: {fileID: 296845812}
   Panel: {fileID: 1267666187}
 --- !u!114 &1267666189
 MonoBehaviour:
@@ -25443,7 +25508,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &1342413074
 MeshRenderer:
@@ -25986,6 +26051,18 @@ Transform:
   m_Father: {fileID: 131583090}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1398299685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 245373463}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1403987852
 GameObject:
   m_ObjectHideFlags: 0
@@ -29993,7 +30070,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &1656574863
 MeshRenderer:
@@ -30373,7 +30450,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &1664243613
 MeshRenderer:
@@ -31145,8 +31222,8 @@ MonoBehaviour:
     type: 2}
   handlePrefab: {fileID: 3868891704370700786, guid: 969c9b04d1b1848489de0d6efe6250fc,
     type: 3}
-  handleSize: 0.01
-  colliderPadding: {x: 0, y: 0, z: 0}
+  handleSize: 0.02
+  colliderPadding: {x: 0.02, y: 0.02, z: 0.02}
   drawTetherWhenManipulating: 1
   handlesIgnoreCollider: {fileID: 0}
   handlePrefabColliderType: 1
@@ -31650,12 +31727,12 @@ PrefabInstance:
     - target: {fileID: 2462789699407678589, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_AutoFollowAtDistance
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2462789699407678589, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2462789699407678589, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -31711,6 +31788,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textAlignment
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1736233192}
+    - target: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3772024313052747886, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -31964,6 +32061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SolverButton: {fileID: 1137508803}
+  FollowToggle: {fileID: 387354783}
   Panel: {fileID: 1736233190}
 --- !u!114 &1736233193
 MonoBehaviour:
@@ -32801,7 +32899,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &1768745202
 MeshRenderer:
@@ -33550,7 +33648,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &1783788751
 MeshRenderer:
@@ -34222,6 +34320,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.032, y: 0.032, z: 0.016}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1810893205 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 1844212081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1816646661
 GameObject:
   m_ObjectHideFlags: 0
@@ -35019,6 +35129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SolverButton: {fileID: 340297388}
+  FollowToggle: {fileID: 1810893205}
   Panel: {fileID: 1844212082}
 --- !u!114 &1844212086
 MonoBehaviour:
@@ -36119,6 +36230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SolverButton: {fileID: 566897211}
+  FollowToggle: {fileID: 262121803}
   Panel: {fileID: 1908414526}
 --- !u!114 &1908414528
 MonoBehaviour:
@@ -38208,7 +38320,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10092671, y: 0.21781132, z: 0.06929686}
+  m_Size: {x: 0.2, y: 0.3, z: 0.1}
   m_Center: {x: 0.016072065, y: 0.07467136, z: 0.0000072941184}
 --- !u!23 &1982860074
 MeshRenderer:
@@ -39368,6 +39480,18 @@ MonoBehaviour:
   wireframeEdgeRadius: 0.001
   wireframeShape: 0
   showWireframe: 0
+--- !u!114 &2058962928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3061027629419153727, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 890606680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2060055751
 GameObject:
   m_ObjectHideFlags: 0
