@@ -18,5 +18,5 @@ public class Suit
     public string t_oxygen;
     public string t_water;
     public string create_date;
-
+    public string timer;
 }

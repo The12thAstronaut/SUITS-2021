@@ -21,6 +21,7 @@ public class TelemetryStream : MonoBehaviour
     private string oxlifeText;
     private string h2olifeText;
     private string dateText;
+    private string evaTime;
 
     public UnityEvent onBpmTextChanged;
     public UnityEvent onPSubTextChanged;
@@ -36,6 +37,7 @@ public class TelemetryStream : MonoBehaviour
     public UnityEvent onOxLifeTextChanged;
     public UnityEvent onH2OLifeTextChanged;
     public UnityEvent onDateTextChanged;
+    public UnityEvent onEvaTimeTextChanged;
 
     public string GetBpmText()
     {
@@ -107,13 +109,18 @@ public class TelemetryStream : MonoBehaviour
         return dateText;
     }
 
+    public string GetEvaTimeText()
+    {
+        return evaTime;
+    }
+
     public void SetBpmText(string newText)
     {
         bpmText = newText;
         if (onBpmTextChanged != null)
         {
             onBpmTextChanged.Invoke();
-        } 
+        }
     }
 
     public void SetPSubText(string newText)
@@ -233,6 +240,15 @@ public class TelemetryStream : MonoBehaviour
         }
     }
 
+    public void SetEvaTimeText(string newText)
+    {
+        evaTime = newText;
+        if (onDateTextChanged != null)
+        {
+            onEvaTimeTextChanged.Invoke();
+        }
+    }
+
     public void Start()
     {
 
@@ -255,5 +271,5 @@ public class TelemetryStream : MonoBehaviour
         h2olifeText = t_water;
         dateText = create_date;
 
-}
+    }
 }

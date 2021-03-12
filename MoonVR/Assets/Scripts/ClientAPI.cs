@@ -34,7 +34,7 @@ public class ClientAPI : MonoBehaviour
                 {
                     // handle the result
                     string result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
-                    
+
                     result = "{\"result\":[" + result + "]}";
                     List<Suit> data = JsonHelper.FromJson<Suit>(result);
 
@@ -54,6 +54,7 @@ public class ClientAPI : MonoBehaviour
                     telemetryStream.SetOxLifeText(suit_data.t_oxygen);
                     telemetryStream.SetH2OLifeText(suit_data.t_water);
                     telemetryStream.SetDateText(suit_data.create_date);
+                    telemetryStream.SetEvaTimeText(suit_data.timer);
 
                 }
                 else
