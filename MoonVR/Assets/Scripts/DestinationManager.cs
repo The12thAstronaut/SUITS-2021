@@ -14,6 +14,11 @@ public class DestinationsEvent : UnityEvent<Destination[]>
 {
 }
 
+[System.Serializable]
+public class DestinationManagerEvent : UnityEvent<DestinationManager>
+{
+}
+
 public class DestinationManager : MonoBehaviour
 {
     public static DestinationManager current;
@@ -24,6 +29,7 @@ public class DestinationManager : MonoBehaviour
     public DestinationEvent onRemoveDestination = new DestinationEvent();
     public DestinationEvent onChangeActive = new DestinationEvent();
     public DestinationsEvent onReorderDestination = new DestinationsEvent();
+    public DestinationManagerEvent updatePlayerDistance = new DestinationManagerEvent();
 
     private List<Destination> destinations = new List<Destination>();
 
@@ -52,6 +58,14 @@ public class DestinationManager : MonoBehaviour
         if (onAddDestination != null)
         {
             onAddDestination.Invoke(destination);
+        }
+    }
+
+    public void UpdatePlayerDistance(DestinationManager dm)
+    {
+        if (updatePlayerDistance != null)
+        {
+            updatePlayerDistance.Invoke(dm);
         }
     }
 
@@ -178,9 +192,19 @@ public class Destination
         return isVisited;
     }
 
-    public float GetDistance()
+    public float GetPlayerDistance()
     {
         // TODO
-        return 1;
+        Vector3 cameraPos = Camera.main.transform.position;
+        float playerDistance = (cameraPos - GetPosition()).magnitude;
+        return playerDistance;
+    }
+
+    public float GetLastPointDistance()
+    {
+        int destinationCount = dm.GetDestinations().Length;
+        Vector3 lastPos = dm.GetDestinations()[destinationCount - 2].GetPosition();
+        float lastDistance = (lastPos - GetPosition()).magnitude;
+        return lastDistance;
     }
 }
