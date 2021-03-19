@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/multiuserUI.unity
-    guid: 9e566b75b61f5d74bbd70f53908a135d
+    path: Assets/Scenes/IsraelWhiteboard.unity
+    guid: 8583df587daeac14aa386efe06bddef7
   m_configObjects: {}

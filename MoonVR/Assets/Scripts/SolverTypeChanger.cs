@@ -74,8 +74,8 @@ public class SolverTypeChanger : MonoBehaviour
         var surfaceMagnetism = currentSolver as SurfaceMagnetism;
         surfaceMagnetism.SurfaceNormalOffset = 0.01f;
         surfaceMagnetism.CurrentOrientationMode = SurfaceMagnetism.OrientationMode.SurfaceNormal;
-        surfaceMagnetism.MaxRaycastDistance = 10f;
-        surfaceMagnetism.MoveLerpTime = 5f;
+        surfaceMagnetism.MaxRaycastDistance = 5f;
+        surfaceMagnetism.MoveLerpTime = 2f;
 
 
     }

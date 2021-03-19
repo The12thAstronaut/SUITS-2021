@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2547300858695895602}
   - component: {fileID: 3110925831513048241}
   - component: {fileID: 4818535822115918859}
+  - component: {fileID: 5147024064363715329}
   m_Layer: 0
   m_Name: PhotonUser
   m_TagString: Untagged
@@ -82,6 +83,24 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &5147024064363715329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2547300858695895601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfe7cdb8e15507439f11d38387f052c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayOrigin: {fileID: 2547300858695895603}
+  splinePrefab: {fileID: 5076635862748230841, guid: 581f3090cecbfb84e84256a73b007345,
+    type: 3}
+  splineToHide: {fileID: 0}
+  lastSplineID: 0
+  drawingMode: 1
 --- !u!1001 &396222882543643842
 PrefabInstance:
   m_ObjectHideFlags: 0
