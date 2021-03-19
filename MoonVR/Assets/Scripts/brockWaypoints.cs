@@ -11,8 +11,8 @@ public class brockWaypoints : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(waypointOne.transform.position);
-        print(waypointTwo.transform.position);
+        print("Waypoint One's Location is: " + waypointOne.transform.position);
+        print("Waypoint Two's Location is: " + waypointTwo.transform.position);
     }
 
     // Update is called once per frame
