@@ -975,7 +975,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -4629,7 +4629,7 @@ PrefabInstance:
     - target: {fileID: 9157887926618156860, guid: 375369510d9c8fd428ed10a1f6bef485,
         type: 3}
       propertyPath: connectionString
-      value: DefaultEndpointsProtocol=https;AccountName=laurenaccount;AccountKey=eKvQuO/7jCp+rmYRYaczrHIEjQ952Vk+K0p4PTW5hcC/3Uocwj92B8ww9acyOcIh21nsvCegezN9FPeccQcL2Q==;EndpointSuffix=core.windows.net
+      value: DefaultEndpointsProtocol=https;AccountName=laurenstorage;AccountKey=rNg2sTCwIGlMDeQ9M/7Q4qYbbChyRahIAuT9wItbF/VhEO1YhVPO7EdPOwZOF0QQgkmVYsqPHbMUp1D+DvTKPA==;EndpointSuffix=core.windows.net
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375369510d9c8fd428ed10a1f6bef485, type: 3}
@@ -31035,32 +31035,32 @@ PrefabInstance:
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: azureResourceSubscriptionId
-      value: bb2171d8-cf37-49cb-b4bf-4a14da2f8d07
+      value: 19ba9d8a-3622-4405-b99d-d54f26c66147
       objectReference: {fileID: 0}
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: azureResourceGroupName
-      value: laurenstorageresource
+      value: 'SUITS_2021 '
       objectReference: {fileID: 0}
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: cognitiveServiceResourceName
-      value: laurenvision-Prediction
+      value: laurensuits2021customvision
       objectReference: {fileID: 0}
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: resourceBaseEndpoint
-      value: https://laurencustomvision-prediction.cognitiveservices.azure.com/
+      value: https://laurensuits2021customvision.cognitiveservices.azure.com/
       objectReference: {fileID: 0}
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: apiKey
-      value: e6647f244804452083e0a2a22bd89082
+      value: 2f5e7b57e0fc41bdaa6d55c886e2bf6a
       objectReference: {fileID: 0}
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: projectId
-      value: 9c5fc1f1-0317-4ea0-aeaf-71c628a11b75
+      value: 2b628a15-cc6a-4ed4-a9f1-1f5aac686a2e
       objectReference: {fileID: 0}
     - target: {fileID: 5042052743728363742, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
@@ -31121,6 +31121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ObjectDetectionManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042052743728363743, guid: 7b590829eaeacff49b45f5a93cfff72d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b590829eaeacff49b45f5a93cfff72d, type: 3}
