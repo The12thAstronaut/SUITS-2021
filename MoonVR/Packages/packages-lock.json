@@ -64,6 +64,21 @@
       },
       "url": "https://pkgs.dev.azure.com/aipmr/MixedReality-Unity-Packages/_packaging/Unity-packages/npm/registry"
     },
+    "com.microsoft.mixedreality.webrtc": {
+      "version": "file:MixedReality/com.microsoft.mixedreality.webrtc-2.0.2.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {}
+    },
+    "com.microsoft.mixedreality.webrtc.samples": {
+      "version": "file:MixedReality/com.microsoft.mixedreality.webrtc.samples-2.0.2.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.microsoft.mixedreality.webrtc": "2.0.2",
+        "com.unity.textmeshpro": "1.4.1"
+      }
+    },
     "com.unity.collab-proxy": {
       "version": "1.2.16",
       "depth": 0,
