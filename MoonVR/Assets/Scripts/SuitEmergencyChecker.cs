@@ -210,7 +210,8 @@ public class SuitEmergencyChecker : MonoBehaviour
     }
 
     void checkTimeLeftBattery() {
-        float data = float.Parse(tS.GetBatLifeText()) * 60;
+        System.DateTime time = System.DateTime.Parse(tS.GetBatLifeText());
+        float data = time.Hour * 60 + time.Minute + time.Second/60f;
         if (data < 30) {
             emergencyText = emergencyText + "Low Battery Time: " + data + "mins\n";
             isEmergency = true;
@@ -218,7 +219,8 @@ public class SuitEmergencyChecker : MonoBehaviour
     }
 
     void checkTimeLeftOxygen() {
-        float data = float.Parse(tS.GetOxLifeText()) * 60;
+        System.DateTime time = System.DateTime.Parse(tS.GetOxLifeText());
+        float data = time.Hour * 60 + time.Minute + time.Second / 60f;
         if (data < 30) {
             emergencyText = emergencyText + "Low Oxygen Time: " + data + "mins\n";
             isEmergency = true;
@@ -226,7 +228,8 @@ public class SuitEmergencyChecker : MonoBehaviour
     }
 
     void checkTimeLeftWater() {
-        float data = float.Parse(tS.GetH2OLifeText()) * 60;
+        System.DateTime time = System.DateTime.Parse(tS.GetH2OLifeText());
+        float data = time.Hour * 60 + time.Minute + time.Second / 60f;
         if (data < 30) {
             emergencyText = emergencyText + "Low Water Time: " + data + "mins\n";
             isEmergency = true;

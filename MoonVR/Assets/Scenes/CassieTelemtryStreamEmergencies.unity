@@ -10005,7 +10005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1445326690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10020,29 +10020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onBpmTextChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2616626764352700278}
-        m_MethodName: onBpmTextChanged
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1445326690}
-          m_ObjectArgumentAssemblyTypeName: TelemetryStream, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1445326692}
-        m_MethodName: checkForEmergencies
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPSubTextChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10084,7 +10062,29 @@ MonoBehaviour:
       m_Calls: []
   onEvaTimeTextChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2616626764352700278}
+        m_MethodName: onBpmTextChanged
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1445326690}
+          m_ObjectArgumentAssemblyTypeName: TelemetryStream, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1445326692}
+        m_MethodName: checkForEmergencies
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1445326691
 Transform:
   m_ObjectHideFlags: 0
@@ -11138,7 +11138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1570981097
 MonoBehaviour:
   m_ObjectHideFlags: 0

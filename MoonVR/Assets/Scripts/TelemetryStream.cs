@@ -10,7 +10,7 @@ public class TelemetryStream : MonoBehaviour
     private string bpmText;
     private string psubText;
     private string psuitText;
-    private string tsubText;
+    private string tsubText = " ";
     private string vfanText;
     private string po2Text;
     private string ro2Text;

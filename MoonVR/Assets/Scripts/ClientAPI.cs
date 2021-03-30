@@ -36,6 +36,7 @@ public class ClientAPI : MonoBehaviour
                     string result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
 
                     result = "{\"result\":[" + result + "]}";
+
                     List<Suit> data = JsonHelper.FromJson<Suit>(result);
 
                     Suit suit_data = data[0];
