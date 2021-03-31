@@ -138,7 +138,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
                     {
                         objectDetectedWithComputerVision = true;
                         isSearchingWithComputerVision = false;
-                        messageLabel.text = "Object found!";
+                        messageLabel.text = trackedObject.CustomVisionTagName;
                     }
                 }
                 catch (Exception e)
