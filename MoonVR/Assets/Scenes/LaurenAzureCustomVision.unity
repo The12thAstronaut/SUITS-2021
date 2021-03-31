@@ -1167,7 +1167,7 @@ Transform:
   m_Children:
   - {fileID: 1036397440}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &57251457
 GameObject:
@@ -4594,7 +4594,7 @@ PrefabInstance:
     - target: {fileID: 3592718400668087300, guid: 375369510d9c8fd428ed10a1f6bef485,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3592718400668087300, guid: 375369510d9c8fd428ed10a1f6bef485,
         type: 3}
@@ -4629,7 +4629,7 @@ PrefabInstance:
     - target: {fileID: 9157887926618156860, guid: 375369510d9c8fd428ed10a1f6bef485,
         type: 3}
       propertyPath: connectionString
-      value: DefaultEndpointsProtocol=https;AccountName=laurenstorage;AccountKey=rNg2sTCwIGlMDeQ9M/7Q4qYbbChyRahIAuT9wItbF/VhEO1YhVPO7EdPOwZOF0QQgkmVYsqPHbMUp1D+DvTKPA==;EndpointSuffix=core.windows.net
+      value: DefaultEndpointsProtocol=https;AccountName=suits2021storage;AccountKey=DPbm86zbM9u6F0ZuCZ2bK73nGOXwM9gZKyUlrmVdFQljx7GoYK2xExeMFkfuJS/gyQqR1UhnEDKTBIpnUbqvEQ==;EndpointSuffix=core.windows.net
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375369510d9c8fd428ed10a1f6bef485, type: 3}
@@ -20200,7 +20200,7 @@ PrefabInstance:
     - target: {fileID: 3772024313052747886, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3772024313052747886, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -31045,22 +31045,22 @@ PrefabInstance:
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: cognitiveServiceResourceName
-      value: laurensuits2021customvision
+      value: newsuits2021customvision
       objectReference: {fileID: 0}
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: resourceBaseEndpoint
-      value: https://laurensuits2021customvision.cognitiveservices.azure.com/
+      value: https://newsuits2021customvison.cognitiveservices.azure.com/
       objectReference: {fileID: 0}
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: apiKey
-      value: 2f5e7b57e0fc41bdaa6d55c886e2bf6a
+      value: 659c5714bf594a9fbd26366faee7e4bc
       objectReference: {fileID: 0}
     - target: {fileID: 4418451206035789518, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
       propertyPath: projectId
-      value: 2b628a15-cc6a-4ed4-a9f1-1f5aac686a2e
+      value: 041c81c8-cb46-4e45-99ad-b4f1e0cda5a4
       objectReference: {fileID: 0}
     - target: {fileID: 5042052743728363742, guid: 7b590829eaeacff49b45f5a93cfff72d,
         type: 3}
@@ -31135,7 +31135,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1397690442}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2021271021}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 607d75e78831c9c4ab39326fc9ed0168, type: 3}
@@ -37513,7 +37513,7 @@ Transform:
   m_Children:
   - {fileID: 1571134166}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!1 &1734252751
 GameObject:
@@ -45828,6 +45828,27 @@ MonoBehaviour:
   onHoverExited:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2021271021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5042052743728363743, guid: 7b590829eaeacff49b45f5a93cfff72d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1397690442}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2021271023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021271021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e665be025716614c91c18f320a95446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: cat.obj
+  cont: obj
+  cxnstr: DefaultEndpointsProtocol=https;AccountName=suits2021storage;AccountKey=DPbm86zbM9u6F0ZuCZ2bK73nGOXwM9gZKyUlrmVdFQljx7GoYK2xExeMFkfuJS/gyQqR1UhnEDKTBIpnUbqvEQ==;EndpointSuffix=core.windows.net
 --- !u!1 &2026095335
 GameObject:
   m_ObjectHideFlags: 0

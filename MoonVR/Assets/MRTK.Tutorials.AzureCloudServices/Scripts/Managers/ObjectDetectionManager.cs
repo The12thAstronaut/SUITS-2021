@@ -194,7 +194,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Managers
             {
                 client.DefaultRequestHeaders.Add("Prediction-Key", apiKey);
                 var result = await client.PostAsync(
-                    $"{resourceBaseEndpoint}/customvision/v3.0/prediction/{projectId}/classify/iterations/Iteration3/image", // put the iteration here
+                    $"{resourceBaseEndpoint}/customvision/v3.0/prediction/{projectId}/classify/iterations/Iteration7/image", // put the iteration here
                     new ByteArrayContent(image));
 
                 if (!result.IsSuccessStatusCode)
