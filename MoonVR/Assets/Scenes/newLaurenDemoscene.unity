@@ -20781,7 +20781,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 245373469}
+  constraintsManager: {fileID: 890606691}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:
@@ -28392,7 +28392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181cd563a8349c34ea8978b0bc8d9c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostTransform: {fileID: 0}
+  hostTransform: {fileID: 1252713700}
   manipulationType: 3
   twoHandedManipulationType: 7
   allowFarManipulation: 1
@@ -28406,7 +28406,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 245373469}
+  constraintsManager: {fileID: 1252713705}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:
@@ -42923,7 +42923,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 245373469}
+  constraintsManager: {fileID: 1844212091}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:
