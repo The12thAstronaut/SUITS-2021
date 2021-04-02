@@ -323,6 +323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1735724babfde4fa6b51fb2d21a026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _liveDataUrl: https://newsuits2021customvison.cognitiveservices.azure.com/customvision/v3.0/Prediction/431e01a2-94dd-48f8-a8db-ffe4f4ff9e85/detect/iterations/Iteration1/image
+  _predictionKey: 659c5714bf594a9fbd26366faee7e4bc
 --- !u!1 &11511649
 GameObject:
   m_ObjectHideFlags: 0
@@ -27692,7 +27694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181cd563a8349c34ea8978b0bc8d9c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostTransform: {fileID: 0}
+  hostTransform: {fileID: 1252713700}
   manipulationType: 3
   twoHandedManipulationType: 7
   allowFarManipulation: 1
@@ -27706,7 +27708,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 0}
+  constraintsManager: {fileID: 1252713705}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:

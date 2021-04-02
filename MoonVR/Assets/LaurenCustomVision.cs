@@ -1,11 +1,25 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.Windows.WebCam;
-
+using MRTK.Tutorials.AzureCloudServices.Scripts.Dtos;
+using Newtonsoft.Json;
+using UnityEngine.Networking;
+using System;
 
 public class LaurenCustomVision : MonoBehaviour
 {
+    [SerializeField]
+    private string _liveDataUrl = "<your custom vision app url here>";
+
+    [SerializeField]
+    private string _predictionKey = "<your prediction key here>";
+
 
     void Start()
     {
@@ -73,6 +87,7 @@ public class LaurenCustomVision : MonoBehaviour
 
             // We have the photo taken.
             Debug.Log(filePath);
+            StartCoroutine(RecognizeObjectsInternal(image));
         }
         else
         {
@@ -87,4 +102,26 @@ public class LaurenCustomVision : MonoBehaviour
         this.photoCapture.Dispose();
         this.photoCapture = null;
     }
+
+
+    private IEnumerator RecognizeObjectsInternal(IEnumerable<byte> image)
+    {
+        var request = UnityWebRequest.Post(_liveDataUrl, string.Empty);
+        request.SetRequestHeader("Prediction-Key", _predictionKey);
+        request.SetRequestHeader("Content-Type", "application/octet-stream");
+        request.uploadHandler = new UploadHandlerRaw(image.ToArray());
+        yield return request.SendWebRequest();
+        var text = request.downloadHandler.text;
+        Debug.Log(text);
+        var result = JsonConvert.DeserializeObject<ImageQuicktestResult>(text);
+        if (result != null)
+        {
+            Debug.Log(result.Predictions);
+        }
+        else
+        {
+            Debug.Log("Predictions is null");
+        }
+    }
+
 }
