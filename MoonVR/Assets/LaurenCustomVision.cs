@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.Windows.WebCam;
 using MRTK.Tutorials.AzureCloudServices.Scripts.Dtos;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
-using System;
+using Microsoft.MixedReality.Toolkit.UI;
+using TMPro;
 
 public class LaurenCustomVision : MonoBehaviour
 {
@@ -20,22 +18,44 @@ public class LaurenCustomVision : MonoBehaviour
     [SerializeField]
     private string _predictionKey = "<your prediction key here>";
 
+    public Interactable startButton;
+    public Interactable stopButton;
 
-    void Start()
-    {
-        InvokeRepeating("Analyze", 5f, 5f);
-    }
 
+    public TextMeshPro tagText;
+    public TextMeshPro probabilityText;
+    public TextMeshPro[] boundsText;
 
     private PhotoCapture photoCapture = null;
 
     private const string FILE_NAME = @"cognitive_analysis.jpg";
+
+
+    void Start()
+    {
+        startButton.OnClick.AddListener(() => PhotoStart());
+        stopButton.OnClick.AddListener(() => PhotoStop());
+
+    }
+
+    public void PhotoStart()
+    {
+        InvokeRepeating("Analyze", 5f, 5f);
+    }
+
+    public void PhotoStop()
+    {
+        CancelInvoke("Analyze");
+        
+    }
+
 
     // This method request to create a PhotoCapture object.
     // When its finish created, call the OnPhotoCreated method.
     private void Analyze()
     {
         PhotoCapture.CreateAsync(false, this.OnPhotoCreated);
+        
     }
 
     // This method store the PhotoCapture object just created and retrieve the high quality
@@ -112,11 +132,88 @@ public class LaurenCustomVision : MonoBehaviour
         request.uploadHandler = new UploadHandlerRaw(image.ToArray());
         yield return request.SendWebRequest();
         var text = request.downloadHandler.text;
-        Debug.Log(text);
         var result = JsonConvert.DeserializeObject<ImageQuicktestResult>(text);
+
+
         if (result != null)
         {
-            Debug.Log(result.Predictions);
+            var name = new List<string>();
+            var prob = new List<double>();
+            var boundL = new List<double>();
+            var boundT = new List<double>();
+            var boundW = new List<double>();
+            var boundH = new List<double>();
+
+            var maxProb = 0d;
+            var maxTag = "";
+            var bounds = new List<double>();
+
+
+            foreach (var p in result.Predictions)
+            {
+                name.Add(p.TagName);
+                prob.Add(p.Probability);
+                boundL.Add(p.BoundingBox["left"]);
+                boundT.Add(p.BoundingBox["top"]);
+                boundW.Add(p.BoundingBox["width"]);
+                boundH.Add(p.BoundingBox["height"]);
+
+
+            }
+
+            for (int i = 0; i < prob.Count; i++)
+            {
+
+                if (prob[i] < 0.8d)
+                {
+                    prob.Remove(prob[i]);
+                    name.Remove(name[i]);
+                    boundL.Remove(boundL[i]);
+                    boundT.Remove(boundT[i]);
+                    boundW.Remove(boundW[i]);
+                    boundH.Remove(boundH[i]);
+                }
+
+                else
+                {
+                    if (prob[i] > maxProb)
+                    {
+                        bounds.Clear();
+                        maxProb = prob[i];
+                        maxTag = name[i];
+                        bounds.Add(boundL[i]);
+                        bounds.Add(boundT[i]);
+                        bounds.Add(boundW[i]);
+                        bounds.Add(boundH[i]);
+
+                    }
+                }
+
+            }
+
+            if (maxTag != "")
+            {
+                tagText.SetText(maxTag);
+                probabilityText.SetText(maxProb.ToString());
+
+                for (int i = 0; i < bounds.Count; i++)
+                {
+                    boundsText[i].SetText(bounds[i].ToString());
+                }
+            }
+
+            else
+            {
+                tagText.SetText("none");
+                probabilityText.SetText("<80%");
+
+                for (int i = 0; i < bounds.Count; i++)
+                {
+                    boundsText[i].SetText("none");
+                }
+            }
+
+
         }
         else
         {
