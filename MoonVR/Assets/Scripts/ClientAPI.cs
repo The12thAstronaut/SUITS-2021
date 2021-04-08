@@ -40,6 +40,8 @@ public class ClientAPI : MonoBehaviour
 
                     Suit suit_data = data[0];
 
+
+
                     telemetryStream.SetBpmText(suit_data.heart_bpm);
                     telemetryStream.SetPSubText(suit_data.p_sub);
                     telemetryStream.SetPSuitText(suit_data.p_suit);
