@@ -86,7 +86,7 @@ public class SolverTypeChanger : MonoBehaviour
         radialView.MaxDistance = 0.5f;
         radialView.MoveLerpTime = 0.5f;
         radialView.RotateLerpTime = 0.5f;
-        radialView.MaxViewDegrees = 25;
+        radialView.MaxViewDegrees = 55;
     }
 
     public void SetSurfaceMagnetism()

@@ -12,19 +12,21 @@ public class UIATaskProcedure : MonoBehaviour
     public Interactable previousTask;
     public Interactable nextTask;
 
-
     public GameObject previousTaskIcon;
     public GameObject nextTaskIcon;
 
-
     public List<string> taskList = new List<string>();
     public List<string> title = new List<string>();
+    public GameObject UIA;
+    public GameObject[] switches;
     private int counter = 0;
 
     // Start is called before the first frame update
     void Start()
     {
 
+
+        previousTaskIcon.SetActive(false);
         nextTask.OnClick.AddListener(() => ButtonPressed());
         previousTask.OnClick.AddListener(() => ReverseTask());
 
@@ -36,7 +38,6 @@ public class UIATaskProcedure : MonoBehaviour
 
         currentTask.SetText(taskList[0]);
     }
-
 
 
     public void ButtonPressed()
