@@ -44,7 +44,7 @@ public class ClientAPI : MonoBehaviour
                     telemetryStream.SetBpmText(suit_data.heart_bpm);
                     telemetryStream.SetPSubText(suit_data.p_sub);
                     telemetryStream.SetPSuitText(suit_data.p_suit);
-                    telemetryStream.SetTSubText(suit_data.t_sub);
+                    telemetryStream.SetTSubText(suit_data.t_sub); // temperature
                     telemetryStream.SetVFanText(suit_data.v_fan);
                     telemetryStream.SetPO2Text(suit_data.p_o2);
                     telemetryStream.SetRO2Text(suit_data.rate_o2);
@@ -56,6 +56,11 @@ public class ClientAPI : MonoBehaviour
                     telemetryStream.SetH2OLifeText(suit_data.t_water);
                     telemetryStream.SetDateText(suit_data.create_date);
                     telemetryStream.SetEvaTimeText(suit_data.timer);
+                    telemetryStream.SetPrimO2Text(suit_data.ox_primary);
+                    telemetryStream.SetSecondaryO2Text(suit_data.ox_secondary);
+                    telemetryStream.SetRSOPText(suit_data.rate_sop);
+                    telemetryStream.SetBattCapText(suit_data.cap_battery);
+
 
                 }
                 else
