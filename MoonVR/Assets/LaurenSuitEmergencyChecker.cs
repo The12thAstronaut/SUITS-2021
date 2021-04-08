@@ -15,9 +15,9 @@ public class LaurenSuitEmergencyChecker : MonoBehaviour
 
     string emergencyText;
 
-    private List<string> errorList;
+    private List<string> errorList = new List<string>();
 
-    private List<bool> emergencyList;
+    private List<bool> emergencyList = new List<bool>();
 
     public TextMeshPro[] errorText;
 
