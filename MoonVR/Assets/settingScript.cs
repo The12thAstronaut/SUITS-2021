@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit;
@@ -16,6 +17,10 @@ public class settingScript : MonoBehaviour
     public Interactable cursorButton;
 
     public GameObject wristPanel;
+
+    public TextMeshPro cursorText;
+
+    public TextMeshPro spatText;
 
     private Vector3 initScale;
 
@@ -69,12 +74,14 @@ public class settingScript : MonoBehaviour
         if (cursorToggle == true)
         {
             PointerUtils.SetGazePointerBehavior(PointerBehavior.AlwaysOff);
+            cursorText.SetText("Off");
 
         }
 
         else
         {
             PointerUtils.SetGazePointerBehavior(PointerBehavior.AlwaysOn);
+            cursorText.SetText("On");
 
         }
         
@@ -85,23 +92,30 @@ public class settingScript : MonoBehaviour
     {
 
         toggle = !toggle;
-        
+
         // Get the first Mesh Observer available, generally we have only one registered
         var observer = CoreServices.GetSpatialAwarenessSystemDataProvider<IMixedRealitySpatialAwarenessMeshObserver>();
 
+
         if (toggle == false)
         {
+            // Suspends observation of spatial mesh data
+            observer.Suspend();
             // Set to not visible
             observer.DisplayOption = SpatialAwarenessMeshDisplayOptions.None;
-            
+            spatText.SetText("Off");
+
         }
         
         
         else
         {
-            // Set to visible and the Occlusion material
+            // Resumes observation of spatial mesh data
+            observer.Resume();
+            // Set to not visible
             observer.DisplayOption = SpatialAwarenessMeshDisplayOptions.Visible;
-           
+            spatText.SetText("On");
+
         }
         
     }
