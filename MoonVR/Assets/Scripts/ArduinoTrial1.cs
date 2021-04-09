@@ -14,6 +14,7 @@ public class ArduinoTrial1 : MonoBehaviour
     public GameObject panelTwo;
     public GameObject panelThree;
     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class ArduinoTrial1 : MonoBehaviour
         panelOne.SetActive(false);
         panelTwo.SetActive(false);
         panelThree.SetActive(false);
+        
     }
 
     // Update is called once per frame
