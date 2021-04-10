@@ -74,14 +74,14 @@ public class settingScript : MonoBehaviour
         if (cursorToggle == true)
         {
             PointerUtils.SetGazePointerBehavior(PointerBehavior.AlwaysOff);
-            cursorText.SetText("Off");
+            cursorText.SetText("Hidden");
 
         }
 
         else
         {
             PointerUtils.SetGazePointerBehavior(PointerBehavior.AlwaysOn);
-            cursorText.SetText("On");
+            cursorText.SetText("Visible");
 
         }
         
@@ -100,10 +100,10 @@ public class settingScript : MonoBehaviour
         if (toggle == false)
         {
             // Suspends observation of spatial mesh data
-            observer.Suspend();
+            //observer.Suspend();
             // Set to not visible
+            spatText.SetText("Hidden");
             observer.DisplayOption = SpatialAwarenessMeshDisplayOptions.None;
-            spatText.SetText("Off");
 
         }
         
@@ -111,10 +111,10 @@ public class settingScript : MonoBehaviour
         else
         {
             // Resumes observation of spatial mesh data
-            observer.Resume();
+            //observer.Resume();
             // Set to not visible
+            spatText.SetText("Visible");
             observer.DisplayOption = SpatialAwarenessMeshDisplayOptions.Visible;
-            spatText.SetText("On");
 
         }
         

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19f279aded72cb741b4de89a54359dd4, type: 3}
-  m_Name: SUITS MixedRealitySpatialAwarenessSystemProfile
+  m_Name: SUITS2_MixedRealitySpatialAwarenessSystemProfile
   m_EditorClassIdentifier: 
   isCustomProfile: 1
   observerConfigurations:
@@ -20,4 +20,4 @@ MonoBehaviour:
     componentName: Windows Mixed Reality Spatial Mesh Observer
     priority: 0
     runtimePlatform: 8
-    observerProfile: {fileID: 11400000, guid: 3c1a92c6ad5fa584787b171bb6931fee, type: 2}
+    observerProfile: {fileID: 11400000, guid: f133e5ef2e68ea34e9b7baf0e756dd73, type: 2}
