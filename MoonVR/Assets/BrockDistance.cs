@@ -6,8 +6,7 @@ using TMPro;
 public class BrockDistance : MonoBehaviour
 {
     public GameObject camera;
-    public GameObject selector;
-    public TextMeshProUGUI Distancetext;
+    public TextMeshPro Distancetext;
     private float cameraTransformX;
     private float cameraTransformZ;
     // Start is called before the first frame update
@@ -15,6 +14,7 @@ public class BrockDistance : MonoBehaviour
     {
         Dictionary<string, double> WaypointLongitude = new Dictionary<string, double>();
         Dictionary<string, double> WaypointLatitude = new Dictionary<string, double>();
+        Distancetext.text = "Distance" ;
 
         WaypointLongitude.Add("Vallis Alpes", 3.63);
         WaypointLatitude.Add("Vallis Alpes", 49.21);
@@ -221,11 +221,38 @@ public class BrockDistance : MonoBehaviour
         var a = Mathf.Pow(Mathf.Sin(deltalat / 2), 2) + Mathf.Cos(lat1) * Mathf.Cos(lat2) * Mathf.Pow(Mathf.Sin(deltalong / 2), 2);
         var c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a));
         var d = Rearth * c;
+        var ti = d / 2.2;
+        string time = ti.ToString();
         string dis = d.ToString();
         // Bearing Calculator
         // Bearing doesnt work
         var Direction = Mathf.Atan2(Mathf.Sin(deltalong) * Mathf.Cos(lat2), (Mathf.Cos(lat1) * Mathf.Sin(lat2)) - (Mathf.Sin(lat1) * Mathf.Cos(lat2) * Mathf.Cos(deltalong)));
         // PRINT Direction to whatever determines angle for the compass
-        Distancetext.text = "Distance to Waypoint " + dis + " Angle to follow " + Direction;
+        print(d);
+        if (d < 2)
+        {
+            Distancetext.color = Color.white;
+            Distancetext.text = "Distance to Waypoint " + dis + "km" + " Time to Destinantion " + time + " hrs";
+        } 
+        else if (2 < d && d < 10)
+        {
+            Distancetext.color = Color.yellow;
+            Distancetext.text = "Distance to Waypoint " + dis + " Time to Destinantion " + time;
+        }
+        else if (10 < d && d < 12)
+        {
+            Distancetext.color = Color.blue;
+            Distancetext.text = "Distance to Waypoint " + dis + " Time to Destinantion " + time;
+        }
+        else if (12 < d && d < 100)
+        {
+            Distancetext.color = Color.green;
+            Distancetext.text = "Distance to Waypoint " + dis + " Time to Destinantion " + time;
+        }
+        else if (d > 100)
+        {
+            Distancetext.color = Color.magenta;
+            Distancetext.text = "Distance to Waypoint " + dis + " Time to Destinantion " + time;
+        }
     }
 }
