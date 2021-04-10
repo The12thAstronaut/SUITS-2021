@@ -12068,7 +12068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   telemetryStream: {fileID: 1445326690}
-  url: http://localhost:3000/api/simulation/state
+  url: http://172.18.7.243:3000/api/simulation/state
 --- !u!4 &1570981098
 Transform:
   m_ObjectHideFlags: 0
@@ -15797,6 +15797,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 248ca056b3a888b43b7e3cacfceda287, type: 3}
       propertyPath: m_Name
       value: Shackleton_Clean_Origin_smaller
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 248ca056b3a888b43b7e3cacfceda287, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 248ca056b3a888b43b7e3cacfceda287, type: 3}
       propertyPath: m_LocalPosition.x
