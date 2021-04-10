@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/newLaurenDemoscene.unity
-    guid: d068a9a7d6f29c6468dccfba39d8db0b
+    path: Assets/Scenes/moonScene.unity
+    guid: dee73b94f1825a54dbd696057f9763ab
   m_configObjects: {}

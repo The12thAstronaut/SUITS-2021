@@ -33,20 +33,20 @@ public class TaskManager : MonoBehaviour
     {
         count++;
 
-        foreach (var task in taskSet)
+        for (int i = 0; i < taskSet.Length; i++)
         {
-            task.SetActive(false);
+            if (i == buttonIndex)
+            {
+                taskSet[i].SetActive(true);
+            }
+
+            else
+            {
+                taskSet[i].SetActive(false);
+            }
+            
         }
 
-        if (count % 2 == 0)
-        {
-            taskSet[buttonIndex].SetActive(false);
-        }
-
-        else
-        {
-            taskSet[buttonIndex].SetActive(true);
-        }
         
     }
     // Update is called once per frame
