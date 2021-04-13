@@ -74,14 +74,14 @@ public class settingScript : MonoBehaviour
         if (cursorToggle == true)
         {
             PointerUtils.SetGazePointerBehavior(PointerBehavior.AlwaysOff);
-            cursorText.SetText("Cursor Hidden");
+            cursorText.SetText("Eye Cursor Hidden");
 
         }
 
         else
         {
             PointerUtils.SetGazePointerBehavior(PointerBehavior.AlwaysOn);
-            cursorText.SetText("Cursor Visible");
+            cursorText.SetText("Eye Cursor Visible");
 
         }
         
