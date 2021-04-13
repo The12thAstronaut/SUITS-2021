@@ -5,6 +5,7 @@ using UnityEngine;
 public class DestinationTest : MonoBehaviour
 {
     DestinationManager dm;
+    public Camera currentCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class DestinationTest : MonoBehaviour
 
     public void AddLookPoint()
     {
-        Camera currentCamera = Camera.main;
+        //Camera currentCamera = Camera.main;
         Ray ray = new Ray(currentCamera.transform.position, currentCamera.transform.forward);
         RaycastHit hit;
 
