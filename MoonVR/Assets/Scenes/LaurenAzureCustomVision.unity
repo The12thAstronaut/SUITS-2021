@@ -29917,6 +29917,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoConstraintSelection: 1
   selectedConstraints: []
+--- !u!1 &1275300805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8499655919597405317, guid: 24d9589008999d841a58d71c89995210,
+    type: 3}
+  m_PrefabInstance: {fileID: 311842244}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1280661383
 GameObject:
   m_ObjectHideFlags: 0
@@ -35955,6 +35961,11 @@ PrefabInstance:
       propertyPath: anchorManager
       value: 
       objectReference: {fileID: 955869199}
+    - target: {fileID: 5993036792687384025, guid: 4564ebd62ac88ac46b521038820b6f31,
+        type: 3}
+      propertyPath: mainMenu
+      value: 
+      objectReference: {fileID: 1275300805}
     - target: {fileID: 6858734634425796935, guid: 4564ebd62ac88ac46b521038820b6f31,
         type: 3}
       propertyPath: m_LocalPosition.x
