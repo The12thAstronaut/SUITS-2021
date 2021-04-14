@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6070,7 +6070,7 @@ PrefabInstance:
     - target: {fileID: 3176702535451562610, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -2.4
       objectReference: {fileID: 0}
     - target: {fileID: 3289636178284661603, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -24753,6 +24753,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3176702535451562610, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 3772024313052747886, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_RootOrder
@@ -26963,7 +26968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &955160865
 Transform:
   m_ObjectHideFlags: 0
@@ -33529,6 +33534,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3176702535451562610, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3772024313052747886, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_RootOrder
@@ -35347,6 +35357,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 3176702535451562610, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3772024313052747886, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_RootOrder
@@ -36288,6 +36303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3176702535451562610, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3772024313052747886, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -38700,7 +38720,7 @@ GameObject:
   - component: {fileID: 1316478718}
   - component: {fileID: 1316478717}
   m_Layer: 0
-  m_Name: MixedRealityToolkit
+  m_Name: MixedRealityToolkit (Inactive)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50254,6 +50274,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3176702535451562610, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3772024313052747886, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_RootOrder
@@ -55965,6 +55990,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3176702535451562610, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3772024313052747886, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_RootOrder
@@ -56202,6 +56232,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1908414525}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1908414527 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3176702535451562610, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 1908414525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1908414528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56232,7 +56268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181cd563a8349c34ea8978b0bc8d9c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostTransform: {fileID: 0}
+  hostTransform: {fileID: 1908414527}
   manipulationType: 3
   twoHandedManipulationType: 7
   allowFarManipulation: 1
