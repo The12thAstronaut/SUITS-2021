@@ -28,6 +28,6 @@ public class DistanceFromObject : MonoBehaviour
         // distance.ToString("F1") shows value with 1 digit after period
         // so 12.234 will be shown as 12.2 for example
         // distance.ToString("F2") will show 12.21 in this case
-        distanceText.text = "Distance: " + distance.ToString("F1") + "meters";
+        distanceText.text = "Houston\n" + distance.ToString("F1") + "meters";
     }
 }
