@@ -64,15 +64,12 @@ public class DestroyPanelSolver : MonoBehaviour
         if (solverToggles1[i] == true)
         {
             SetSurfaceMagnetism(i);
-            currentSolver = panels[i].GetComponent<Solver>();
-            prevSolver = currentSolver;
         }
 
         else
         {
             SetRadialView1(i);
             currentSolver = panels[i].GetComponent<Solver>();
-            prevSolver = currentSolver;
         }
 
 
@@ -87,21 +84,13 @@ public class DestroyPanelSolver : MonoBehaviour
         {
             currentSolver = panels[i].GetComponent<Solver>();
             DestroySolver(currentSolver);
+
         }
 
         else
         {
-            if (prevSolver is RadialView)
-            {
-                SetRadialView1(i);
+            SetRadialView1(i);
 
-            }
-
-            else if (prevSolver is SurfaceMagnetism)
-            {
-                SetSurfaceMagnetism(i);
-
-            }
 
         }
 
@@ -125,6 +114,8 @@ public class DestroyPanelSolver : MonoBehaviour
             radialView.MoveLerpTime = 0.30f;
             radialView.RotateLerpTime = 0.30f;
             radialView.MaxViewDegrees = 30;
+
+
         }
 
     }
@@ -196,7 +187,10 @@ public class DestroyPanelSolver : MonoBehaviour
                 
             }
 
-            Debug.Log(panels[2].GetComponent<Solver>());
+            else
+            {
+                Debug.Log(panels[i].GetComponent<Solver>());
+            }
 
         }
 
