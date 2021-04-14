@@ -67,7 +67,6 @@ public class LaurenSuitEmergencyChecker : MonoBehaviour
                 {
                     var errorColor = errorBack[i].GetComponent<Renderer>().material;
                     errorColor.SetColor("_Color", new Color(0.4392157f, 0.7490196f, 0.2117647f, 1f));
-                    emergencyPanel.SetActive(false);
 
                 }
 
@@ -175,12 +174,12 @@ public class LaurenSuitEmergencyChecker : MonoBehaviour
     void checkTemperature()
     {
         float data = float.Parse(tS.GetTSubText());
-        if (data < 44.6)
+        if (data < 28.0)
         {
             emergencyText = emergencyText + "Low Temperature: " + data + "F\n";
             isEmergency = true;
         }
-        else if (data > 50)
+        else if (data > 35.0)
         {
             emergencyText = emergencyText + "High Temperature: " + data + "F\n";
             isEmergency = true;
@@ -272,7 +271,7 @@ public class LaurenSuitEmergencyChecker : MonoBehaviour
     //TODO Get Battery Capacity?
     void checkBatteryCapacity()
     {
-        float data = float.Parse(tS.GetPH2OGText());
+        float data = float.Parse(tS.GetBattCapText());
         if (data < 0)
         {
             emergencyText = emergencyText + "Low Battery Capacity: " + data + "amp-hr\n";
@@ -369,7 +368,7 @@ public class LaurenSuitEmergencyChecker : MonoBehaviour
     //TODO Get Sop Rate?
     void checkSOPRate()
     {
-        float data = float.Parse(tS.GetVFanText());
+        float data = float.Parse(tS.GetRSOPText());
         if (data < 0.5)
         {
             emergencyText = emergencyText + "Low SOP Rate: " + data + "psi/min\n";

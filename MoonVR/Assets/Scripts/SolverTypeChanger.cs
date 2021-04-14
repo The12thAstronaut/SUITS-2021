@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Utilities.Solvers;
 using Microsoft.MixedReality.Toolkit.UI;
@@ -10,30 +11,27 @@ public class SolverTypeChanger : MonoBehaviour
 {
     public Interactable SolverButton;
     public Interactable FollowToggle;
-    public Interactable VertPos;
     public GameObject Panel;
     private Solver currentSolver;
     private Solver prevSolver;
     public Microsoft.MixedReality.Toolkit.Utilities.Solvers.SurfaceMagnetism.OrientationMode CurrentOrientationMode { get; set; }
 
-
+    
 
     private int i = 0;
     private int j = 0;
-
-    private bool vert = true;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        SetRadialView();
         
         SolverButton.OnClick.AddListener(() => ChangeSolver());
         FollowToggle.OnClick.AddListener(() => NoSolver());
 
         prevSolver = currentSolver;
     }
+
 
     void ChangeSolver()
     {
@@ -69,22 +67,26 @@ public class SolverTypeChanger : MonoBehaviour
             if (prevSolver is RadialView)
             {
                 SetRadialView();
-                Debug.Log(Panel.GetComponent<Solver>());
+                
             }
 
             else if (prevSolver is SurfaceMagnetism)
             {
                 SetSurfaceMagnetism();
-                Debug.Log(Panel.GetComponent<Solver>());
+                
             }
             
         }
+
+        Debug.Log(Panel.GetComponent<Solver>());
     }
 
 
     public void SetRadialView()
     {
         DestroySolver();
+
+        //StartCoroutine(PanelFixedVertical());
 
         AddSolver<RadialView>();
 
@@ -94,7 +96,7 @@ public class SolverTypeChanger : MonoBehaviour
         radialView.MoveLerpTime = 0.30f;
         radialView.RotateLerpTime = 0.30f;
         radialView.MaxViewDegrees = 30;
-        radialView.UseFixedVerticalPosition = true;
+
     }
 
     public void SetSurfaceMagnetism()
@@ -109,7 +111,6 @@ public class SolverTypeChanger : MonoBehaviour
         surfaceMagnetism.CurrentOrientationMode = SurfaceMagnetism.OrientationMode.SurfaceNormal;
         surfaceMagnetism.MaxRaycastDistance = 5f;
         surfaceMagnetism.MoveLerpTime = 2f;
-
 
     }
 
