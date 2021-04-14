@@ -7,21 +7,15 @@ using Microsoft.MixedReality.Toolkit.UI;
 
 public class voiceManager : MonoBehaviour
 {
-    public string[] keywords = new string[] { "Hey Scout",
-                                            "Communication",
-                                            "Settings",
-                                            "Task",
-                                            "Science",
-                                            "Navigation",
-                                            "Lunarpedia",
-                                            "Whiteboard",
-                                            "Space Suit" };
+    public string[] keywords;
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public float speed = 1;
 
     public bool isScoutActivated;
     public GameObject buttonCollection;
     public GameObject[] menuButtons;
+    public GameObject ScoutModel;
+    public GameObject wristPanelContent;
 
     protected PhraseRecognizer recognizer;
     protected string word = "none";
@@ -65,9 +59,10 @@ public class voiceManager : MonoBehaviour
     private void Update()
     {
         //Set boolean to true if "Hey Scout" is said
-        if (word == "Hey Scout")
+        if (word == "Hey Scout" && isScoutActivated == false)
         {
             isScoutActivated = true;
+            ScoutModel.SetActive(true);
         }
 
         //If "Hey Scout" has been said, listen for menu name keywords
@@ -79,49 +74,57 @@ public class voiceManager : MonoBehaviour
                 case "Communication":
                     print("Opening Comms Panel");
                     menuButtons[0].GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
-                    isScoutActivated = false;
                     word = "none";
                     break;
                 case "Settings":
                     print("Opening Settings Panel");
                     menuButtons[2].GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
-                    isScoutActivated = false;
                     word = "none";
                     break;
                 case "Task":
                     print("Opening Tasks Panel");
                     menuButtons[4].GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
-                    isScoutActivated = false;
                     word = "none";
                     break;
                 case "Science":
                     print("Opening Science Panel");
                     menuButtons[1].GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
-                    isScoutActivated = false;
                     word = "none";
                     break;
                 case "Navigation":
                     print("Opening Navigation Panel");
                     menuButtons[5].GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
-                    isScoutActivated = false;
                     word = "none";
                     break;
                 case "Lunarpedia":
                     print("Opening Lunarpedia Panel");
                     menuButtons[6].GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
-                    isScoutActivated = false;
                     word = "none";
                     break;
                 case "Whiteboard":
                     print("Opening Whiteboard Panel");
                     menuButtons[3].GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
-                    isScoutActivated = false;
                     word = "none";
                     break;
-                case "Space Suit":
+                case "Suit":
                     print("Opening Suit Panel");
                     menuButtons[7].GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
+                    word = "none";
+                    break;
+                case "Show Menu":
+                    print("Turning On Menu");
+                    wristPanelContent.SetActive(true);
+                    word = "none";
+                    break;
+                case "Hide Menu":
+                    print("Turning Off Menu");
+                    wristPanelContent.SetActive(false);
+                    word = "none";
+                    break;
+                case "Bye Scout":
+                    print("Deactivating Scout");
                     isScoutActivated = false;
+                    ScoutModel.SetActive(false);
                     word = "none";
                     break;
             }
