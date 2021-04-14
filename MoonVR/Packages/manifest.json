@@ -10,8 +10,6 @@
     }
   ],
   "dependencies": {
-    "com.microsoft.azure.spatial-anchors-sdk.core": "file:../Assets/com.microsoft.azure.spatial-anchors-sdk.core-2.7.1.tgz",
-    "com.microsoft.azure.spatial-anchors-sdk.windows": "file:../Assets/com.microsoft.azure.spatial-anchors-sdk.windows-2.7.1.tgz",
     "com.microsoft.mixedreality.toolkit.examples": "2.5.1",
     "com.microsoft.mixedreality.toolkit.foundation": "2.5.1",
     "com.microsoft.mixedreality.toolkit.tools": "2.5.1",
@@ -24,7 +22,6 @@
     "com.unity.textmeshpro": "2.1.1",
     "com.unity.timeline": "1.2.17",
     "com.unity.ugui": "1.0.0",
-    "com.unity.xr.arfoundation": "2.1.16",
     "com.unity.xr.oculus.standalone": "2.38.4",
     "com.unity.xr.openvr.standalone": "2.0.5",
     "com.unity.xr.windowsmr.metro": "4.2.3",

@@ -653,7 +653,7 @@ PlayerSettings:
       PhoneCallHistoryPublic: False
       PicturesLibrary: False
       PointOfService: False
-      PrivateNetworkClientServer: True
+      PrivateNetworkClientServer: False
       Proximity: False
       RecordedCallsFolder: False
       RemoteSystem: False
@@ -666,7 +666,7 @@ PlayerSettings:
       UserNotificationListener: False
       VideosLibrary: False
       VoipCall: False
-      WebCam: True
+      WebCam: False
   metroTargetDeviceFamilies:
     Desktop: False
     Holographic: True
