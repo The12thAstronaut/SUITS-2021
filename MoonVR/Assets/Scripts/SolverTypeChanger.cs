@@ -10,6 +10,7 @@ public class SolverTypeChanger : MonoBehaviour
 {
     public Interactable SolverButton;
     public Interactable FollowToggle;
+    public Interactable VertPos;
     public GameObject Panel;
     private Solver currentSolver;
     private Solver prevSolver;
@@ -19,6 +20,8 @@ public class SolverTypeChanger : MonoBehaviour
 
     private int i = 0;
     private int j = 0;
+
+    private bool vert = true;
 
 
     // Start is called before the first frame update
@@ -34,6 +37,7 @@ public class SolverTypeChanger : MonoBehaviour
 
     void ChangeSolver()
     {
+
         i++;
         if (i % 2 != 0)
         {
@@ -90,6 +94,7 @@ public class SolverTypeChanger : MonoBehaviour
         radialView.MoveLerpTime = 0.30f;
         radialView.RotateLerpTime = 0.30f;
         radialView.MaxViewDegrees = 30;
+        radialView.UseFixedVerticalPosition = true;
     }
 
     public void SetSurfaceMagnetism()

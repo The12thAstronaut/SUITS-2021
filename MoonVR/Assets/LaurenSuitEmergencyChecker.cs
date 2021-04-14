@@ -19,14 +19,13 @@ public class LaurenSuitEmergencyChecker : MonoBehaviour
 
     private List<bool> emergencyList = new List<bool>();
 
-    public TextMeshPro[] errorText;
+    public GameObject[] errorBack;
 
 
     
     // Start is called before the first frame update
     void Start()
     {
-        emergencyPanel.SetActive(false);
 
         tS = FindObjectOfType<TelemetryStream>();
 
@@ -64,20 +63,19 @@ public class LaurenSuitEmergencyChecker : MonoBehaviour
 
             for (int i = 0; i < emergencyList.Count; i++)
             {
-                errorText[i].SetText(errorList[i]);
-
                 if (emergencyList[i] == false)
                 {
-                    errorText[i].color = Color.green;
+                    var errorColor = errorBack[i].GetComponent<Renderer>().material;
+                    errorColor.SetColor("_Color", new Color(0.4392157f, 0.7490196f, 0.2117647f, 1f));
                     emergencyPanel.SetActive(false);
-                    
 
                 }
 
                 else
                 {
                     emergencyPanel.SetActive(true);
-                    errorText[i].color = Color.red;
+                    var errorColor = errorBack[i].GetComponent<Renderer>().material;
+                    errorColor.SetColor("_Color", Color.red);
                     warningSound.Play();
                 }
 
