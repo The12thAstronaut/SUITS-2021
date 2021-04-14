@@ -14,9 +14,6 @@ public class SolverTypeChanger : MonoBehaviour
     private Solver currentSolver;
     public Microsoft.MixedReality.Toolkit.Utilities.Solvers.SurfaceMagnetism.OrientationMode CurrentOrientationMode { get; set; }
 
-    
-    
-
 
 
     private int i = 0;
@@ -34,24 +31,16 @@ public class SolverTypeChanger : MonoBehaviour
 
     void ChangeSolver()
     {
-
         i++;
-
         if (i % 2 != 0)
         {
-
             SetSurfaceMagnetism();
-            
         }
 
         else
-        {
-            
+        { 
             SetRadialView();
-            
         }
-  
-
     }
 
     void NoSolver()
@@ -60,18 +49,13 @@ public class SolverTypeChanger : MonoBehaviour
 
         if (j % 2 != 0)
         {
-
             DestroySolver();
-
         }
 
         else
         {
-
             SetRadialView();
-
         }
-
     }
 
 
@@ -82,11 +66,11 @@ public class SolverTypeChanger : MonoBehaviour
         AddSolver<RadialView>();
 
         var radialView = currentSolver as RadialView;
-        radialView.MinDistance = 0.4f;
-        radialView.MaxDistance = 0.5f;
-        radialView.MoveLerpTime = 0.5f;
-        radialView.RotateLerpTime = 0.5f;
-        radialView.MaxViewDegrees = 55;
+        radialView.MinDistance = 0.5f;
+        radialView.MaxDistance = 0.6f;
+        radialView.MoveLerpTime = 0.30f;
+        radialView.RotateLerpTime = 0.30f;
+        radialView.MaxViewDegrees = 30;
     }
 
     public void SetSurfaceMagnetism()
