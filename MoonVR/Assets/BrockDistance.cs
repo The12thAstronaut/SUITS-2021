@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class BrockDistance : MonoBehaviour
 {
     public GameObject camera;
     public TextMeshPro Distancetext;
+    
+
     private float cameraTransformX;
     private float cameraTransformZ;
     // Start is called before the first frame update
@@ -15,6 +19,9 @@ public class BrockDistance : MonoBehaviour
         Dictionary<string, double> WaypointLongitude = new Dictionary<string, double>();
         Dictionary<string, double> WaypointLatitude = new Dictionary<string, double>();
         Distancetext.text = "Distance" ;
+       
+
+
 
         WaypointLongitude.Add("Vallis Alpes", 3.63);
         WaypointLatitude.Add("Vallis Alpes", 49.21);
@@ -187,6 +194,19 @@ public class BrockDistance : MonoBehaviour
         WaypointLongitude.Add("Apollo 17", 30.77);
         WaypointLatitude.Add("Apollo 17", 20.19);
 
+        // Waypoints for SUITS 2021
+        //Starts at Lander/UIA
+        WaypointLongitude.Add("Lander", 29.5586574);
+        WaypointLatitude.Add("Lander", -95.0920556);
+        //Then towards geology site for sampling
+        WaypointLongitude.Add("Geology_Site", 29.5586044);
+        WaypointLatitude.Add("Geology_Site", -95.0919444);
+        //Then towards rover for rock sample retrieval
+        WaypointLongitude.Add("Rover", 29.5594941);
+        WaypointLatitude.Add("Rover", -95.0932222);
+        //Finally goes back to lander/UIA
+        
+
         // Need to get input from user for waypoints that will be hit in EVA
         // Then take waypoints from dictionaries and compute distance
         // Then print distance and angle so compass will point to correct location
@@ -202,57 +222,131 @@ public class BrockDistance : MonoBehaviour
         // Then print as text mesh pro
         // Pull data from dropdown and determine what waypoint is needed
 
-        
+
 
         // Distance Calculator - ROUNDING ERRORS
-        var Rmoon = 1738.1f;
-        var Rearth = 6378.1f;
-        var lat1D = 49.21f;
-        var lat2D = -45.9f;
-        var long1D = 3.63f;
-        var long2D = -76.2f;
+        /*
+        var Rmoon = 1738.1f; // Radius of Moon: distance in kilometers [km]
+        var Rearth = 6378.1f; // distance in kilometers [km]
+        */
+        //var Rmoon = 1738.1f; // Radius of Moon: distance in kilometers [km]
+        var Rearth = 6371e3f; // distance in [m]
+
+
+        //_________________________________________________
+        var LanderLat1D = -95.0920556f; //waypoint 1
+        var LanderLong1D = 29.5586574f;
+
+        var GeoLat2D = -95.0919444f; //Waypoint 2
+        var GeoLong2D = 29.5586044f;
+
+        var RoverLat3D = -95.0932222f; // Waypoint 3
+        var RoverLong3D = 29.5594941f;
+
+        // ______________________________________________Waypoint 1 to Waypoint 2________________________________________
         // Convert to radians ...1D to ...1
-        var lat1 = lat1D * Mathf.PI / 180;
-        var lat2 = lat2D * Mathf.PI / 180;
-        var long1 = long1D * Mathf.PI / 180;
-        var long2 = long2D * Mathf.PI / 180;
-        var deltalat = lat2 - lat1;
-        var deltalong = long2 - long1;
-        var a = Mathf.Pow(Mathf.Sin(deltalat / 2), 2) + Mathf.Cos(lat1) * Mathf.Cos(lat2) * Mathf.Pow(Mathf.Sin(deltalong / 2), 2);
+        // If lat1 is the starting point then we will make this for the lander
+        var lat1 = LanderLat1D * (Mathf.PI/180); //lat1, delta lat in radians
+        var lat2 = GeoLat2D * (Mathf.PI/180);
+        var long1 = LanderLong1D * (Mathf.PI / 180);
+        var long2 = GeoLong2D * (Mathf.PI / 180);
+        var deltalat = (GeoLat2D - LanderLat1D) * (Mathf.PI/180);
+        var deltalong = (GeoLong2D - LanderLong1D) * (Mathf.PI/180);
+
+        // ______________________________________________Waypoint 2 to Waypoint 3________________________________________
+        var lat3 = RoverLat3D * (Mathf.PI / 180);
+        var long3 = RoverLong3D * (Mathf.PI / 180);
+        var deltalat2 = (RoverLat3D - GeoLat2D) * (Mathf.PI / 180);
+        var deltalong2 = (RoverLong3D - GeoLong2D) * (Mathf.PI / 180);
+
+        // ______________________________________________Waypoint 3 to Waypoint 1________________________________________
+        var deltalat3 = (RoverLat3D - LanderLat1D) * (Mathf.PI / 180);
+        var deltalong3 = (RoverLong3D - LanderLong1D) * (Mathf.PI / 180);
+
+        // Distance 1
+        // a = distance [meters] of latitude 1 to 2
+        var a = (Mathf.Sin(deltalat / 2) * Mathf.Sin(deltalat / 2)) + (Mathf.Cos(lat1) * Mathf.Cos(lat2) * Mathf.Sin(deltalong / 2) * Mathf.Sin(deltalong / 2));
+        // uses a calculation
         var c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a));
-        var d = Rearth * c;
-        var ti = d / 2.2;
-        string time = ti.ToString();
+        // d = distance : Rearth = radius of earth
+        var d = Rearth * c; // total distance of the 2 points
+        var ti = (d / 2.2); // average walking speed, 2.2 [m/s]    //time needs to be a double format
+
+        //TimeSpan time = TimeSpan.FromSeconds(ti);
+        //string times_1 = time.ToString(@"hh\\:mm\\:ss\\.fff");
+        string times_1 = ti.ToString();
         string dis = d.ToString();
+
+
+        // Distance 2
+        // a = distance [meters] of latitude 2 to 3
+
+        var a_2 = (Mathf.Sin(deltalat2 / 2) * Mathf.Sin(deltalat2 / 2)) + (Mathf.Cos(lat2) * Mathf.Cos(lat3) * Mathf.Sin(deltalong2 / 2) * Mathf.Sin(deltalong2 / 2));
+        // uses a calculation in c
+        var c_2 = 2 * Mathf.Atan2(Mathf.Sqrt(a_2), Mathf.Sqrt(1 - a_2));
+        // d = distance : Rearth = radius of earth
+        var d_2 = Rearth * c_2; // total distance of the 2 points
+        var ti_2 = ((d_2 / 2.2)); // average walking speed, 2.2 [m/s]
+
+        //TimeSpan time_2 = TimeSpan.FromSeconds(ti_2);
+        //string times_2 = time_2.ToString(@"hh\\:mm\\:ss\\.fff");
+        string times_2 = ti_2.ToString();
+        string dis_2 = d_2.ToString();
+
+
+        //Distance 3
+        // a = distance [meters] of latitude 3 to 1 (or 1 to 3)
+
+        var a_3 = (Mathf.Sin(deltalat3 / 2) * Mathf.Sin(deltalat3 / 2)) + (Mathf.Cos(lat3) * Mathf.Cos(lat1) * Mathf.Sin(deltalong3 / 2) * Mathf.Sin(deltalong3 / 2));
+        // uses a calculation
+        var c_3 = 2 * Mathf.Atan2(Mathf.Sqrt(a_3), Mathf.Sqrt(1 - a_3));
+        // d = distance : Rearth = radius of earth
+        var d_3 = Rearth * c_3; // total distance of the 2 points
+        var ti_3 = ((d_3/ 2.2)); // average walking speed, 2.2 [m/s]
+
+        //TimeSpan time_3 = TimeSpan.FromSeconds(ti_3);
+        //string times_3 = time.ToString(@"hh\\:mm\\:ss\\.fff");
+        string times_3 = ti_3.ToString();
+        string dis_3 = d_3.ToString();
+
+
         // Bearing Calculator
         // Bearing doesnt work
         var Direction = Mathf.Atan2(Mathf.Sin(deltalong) * Mathf.Cos(lat2), (Mathf.Cos(lat1) * Mathf.Sin(lat2)) - (Mathf.Sin(lat1) * Mathf.Cos(lat2) * Mathf.Cos(deltalong)));
         // PRINT Direction to whatever determines angle for the compass
         print(d);
-        if (d < 2)
+        if (d < 2) // less than 2 [m]
         {
             Distancetext.color = Color.white;
-            Distancetext.text = "Distance to Waypoint " + dis + "km" + " Time to Destinantion " + time + " hrs";
-        } 
-        else if (2 < d && d < 10)
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+
+        }
+        else if (2 < d && d < 10) // greater than 2 m or less than 10 m
         {
             Distancetext.color = Color.yellow;
-            Distancetext.text = "Distance to Waypoint " + dis + " Time to Destinantion " + time;
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+
         }
+
         else if (10 < d && d < 12)
         {
             Distancetext.color = Color.blue;
-            Distancetext.text = "Distance to Waypoint " + dis + " Time to Destinantion " + time;
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+
         }
         else if (12 < d && d < 100)
         {
             Distancetext.color = Color.green;
-            Distancetext.text = "Distance to Waypoint " + dis + " Time to Destinantion " + time;
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+
+            //Distancetext.text = "Distance to Waypoint " + dis + "/nTime to Destinantion " + time;
         }
         else if (d > 100)
         {
-            Distancetext.color = Color.magenta;
-            Distancetext.text = "Distance to Waypoint " + dis + " Time to Destinantion " + time;
+            Distancetext.color = Color.magenta; //pink
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+
+            //Distancetext.text = "Distance to Waypoint " + dis + "/nTime to Destinantion " + time;
         }
     }
 }
