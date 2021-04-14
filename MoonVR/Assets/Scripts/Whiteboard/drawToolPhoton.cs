@@ -8,6 +8,7 @@ public class drawToolPhoton : MonoBehaviour
     public Transform rayOrigin;
     public GameObject splinePrefab;
     public GameObject splineToHide;
+    public GameObject whiteboardObjectParent;
     public int lastSplineID;
     private PhotonView PV;
     private GameObject currentSpline;
@@ -21,6 +22,7 @@ public class drawToolPhoton : MonoBehaviour
     void Start()
     {
         PV = GetComponent<PhotonView>();
+        whiteboardObjectParent = GameObject.Find("WhiteboardObjectParent");
         drawingMode = true;
         lastSplineID = 0;       //Initialize SplineID at 0
     }
@@ -75,7 +77,7 @@ public class drawToolPhoton : MonoBehaviour
         double timestamp = PhotonNetwork.Time;
         timestamp = info.SentServerTime;
         //Spawn Spline sphere
-        currentSpline = Instantiate(splinePrefab, position, rotation);
+        currentSpline = Instantiate(splinePrefab, position, rotation, whiteboardObjectParent.transform);
         Debug.Log(SplineID);
         //Get objectID component from spline sphere and assign lastSplineID
         objectID = currentSpline.GetComponent(typeof(objectID)) as objectID;
