@@ -272,9 +272,9 @@ public class BrockDistance : MonoBehaviour
         var d = Rearth * c; // total distance of the 2 points
         var ti = (d / 2.2); // average walking speed, 2.2 [m/s]    //time needs to be a double format
 
-        //TimeSpan time = TimeSpan.FromSeconds(ti);
-        //string times_1 = time.ToString(@"hh\\:mm\\:ss\\.fff");
-        string times_1 = ti.ToString();
+        TimeSpan time = TimeSpan.FromSeconds(ti);
+        string times_1 = time.ToString(@"hh\:mm\:ss\.fff");
+        //string times_1 = ti.ToString();
         string dis = d.ToString();
 
 
@@ -288,9 +288,9 @@ public class BrockDistance : MonoBehaviour
         var d_2 = Rearth * c_2; // total distance of the 2 points
         var ti_2 = ((d_2 / 2.2)); // average walking speed, 2.2 [m/s]
 
-        //TimeSpan time_2 = TimeSpan.FromSeconds(ti_2);
-        //string times_2 = time_2.ToString(@"hh\\:mm\\:ss\\.fff");
-        string times_2 = ti_2.ToString();
+        TimeSpan time_2 = TimeSpan.FromSeconds(ti_2);
+        string times_2 = time_2.ToString(@"hh\:mm\:ss\.fff");
+        //string times_2 = ti_2.ToString();
         string dis_2 = d_2.ToString();
 
 
@@ -304,9 +304,10 @@ public class BrockDistance : MonoBehaviour
         var d_3 = Rearth * c_3; // total distance of the 2 points
         var ti_3 = ((d_3/ 2.2)); // average walking speed, 2.2 [m/s]
 
-        //TimeSpan time_3 = TimeSpan.FromSeconds(ti_3);
-        //string times_3 = time.ToString(@"hh\\:mm\\:ss\\.fff");
-        string times_3 = ti_3.ToString();
+
+        //string times_3 = ti_3.ToString();
+        TimeSpan time_3 = TimeSpan.FromSeconds(ti_3);
+        string times_3 = time_3.ToString(@"hh\:mm\:ss\.fff");
         string dis_3 = d_3.ToString();
 
 
@@ -318,33 +319,33 @@ public class BrockDistance : MonoBehaviour
         if (d < 2) // less than 2 [m]
         {
             Distancetext.color = Color.white;
-            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + " hh:mm:ss\n" + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + " hh:mm:ss\n" + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3 + " hh:mm:ss\n";
 
         }
         else if (2 < d && d < 10) // greater than 2 m or less than 10 m
         {
             Distancetext.color = Color.yellow;
-            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + " hh:mm:ss\n" + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + " hh:mm:ss\n" + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3 + " hh:mm:ss\n";
 
         }
 
         else if (10 < d && d < 12)
         {
             Distancetext.color = Color.blue;
-            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + " hh:mm:ss\n" + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + " hh:mm:ss\n" + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3 + " hh:mm:ss\n";
 
         }
         else if (12 < d && d < 100)
         {
             Distancetext.color = Color.green;
-            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + " hh:mm:ss\n" + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + " hh:mm:ss\n" + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3 + " hh:mm:ss\n";
 
             //Distancetext.text = "Distance to Waypoint " + dis + "/nTime to Destinantion " + time;
         }
         else if (d > 100)
         {
             Distancetext.color = Color.magenta; //pink
-            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3;
+            Distancetext.text = "Waypoint 1: " + dis + " m\n" + "ETA: " + times_1 + " hh:mm:ss\n" + "\nWaypoint 2: " + dis_2 + " m\n" + "ETA: " + times_2 + " hh:mm:ss\n" + "\nWaypoint 3: " + dis_3 + " m\n" + "ETA: " + times_3 + " hh:mm:ss\n";
 
             //Distancetext.text = "Distance to Waypoint " + dis + "/nTime to Destinantion " + time;
         }

@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b3a145fd0d1724e8d1173356ac63aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1749574395}
+  camera: {fileID: 234788634}
   Distancetext: {fileID: 713759786}
 --- !u!4 &924002140
 Transform:
