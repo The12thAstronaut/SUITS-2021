@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Utilities.Solvers;
 using Microsoft.MixedReality.Toolkit.UI;
@@ -15,7 +16,7 @@ public class SolverTypeChanger : MonoBehaviour
     private Solver prevSolver;
     public Microsoft.MixedReality.Toolkit.Utilities.Solvers.SurfaceMagnetism.OrientationMode CurrentOrientationMode { get; set; }
 
-
+    
 
     private int i = 0;
     private int j = 0;
@@ -24,7 +25,6 @@ public class SolverTypeChanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetRadialView();
         
         SolverButton.OnClick.AddListener(() => ChangeSolver());
         FollowToggle.OnClick.AddListener(() => NoSolver());
@@ -32,8 +32,10 @@ public class SolverTypeChanger : MonoBehaviour
         prevSolver = currentSolver;
     }
 
+
     void ChangeSolver()
     {
+
         i++;
         if (i % 2 != 0)
         {
@@ -65,22 +67,26 @@ public class SolverTypeChanger : MonoBehaviour
             if (prevSolver is RadialView)
             {
                 SetRadialView();
-                Debug.Log(Panel.GetComponent<Solver>());
+                
             }
 
             else if (prevSolver is SurfaceMagnetism)
             {
                 SetSurfaceMagnetism();
-                Debug.Log(Panel.GetComponent<Solver>());
+                
             }
             
         }
+
+        Debug.Log(Panel.GetComponent<Solver>());
     }
 
 
     public void SetRadialView()
     {
         DestroySolver();
+
+        //StartCoroutine(PanelFixedVertical());
 
         AddSolver<RadialView>();
 
@@ -90,6 +96,7 @@ public class SolverTypeChanger : MonoBehaviour
         radialView.MoveLerpTime = 0.30f;
         radialView.RotateLerpTime = 0.30f;
         radialView.MaxViewDegrees = 30;
+
     }
 
     public void SetSurfaceMagnetism()
@@ -104,7 +111,6 @@ public class SolverTypeChanger : MonoBehaviour
         surfaceMagnetism.CurrentOrientationMode = SurfaceMagnetism.OrientationMode.SurfaceNormal;
         surfaceMagnetism.MaxRaycastDistance = 5f;
         surfaceMagnetism.MoveLerpTime = 2f;
-
 
     }
 
