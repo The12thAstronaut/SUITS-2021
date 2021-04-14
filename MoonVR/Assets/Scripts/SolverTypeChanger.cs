@@ -12,6 +12,7 @@ public class SolverTypeChanger : MonoBehaviour
     public Interactable FollowToggle;
     public GameObject Panel;
     private Solver currentSolver;
+    private Solver prevSolver;
     public Microsoft.MixedReality.Toolkit.Utilities.Solvers.SurfaceMagnetism.OrientationMode CurrentOrientationMode { get; set; }
 
 
@@ -27,6 +28,8 @@ public class SolverTypeChanger : MonoBehaviour
         
         SolverButton.OnClick.AddListener(() => ChangeSolver());
         FollowToggle.OnClick.AddListener(() => NoSolver());
+
+        prevSolver = currentSolver;
     }
 
     void ChangeSolver()
@@ -35,16 +38,21 @@ public class SolverTypeChanger : MonoBehaviour
         if (i % 2 != 0)
         {
             SetSurfaceMagnetism();
+            prevSolver = currentSolver;
         }
 
         else
         { 
             SetRadialView();
+            prevSolver = currentSolver;
         }
+
+               
     }
 
     void NoSolver()
     {
+        
         j++;
 
         if (j % 2 != 0)
@@ -54,7 +62,18 @@ public class SolverTypeChanger : MonoBehaviour
 
         else
         {
-            SetRadialView();
+            if (prevSolver is RadialView)
+            {
+                SetRadialView();
+                Debug.Log(Panel.GetComponent<Solver>());
+            }
+
+            else if (prevSolver is SurfaceMagnetism)
+            {
+                SetSurfaceMagnetism();
+                Debug.Log(Panel.GetComponent<Solver>());
+            }
+            
         }
     }
 
