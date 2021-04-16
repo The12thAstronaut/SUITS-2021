@@ -22,6 +22,7 @@ public class LaurenDistance : MonoBehaviour
     public Interactable roverButton;
 
     public TextMeshPro[] waypointDist;
+    public TextMeshPro[] waypointName;
 
     private bool landerToggle = false;
     private bool geoToggle = false;
@@ -140,6 +141,24 @@ public class LaurenDistance : MonoBehaviour
             {
                 compassNeedle[i].transform.LookAt(target[i].transform);
                 compassNeedle[i].transform.rotation = Quaternion.Euler(lockPos, compassNeedle[i].transform.rotation.eulerAngles.y, lockPos);            
+            }
+        }
+
+        for (int i = 0; i < waypointName.Length; i++)
+        {
+            if (waypointName[i].IsActive())
+            {
+                waypointName[i].transform.LookAt(camera.transform);
+                waypointName[i].transform.rotation = Quaternion.Euler(lockPos, waypointName[i].transform.rotation.eulerAngles.y +180, lockPos);
+            }
+        }
+
+        for (int i = 0; i < waypointDist.Length; i++)
+        {
+            if (waypointName[i].IsActive())
+            {
+                waypointDist[i].transform.LookAt(camera.transform);
+                waypointDist[i].transform.rotation = Quaternion.Euler(lockPos, waypointDist[i].transform.rotation.eulerAngles.y + 180, lockPos);
             }
         }
 
