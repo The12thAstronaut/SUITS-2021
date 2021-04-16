@@ -162,6 +162,46 @@ public class LaurenDistance : MonoBehaviour
             }
         }
 
+        if (landerToggle == true)
+        {
+            if (compassRing.activeInHierarchy)
+            {
+                compassNeedle[0].SetActive(true);
+            }
+
+            else
+            {
+                compassNeedle[0].SetActive(false);
+            }
+        }
+
+        if (geoToggle == true)
+        {
+            if (compassRing.activeInHierarchy)
+            {
+                compassNeedle[1].SetActive(true);
+            }
+
+            else
+            {
+                compassNeedle[1].SetActive(false);
+            }
+        }
+
+        if (roverToggle == true)
+        {
+            if (compassRing.activeInHierarchy)
+            {
+                compassNeedle[2].SetActive(true);
+            }
+
+            else
+            {
+                compassNeedle[2].SetActive(false);
+            }
+        }
+
+
         compassRing.transform.rotation = Quaternion.Euler(-90, lockPos, lockPos);
 
     }
