@@ -12,6 +12,7 @@ public class LaurenDistance : MonoBehaviour
 
     public GameObject camera;
     public GameObject compassNeedle;
+    public GameObject compassRing;
 
     private Transform target;
     float lockPos = 0;
@@ -83,6 +84,9 @@ public class LaurenDistance : MonoBehaviour
         waypointName.SetText(text);
 
         compassNeedle.transform.LookAt(target);
+        compassNeedle.transform.rotation = Quaternion.Euler(lockPos, compassNeedle.transform.rotation.eulerAngles.y, lockPos);
+        compassRing.transform.rotation = Quaternion.Euler(-90, lockPos, lockPos);
+
 
     }
 }
