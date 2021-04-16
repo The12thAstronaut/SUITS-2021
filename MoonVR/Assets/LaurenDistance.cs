@@ -11,82 +11,139 @@ public class LaurenDistance : MonoBehaviour
     public GameObject rover;
 
     public GameObject camera;
-    public GameObject compassNeedle;
     public GameObject compassRing;
+    public GameObject[] compassNeedle;
 
-    private Transform target;
+    private List<GameObject> target = new List<GameObject>();
     float lockPos = 0;
 
     public Interactable landerButton;
     public Interactable geoButton;
     public Interactable roverButton;
 
-    public TextMeshPro waypointName;
-    public TextMeshPro waypointDist;
+    public TextMeshPro[] waypointDist;
 
-    private string text;
-    
+    private bool landerToggle = false;
+    private bool geoToggle = false;
+    private bool roverToggle = false;
+
     // Start is called before the first frame update
     void Start()
     {
         landerButton.OnClick.AddListener(() => StartLanderNav());
         geoButton.OnClick.AddListener(() => StartGeoNav());
         roverButton.OnClick.AddListener(() => StartRoverNav());
+
+        foreach (var needle in compassNeedle)
+        {
+            needle.SetActive(false);
+        }
     }
     public void StartLanderNav()
     {
-        InvokeRepeating("LanderNav", 0.1f, 0.5f);
-        text = "Lander";
-        target = lander.transform;
+        landerToggle = !landerToggle;
+
+        if (landerToggle == true)
+        {
+            InvokeRepeating("LanderNav", 0.1f, 0.5f);
+
+            if (compassRing.activeInHierarchy)
+            {
+                compassNeedle[0].SetActive(true);
+            }
+            
+        }
+
+        else
+        {
+            waypointDist[0].SetText("");
+            compassNeedle[0].SetActive(false);
+        }
+
+        target.Add(lander);
     }
 
     public void StartGeoNav()
     {
-        InvokeRepeating("GeoNav", 0.1f, 0.5f);
+        geoToggle = !geoToggle;
 
-        text = "Geology";
-        target = geology.transform;
+        if (geoToggle == true)
+        {
+            InvokeRepeating("GeoNav", 0.1f, 0.5f);
+            if (compassRing.activeInHierarchy)
+            {
+                compassNeedle[1].SetActive(true);
+            }
+        }
+        else
+        {
+            waypointDist[1].SetText("");
+            compassNeedle[1].SetActive(false);
+        }
+
+        target.Add(geology);
+
     }
 
     public void StartRoverNav()
     {
-        InvokeRepeating("RoverNav", 0.1f, 0.5f);
+        roverToggle = !roverToggle;
 
-        text = "Rover";
-        target = rover.transform;
+        if (roverToggle == true)
+        {
+            InvokeRepeating("RoverNav", 0.1f, 0.5f);
+            if (compassRing.activeInHierarchy)
+            {
+                compassNeedle[2].SetActive(true);
+            }
+        }
+
+        else
+        {
+            waypointDist[2].SetText("");
+            compassNeedle[2].SetActive(false);
+        }
+
+        target.Add(rover);
+
     }
 
     private void LanderNav()
     {
         float distance = Vector3.Distance(camera.transform.position, lander.transform.position);
 
-        waypointDist.SetText(distance.ToString("0.#") + " m");
+        waypointDist[0].SetText(distance.ToString("0.#") + " m");
     }
 
     private void GeoNav()
     {
         float distance = Vector3.Distance(camera.transform.position, geology.transform.position);
 
-        waypointDist.SetText(distance.ToString("0.#") + " m");
+        waypointDist[1].SetText(distance.ToString("0.#") + " m");
     }
 
     private void RoverNav()
     {
         float distance = Vector3.Distance(camera.transform.position, rover.transform.position);
 
-        waypointDist.SetText(distance.ToString("0.#") + " m");
+        waypointDist[2].SetText(distance.ToString("0.#") + " m");
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        waypointName.SetText(text);
 
-        compassNeedle.transform.LookAt(target);
-        compassNeedle.transform.rotation = Quaternion.Euler(lockPos, compassNeedle.transform.rotation.eulerAngles.y, lockPos);
+        for (int i = 0; i < compassNeedle.Length; i++)
+        {
+            if (compassNeedle[i].activeInHierarchy)
+            {
+                compassNeedle[i].transform.LookAt(target[i].transform);
+                compassNeedle[i].transform.rotation = Quaternion.Euler(lockPos, compassNeedle[i].transform.rotation.eulerAngles.y, lockPos);            
+            }
+        }
+
         compassRing.transform.rotation = Quaternion.Euler(-90, lockPos, lockPos);
-
 
     }
 }
