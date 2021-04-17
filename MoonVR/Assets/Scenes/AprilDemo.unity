@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10641,6 +10641,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158517944956804873, guid: e557ce6d38cad7844963d92db3a8ed0b,
+        type: 3}
+      propertyPath: bounds.x
+      value: 0.14847331
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158517944956804873, guid: e557ce6d38cad7844963d92db3a8ed0b,
+        type: 3}
+      propertyPath: localCenter.x
+      value: 0.026992822
       objectReference: {fileID: 0}
     - target: {fileID: 1232718518306710235, guid: e557ce6d38cad7844963d92db3a8ed0b,
         type: 3}
@@ -34700,32 +34710,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 572604641}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   onHandDeactivate:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2129866924}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 572604641}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -43364,6 +43352,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1158517944956804873, guid: e557ce6d38cad7844963d92db3a8ed0b,
+        type: 3}
+      propertyPath: bounds.x
+      value: 0.14847331
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158517944956804873, guid: e557ce6d38cad7844963d92db3a8ed0b,
+        type: 3}
+      propertyPath: localCenter.x
+      value: 0.026992822
+      objectReference: {fileID: 0}
     - target: {fileID: 1232718518306710235, guid: e557ce6d38cad7844963d92db3a8ed0b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -47732,6 +47730,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158517944956804873, guid: e557ce6d38cad7844963d92db3a8ed0b,
+        type: 3}
+      propertyPath: bounds.x
+      value: 0.14847331
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158517944956804873, guid: e557ce6d38cad7844963d92db3a8ed0b,
+        type: 3}
+      propertyPath: localCenter.x
+      value: 0.026992822
       objectReference: {fileID: 0}
     - target: {fileID: 1232718518306710235, guid: e557ce6d38cad7844963d92db3a8ed0b,
         type: 3}
