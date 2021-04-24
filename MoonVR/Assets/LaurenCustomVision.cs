@@ -157,7 +157,7 @@ public class LaurenCustomVision : MonoBehaviour
         if (result != null)
         {
 
-            result.Predictions.RemoveAll(p => p.Probability < 0.9);
+            result.Predictions.RemoveAll(p => p.Probability < 0.8);
             Debug.Log("#Predictions = " + result.Predictions.Count());
 
             LabelObjects(result.Predictions, cameraResolution, cameraTransform);
