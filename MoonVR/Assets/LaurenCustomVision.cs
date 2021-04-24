@@ -186,9 +186,8 @@ public class LaurenCustomVision : MonoBehaviour
             var recognizedPos = topCorner + cameraTransform.right * center.x -
                                 cameraTransform.up * center.y * heightFactor;
 
-#if UNITY_EDITOR
             _createdObjects.Add(CreateLabel(_labelText, recognizedPos));
-#endif
+
             var labelPos = DoRaycastOnSpatialMap(cameraTransform, recognizedPos);
             
             if (labelPos != null)
