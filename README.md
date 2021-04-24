@@ -17,18 +17,21 @@ https://microgravityuniversity.jsc.nasa.gov/nasasuits.cfm
 
 ![Alt text](/Pictures/NASA_SUITS_Logov4.png?raw=true "12th Astronaut Logo")
 
-"Hello World" ~Cassie
 
-"You miss 100% of the shots you don't take" - Wayne Gretzky - Michael Scott - Jaime Vives
+Before anything, make sure the Hololens 2 is connected to the wifi, and under "Settings -> Network & Internet -> Hardware Properties -> IPv4 address", find the IP address and take note of it.
+
+To upload our project onto the Hololens 2, please follow the following steps:
+1. Make sure you un-zip the files downloaded from Github. Make sure to keep all the files together.
+2. Once that is done, open that solutions file (.sln) called "SUITS-2021.sln".
+3. Make sure the "Release" , "ARM", and "Remote Machine" configurations are respectivily set.
+4. In the Solution Explorer, right click "SUITS-2021 (Universal Windows)" and head to "Properties".
+5. Go to the "Debugging" property, and type in the IP address in the "Machine Name" section.
+6. Click "Apply", and exit out of the Property Pages
+7. With the Hololens 2 on, Start without Debugging by either pressing "Ctrl+F5" or by going to "Debug -> Start without Debugging"
+8. After some time, the program should start in the Hololens 2.
+9. Done!
 
 
-"If you think you can do a thing or think you can't do a thing, you're right." - Henry Ford
 
-"Howdy" - Matt
+"Thank and Gig'Em!" -12th Astronaut Team
 
-
-[//]: # ("Oh YOU are NA NA? - Lucas aka Wong Yukhei, Wong Xuxi ca. 2018.)
-
-"This is Major Tom" -Brock Balthazor
-
-"Whyg does everyone say "Hello World"? Why not "Hello Israel" or "Hello Shark Navigator Powered Lift-Away NV586 (Target) Vacuum Cleaner"?

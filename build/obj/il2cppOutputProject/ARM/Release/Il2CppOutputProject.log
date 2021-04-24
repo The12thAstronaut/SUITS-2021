@@ -1,0 +1,61 @@
+﻿  Building GameAssembly.dll with MsvcWinRtToolChain
+  	Msvc Install Version: 15.0
+  	Msvc Install SDK Directory: C:\Program Files (x86)\Windows Kits\10
+  	Msvc Linker Path: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\HostX64\ARM\link.exe
+  	Msvc Compiler Path: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\HostX64\ARM\cl.exe
+  
+  	Output directory: C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\build\bin\ARM\Release
+  	Cache directory: C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\build\obj\il2cppOutputProject\ARM\Release
+  System.Core_CodeGen.c
+  Microsoft.MixedReality.Toolkit.SDK_CodeGen.c
+  System.Xml_CodeGen.c
+  Microsoft.MixedReality.Toolkit_CodeGen.c
+  System_CodeGen.c
+  Newtonsoft.Json_CodeGen.c
+  Microsoft.WindowsAzure.Storage_CodeGen.c
+  mscorlib_CodeGen.c
+  Il2CppCompilerCalculateTypeValuesTable.cpp
+  UnityEngine.UI_CodeGen.c
+  Il2CppGenericMethodDefinitions.c
+  Unity.RenderPipelines.Core.Runtime_CodeGen.c
+  Microsoft.CSharp_CodeGen.c
+  Unity.TextMeshPro_CodeGen.c
+  Photon3Unity3D_CodeGen.c
+  Assembly-CSharp_CodeGen.c
+  UnityEngine.CoreModule_CodeGen.c
+  Unity.RenderPipelines.Universal.Runtime_CodeGen.c
+  UnityEngine.UIElementsModule_CodeGen.c
+  Assembly-CSharp1.cpp
+  System.Net.Http_CodeGen.c
+  Microsoft.MixedReality.Toolkit.Services.InputSystem_CodeGen.c
+  System.Xml.Linq_CodeGen.c
+  RestSharp_CodeGen.c
+  Unity.Postprocessing.Runtime_CodeGen.c
+  AzureSpatialAnchors.SDK.Windows.Runtime_CodeGen.c
+  Assembly-CSharp.cpp
+  UnityEngine.AndroidJNIModule_CodeGen.c
+  PhotonUnityNetworking_CodeGen.c
+  System.Runtime.WindowsRuntime_CodeGen.c
+  Microsoft.MixedReality.Toolkit.Async_CodeGen.c
+  Il2CppMetadataRegistration.c
+  Microsoft.MixedReality.Toolkit.Services.SpatialAwarenessSystem_CodeGen.c
+  Il2CppCodeRegistration.cpp
+  Il2CppCompilerCalculateTypeValues5.cpp
+  Il2CppMetadataUsage.c
+  Il2CppAttributes.cpp
+  Il2CppTypeDefinitions.c
+  ObjectFiles: 627 of which compiled: 38
+  	Time Compile: 5901 milliseconds Il2CppTypeDefinitions.c
+  	Time Compile: 4086 milliseconds Il2CppAttributes.cpp
+  	Time Compile: 2768 milliseconds Il2CppMetadataUsage.c
+  	Time Compile: 2056 milliseconds Il2CppCompilerCalculateTypeValues5.cpp
+  	Time Compile: 1553 milliseconds Assembly-CSharp.cpp
+  	Time Compile: 1388 milliseconds Assembly-CSharp1.cpp
+  	Time Compile: 837 milliseconds Il2CppGenericMethodDefinitions.c
+  	Time Compile: 680 milliseconds PhotonUnityNetworking_CodeGen.c
+  	Time Compile: 670 milliseconds Unity.Postprocessing.Runtime_CodeGen.c
+  	Time Compile: 652 milliseconds RestSharp_CodeGen.c
+  Total compilation time: 6426 milliseconds.
+  Creating library C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\build\obj\il2cppOutputProject\ARM\Release\linkresult_06CB5B2062244FFE67D735A3392BED3E\GameAssembly.lib and object C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\build\obj\il2cppOutputProject\ARM\Release\linkresult_06CB5B2062244FFE67D735A3392BED3E\GameAssembly.exp
+  Total link time: 20585 milliseconds.
+  Cleaned up 78 object files.

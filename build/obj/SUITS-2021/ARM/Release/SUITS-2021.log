@@ -1,0 +1,7 @@
+﻿  App.cpp
+  UnityGenerated.cpp
+C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\App.cpp(26,1): warning C4973: 'Windows::UI::ViewManagement::IApplicationView2::SuppressSystemOverlays::set': marked as deprecated
+C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\App.cpp(26,1): message : Message: 'Use the TryEnterFullScreen method and IsFullScreenMode property instead of SuppressSystemOverlays. For more info, see MSDN.'
+  Generating code
+  Finished generating code
+  SUITS-2021.vcxproj -> C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\build\bin\ARM\Release\SUITS-2021.exe

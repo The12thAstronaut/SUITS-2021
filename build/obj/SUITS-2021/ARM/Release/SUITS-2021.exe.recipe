@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\build\bin\ARM\Release\SUITS-2021.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Assets\SplashScreen.scale-200.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Assets\Square150x150Logo.scale-200.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Assets\Square44x44Logo.scale-200.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Assets\Square44x44Logo.targetsize-24.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Assets\Square44x44Logo.targetsize-24_altform-unplated.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Assets\StoreLogo.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Assets\Wide310x150Logo.scale-200.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\StoreManifest.xml</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\boot.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\globalgamemanagers</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\globalgamemanagers.assets</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\globalgamemanagers.assets.resS</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\level0</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\level0.resS</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\nativePlugins.txt</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\resources.assets</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\resources.assets.resS</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\sharedassets0.assets</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\sharedassets0.assets.resS</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\sharedassets0.resource</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\browscap.ini</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\2.0\DefaultWsdlHelpGenerator.aspx</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\2.0\machine.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\2.0\settings.map</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\2.0\web.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\2.0\Browsers\Compat.browser</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.0\DefaultWsdlHelpGenerator.aspx</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.0\machine.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.0\settings.map</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.0\web.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.0\Browsers\Compat.browser</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.5\DefaultWsdlHelpGenerator.aspx</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.5\machine.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.5\settings.map</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.5\web.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\4.5\Browsers\Compat.browser</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\etc\mono\mconfig\config.xml</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\Metadata\global-metadata.dat</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\Resources\I18N.CJK.dll-resources.dat</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\il2cpp_data\Resources\mscorlib.dll-resources.dat</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\Resources\unity default resources</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\Data\Resources\unity_builtin_extra</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\AzureSpatialAnchors.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\CoarseRelocUW.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\SUITS-2021\AudioPluginMsHRTF.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\build\bin\ARM\Release\GameAssembly.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Skullkrasher\Documents\Unity Projects\LaurensUI\build\bin\ARM\Release\GameAssembly.pdb</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>
