@@ -11,6 +11,7 @@ using UnityEngine.Networking;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
+using TMPro;
 
 public class LaurenCustomVision : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class LaurenCustomVision : MonoBehaviour
 
     public Interactable startButton;
     public Interactable stopButton;
+
+    public TextMeshPro tagName;
 
     private PhotoCapture photoCapture = null;
     private Resolution _cameraResolution;
@@ -158,14 +161,14 @@ public class LaurenCustomVision : MonoBehaviour
         {
 
             result.Predictions.RemoveAll(p => p.Probability < 0.8);
-            Debug.Log("#Predictions = " + result.Predictions.Count());
+            tagName.SetText("#Predictions = " + result.Predictions.Count());
 
             LabelObjects(result.Predictions, cameraResolution, cameraTransform);
 
         }
         else
         {
-            Debug.Log("Predictions is null");
+            tagName.SetText("Predictions is null");
         }
 
         
