@@ -321,9 +321,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PeerConnection: {fileID: 114452440398351871}
   AutoLogErrors: 1
-  LocalPeerId: DESKTOP-65EQ8K9
+  LocalPeerId: 
   RemotePeerId: MSI
-  HttpServerAddress: http://127.0.0.1:3000/
+  HttpServerAddress: http://40.74.236.12:3000/
   PollTimeMs: 500
 --- !u!4 &599126880
 Transform:
