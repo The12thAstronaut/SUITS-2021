@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Microsoft.CognitiveServices.Speech;
+using TMPro;
 
 public class LunarcomSpeechRecognizer : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class LunarcomSpeechRecognizer : MonoBehaviour
     private object threadLocker = new object();
 
     private SpeechRecognizer recognizer;
+
+    public TextMeshProUGUI lunarpediaText;
 
     private bool micPermissionGranted = false;
     ///private bool scanning = false;
@@ -141,6 +144,7 @@ public class LunarcomSpeechRecognizer : MonoBehaviour
             if (recognizedString != "")
             {
                 lunarcomController.UpdateLunarcomText(recognizedString);
+                lunarpediaText.text = recognizedString;
             }
         }
     }
