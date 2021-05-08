@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Utilities.Solvers;
 using Microsoft.MixedReality.Toolkit.UI;
@@ -13,10 +12,12 @@ public class SolverTypeChanger : MonoBehaviour
     public Interactable FollowToggle;
     public GameObject Panel;
     private Solver currentSolver;
-    private Solver prevSolver;
     public Microsoft.MixedReality.Toolkit.Utilities.Solvers.SurfaceMagnetism.OrientationMode CurrentOrientationMode { get; set; }
 
     
+    
+
+
 
     private int i = 0;
     private int j = 0;
@@ -25,60 +26,52 @@ public class SolverTypeChanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetRadialView();
         
         SolverButton.OnClick.AddListener(() => ChangeSolver());
         FollowToggle.OnClick.AddListener(() => NoSolver());
-
-        prevSolver = currentSolver;
     }
-
 
     void ChangeSolver()
     {
 
         i++;
+
         if (i % 2 != 0)
         {
+
             SetSurfaceMagnetism();
-            prevSolver = currentSolver;
+            
         }
 
         else
-        { 
+        {
+            
             SetRadialView();
-            prevSolver = currentSolver;
+            
         }
+  
 
-               
     }
 
     void NoSolver()
     {
-        
         j++;
 
         if (j % 2 != 0)
         {
+
             DestroySolver();
+
         }
 
         else
         {
-            if (prevSolver is RadialView)
-            {
-                SetRadialView();
-                
-            }
 
-            else if (prevSolver is SurfaceMagnetism)
-            {
-                SetSurfaceMagnetism();
-                
-            }
-            
+            SetRadialView();
+
         }
 
-        Debug.Log(Panel.GetComponent<Solver>());
     }
 
 
@@ -86,17 +79,14 @@ public class SolverTypeChanger : MonoBehaviour
     {
         DestroySolver();
 
-        //StartCoroutine(PanelFixedVertical());
-
         AddSolver<RadialView>();
 
         var radialView = currentSolver as RadialView;
-        radialView.MinDistance = 0.5f;
-        radialView.MaxDistance = 0.6f;
-        radialView.MoveLerpTime = 0.30f;
-        radialView.RotateLerpTime = 0.30f;
-        radialView.MaxViewDegrees = 30;
-
+        radialView.MinDistance = 0.4f;
+        radialView.MaxDistance = 0.5f;
+        radialView.MoveLerpTime = 0.5f;
+        radialView.RotateLerpTime = 0.5f;
+        radialView.MaxViewDegrees = 25;
     }
 
     public void SetSurfaceMagnetism()
@@ -111,6 +101,7 @@ public class SolverTypeChanger : MonoBehaviour
         surfaceMagnetism.CurrentOrientationMode = SurfaceMagnetism.OrientationMode.SurfaceNormal;
         surfaceMagnetism.MaxRaycastDistance = 5f;
         surfaceMagnetism.MoveLerpTime = 2f;
+
 
     }
 

@@ -10,22 +10,17 @@ public class TelemetryStream : MonoBehaviour
     private string bpmText;
     private string psubText;
     private string psuitText;
-    private string tsubText = " ";
+    private string tsubText;
     private string vfanText;
     private string po2Text;
     private string ro2Text;
     private string ph2ogText;
     private string ph2olText;
     private string psopText;
-    private string rsopText;
     private string batlifeText;
     private string oxlifeText;
     private string h2olifeText;
     private string dateText;
-    private string evaTimeText;
-    private string oxPrimaryText;
-    private string oxSecondaryText;
-    private string battCapText;
 
     public UnityEvent onBpmTextChanged;
     public UnityEvent onPSubTextChanged;
@@ -41,7 +36,6 @@ public class TelemetryStream : MonoBehaviour
     public UnityEvent onOxLifeTextChanged;
     public UnityEvent onH2OLifeTextChanged;
     public UnityEvent onDateTextChanged;
-    public UnityEvent onEvaTimeTextChanged;
 
     public string GetBpmText()
     {
@@ -113,38 +107,15 @@ public class TelemetryStream : MonoBehaviour
         return dateText;
     }
 
-    public string GetEvaTimeText()
-    {
-        return evaTimeText;
-    }
-
-    public string GetO2PrimText()
-    {
-        return oxPrimaryText;
-    }
-
-    public string GetO2SecondaryText()
-    {
-        return oxSecondaryText;
-    }
-
-    public string GetRSOPText()
-    {
-        return rsopText;
-    }
-
-    public string GetBattCapText()
-    {
-        return battCapText;
-    }
-
     public void SetBpmText(string newText)
     {
         bpmText = newText;
         if (onBpmTextChanged != null)
         {
+            Debug.Log("Bpm Changed!");
+            Debug.Log(bpmText);
             onBpmTextChanged.Invoke();
-        }
+        } 
     }
 
     public void SetPSubText(string newText)
@@ -264,35 +235,6 @@ public class TelemetryStream : MonoBehaviour
         }
     }
 
-    public void SetEvaTimeText(string newText)
-    {
-        evaTimeText = newText;
-        if (onDateTextChanged != null)
-        {
-            onEvaTimeTextChanged.Invoke();
-        }
-    }
-
-    public void SetPrimO2Text(string newText)
-    {
-        oxPrimaryText = newText;
-    }
-
-    public void SetSecondaryO2Text(string newText)
-    {
-        oxSecondaryText = newText;
-    }
-
-    public void SetRSOPText(string newText)
-    {
-        rsopText = newText;
-    }
-
-    public void SetBattCapText(string newText)
-    {
-        battCapText = newText;
-    }
-
     public void Start()
     {
 
@@ -315,5 +257,5 @@ public class TelemetryStream : MonoBehaviour
         h2olifeText = t_water;
         dateText = create_date;
 
-    }
+}
 }

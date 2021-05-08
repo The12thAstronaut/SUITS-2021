@@ -1,21 +1,19 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Events;
 
 public class ClientAPI : MonoBehaviour
 {
-    public TelemetryStream telemetryStream;
     public string url;
+    public TelemetryStream telemetryStream;
 
-    IEnumerator Start()
+    
+    
+
+    void Update()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(1.0f);
-            StartCoroutine(Get(url));
-        }
+        StartCoroutine(Get(url));
     }
 
     public IEnumerator Get(string url)
@@ -33,34 +31,26 @@ public class ClientAPI : MonoBehaviour
                 if (www.isDone)
                 {
                     // handle the result
-                    string result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                    var result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                    result = "{\"result\":" + result + "}";
+                    var data = JsonHelper.FromJson<Suit>(result);
 
-                    result = "{\"result\":[" + result + "]}";
+                    var item = data[0];
 
-                    List<Suit> data = JsonHelper.FromJson<Suit>(result);
-
-                    Suit suit_data = data[0];
-
-                    telemetryStream.SetBpmText(suit_data.heart_bpm);
-                    telemetryStream.SetPSubText(suit_data.p_sub);
-                    telemetryStream.SetPSuitText(suit_data.p_suit);
-                    telemetryStream.SetTSubText(suit_data.t_sub); // temperature
-                    telemetryStream.SetVFanText(suit_data.v_fan);
-                    telemetryStream.SetPO2Text(suit_data.p_o2);
-                    telemetryStream.SetRO2Text(suit_data.rate_o2);
-                    telemetryStream.SetPH2OGText(suit_data.p_h2o_g);
-                    telemetryStream.SetPH2OLText(suit_data.p_h2o_l);
-                    telemetryStream.SetPSOPText(suit_data.p_sop);
-                    telemetryStream.SetBatLifeText(suit_data.t_battery);
-                    telemetryStream.SetOxLifeText(suit_data.t_oxygen);
-                    telemetryStream.SetH2OLifeText(suit_data.t_water);
-                    telemetryStream.SetDateText(suit_data.create_date);
-                    telemetryStream.SetEvaTimeText(suit_data.timer);
-                    telemetryStream.SetPrimO2Text(suit_data.ox_primary);
-                    telemetryStream.SetSecondaryO2Text(suit_data.ox_secondary);
-                    telemetryStream.SetRSOPText(suit_data.rate_sop);
-                    telemetryStream.SetBattCapText(suit_data.cap_battery);
-
+                    telemetryStream.SetBpmText(item.heart_bpm);
+                    telemetryStream.SetPSubText(item.p_sub);
+                    telemetryStream.SetPSuitText(item.p_suit);
+                    telemetryStream.SetTSubText(item.t_sub);
+                    telemetryStream.SetVFanText(item.v_fan);
+                    telemetryStream.SetPO2Text(item.p_o2);
+                    telemetryStream.SetRO2Text(item.rate_o2);
+                    telemetryStream.SetPH2OGText(item.p_h2o_g);
+                    telemetryStream.SetPH2OLText(item.p_h2o_l);
+                    telemetryStream.SetPSOPText(item.p_sop);
+                    telemetryStream.SetBatLifeText(item.t_battery);
+                    telemetryStream.SetOxLifeText(item.t_oxygen);
+                    telemetryStream.SetH2OLifeText(item.t_water);
+                    telemetryStream.SetDateText(item.create_date);
 
                 }
                 else

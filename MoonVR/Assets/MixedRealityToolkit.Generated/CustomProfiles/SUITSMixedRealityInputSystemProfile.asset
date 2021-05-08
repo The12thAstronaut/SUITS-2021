@@ -109,5 +109,5 @@ MonoBehaviour:
     type: 2}
   controllerVisualizationProfile: {fileID: 11400000, guid: 345c06fdf3732db46b96299bd3cba653,
     type: 2}
-  handTrackingProfile: {fileID: 11400000, guid: da6661553e65e0a4b919d55405081da1,
+  handTrackingProfile: {fileID: 11400000, guid: e445e6fda57508c46935bb141b7673a7,
     type: 2}
