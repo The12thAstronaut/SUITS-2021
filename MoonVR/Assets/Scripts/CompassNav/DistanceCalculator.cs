@@ -7,7 +7,7 @@ public class DistanceCalculator : MonoBehaviour
 {
 
     public TextMeshPro distance;
-    public Transform Rover;
+    public Transform SpatialAnchor;
     public Transform Compass;
 
     // Start is called before the first frame update
