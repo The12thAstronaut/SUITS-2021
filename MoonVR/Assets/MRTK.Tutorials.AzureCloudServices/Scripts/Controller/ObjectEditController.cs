@@ -20,7 +20,11 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         private SceneController sceneController;
         [Header("UI Elements")]
         [SerializeField]
+        private ComputerVisionController computerVisionController = default;
+        [SerializeField]
         private GameObject hintTextPrefab = default;
+        [SerializeField]
+        private TMP_Text objectNameLabel = default;
         [SerializeField]
         private TMP_Text messageLabel = default;
         [SerializeField]
@@ -61,6 +65,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         public async void Init(TrackedObject source)
         {
             trackedObject = source;
+            objectNameLabel.SetText(trackedObject.Name);
             descriptionInputField.text = trackedObject.Description;
             SetButtonsInteractiveState(true);
             if (!string.IsNullOrEmpty(trackedObject.ThumbnailBlobName))
@@ -144,7 +149,8 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
                 return;
             }
             
-
+            computerVisionController.gameObject.SetActive(true);
+            computerVisionController.Init(trackedObject);
             gameObject.SetActive(false);
         }
         

@@ -48,7 +48,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         public void SetSearchMode(bool searchModeActive)
         {
             isInSearchMode = searchModeActive;
-            submitButtonConfigHelper.MainLabelText = isInSearchMode ? "Search Log" : "Set Object";
+            submitButtonConfigHelper.MainLabelText = isInSearchMode ? "Search Object" : "Set Object";
         }
 
         public async void SubmitQuery()
@@ -74,9 +74,8 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
                 if (project != null)
                 {
                     searchObjectPanel.SetActive(false);
-                    var objectCard = objectCardPrefab;
+                    var objectCard = Instantiate(objectCardPrefab, transform.position, transform.rotation);
                     objectCard.Init(project);
-                    objectCard.gameObject.SetActive(true);
                 }
             }
             else

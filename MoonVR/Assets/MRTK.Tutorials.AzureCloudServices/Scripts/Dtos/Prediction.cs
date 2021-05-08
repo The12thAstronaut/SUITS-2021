@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace MRTK.Tutorials.AzureCloudServices.Scripts.Dtos
 {
@@ -13,8 +12,5 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Dtos
 
         [JsonProperty("tagName")]
         public string TagName { get; set; }
-
-        [JsonProperty("boundingBox")]
-        public Dictionary<string, double> BoundingBox { get; set; }
     }
 }
