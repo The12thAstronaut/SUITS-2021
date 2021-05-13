@@ -4,6 +4,7 @@ using MRTK.Tutorials.AzureCloudServices.Scripts.Domain;
 using MRTK.Tutorials.AzureCloudServices.Scripts.Managers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
 {
@@ -24,7 +25,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         [SerializeField]
         private TMP_Text hintLabel = default;
         [SerializeField]
-        private TMP_InputField inputField = default;
+        private Text inputField = default;
         [SerializeField]
         private string loadingText = "Please wait...";
         [SerializeField]

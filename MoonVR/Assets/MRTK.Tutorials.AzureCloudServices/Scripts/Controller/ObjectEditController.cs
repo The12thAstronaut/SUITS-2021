@@ -24,7 +24,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         [SerializeField]
         private TMP_Text messageLabel = default;
         [SerializeField]
-        private TMP_InputField descriptionInputField = default;
+        private Text descriptionInputField = default;
         [SerializeField]
         private Image thumbnailImage = default;
         [SerializeField]
