@@ -74,8 +74,8 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
                 if (project != null)
                 {
                     searchObjectPanel.SetActive(false);
-                    var objectCard = Instantiate(objectCardPrefab, transform.position, transform.rotation);
-                    objectCard.Init(project);
+                    objectCardPrefab.gameObject.SetActive(true);
+                    objectCardPrefab.Init(project);
                 }
             }
             else

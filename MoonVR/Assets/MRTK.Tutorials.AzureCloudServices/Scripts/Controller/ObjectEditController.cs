@@ -20,8 +20,6 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         private SceneController sceneController;
         [Header("UI Elements")]
         [SerializeField]
-        private ComputerVisionController computerVisionController = default;
-        [SerializeField]
         private GameObject hintTextPrefab = default;
         [SerializeField]
         private TMP_Text objectNameLabel = default;
@@ -132,27 +130,6 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
             SetButtonsInteractiveState(true);
         }
 
-        /// <summary>
-        /// Start UX flow for taking images for azure custom vision.
-        /// </summary>
-        public void OpenComputerVisionFlow()
-        {
-            if (trackedObject.HasBeenTrained)
-            {
-                messageLabel.text = "This object has been already trained for custom vision object.";
-                return;
-            }
-            
-            if (!sceneController.IsCameraActive)
-            {
-                messageLabel.text = "Camera is not ready or accessible.";
-                return;
-            }
-            
-            computerVisionController.gameObject.SetActive(true);
-            computerVisionController.Init(trackedObject);
-            gameObject.SetActive(false);
-        }
         
         /// <summary>
         /// Start UX flow for storing the location via azure Spatial Anchors.
