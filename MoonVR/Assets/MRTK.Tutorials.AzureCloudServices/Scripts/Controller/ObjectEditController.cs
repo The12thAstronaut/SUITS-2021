@@ -22,8 +22,6 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         [SerializeField]
         private GameObject hintTextPrefab = default;
         [SerializeField]
-        private TMP_Text objectNameLabel = default;
-        [SerializeField]
         private TMP_Text messageLabel = default;
         [SerializeField]
         private TMP_InputField descriptionInputField = default;
@@ -63,7 +61,6 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         public async void Init(TrackedObject source)
         {
             trackedObject = source;
-            objectNameLabel.SetText(trackedObject.Name);
             descriptionInputField.text = trackedObject.Description;
             SetButtonsInteractiveState(true);
             if (!string.IsNullOrEmpty(trackedObject.ThumbnailBlobName))
