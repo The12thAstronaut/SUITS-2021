@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Microsoft.MixedReality.Toolkit.UI;
 using UnityEngine.UI;
 
 public class LunarcomButtonController : MonoBehaviour
@@ -13,7 +14,7 @@ public class LunarcomButtonController : MonoBehaviour
     public Sprite Default;
     public Sprite Activated;
 
-    private Button button;
+    private Interactable button;
     private bool isSelected = false;
 
     private LunarcomController lunarcomController;
@@ -21,7 +22,7 @@ public class LunarcomButtonController : MonoBehaviour
     private void Start()
     {
         lunarcomController = LunarcomController.lunarcomController;
-        button = GetComponent<Button>();
+
     }
 
     public bool GetIsSelected()
@@ -37,7 +38,7 @@ public class LunarcomButtonController : MonoBehaviour
         }
         else
         {
-            button.image.sprite = Activated;
+            //button.image.sprite = Activated;
             isSelected = true;
             lunarcomController.SetActiveButton(GetComponent<LunarcomButtonController>());
 
@@ -53,7 +54,7 @@ public class LunarcomButtonController : MonoBehaviour
 
     public void ShowNotSelected()
     {
-        button.image.sprite = Default;
+        //button.image.sprite = Default;
         isSelected = false;
     }
 

@@ -31,6 +31,8 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         private Sprite thumbnailPlaceHolderImage = default;
         [SerializeField]
         private Interactable[] buttons = default;
+        [SerializeField]
+        private GameObject mainPanel;
         
         private TrackedObject trackedObject;
         private GameObject hintTextInstance;
@@ -178,6 +180,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
             await sceneController.DataManager.UploadOrUpdate(trackedObject);
             sceneController.OpenMainMenu();
             gameObject.SetActive(false);
+            mainPanel.SetActive(true);
         }
         
         private async Task<Sprite> LoadThumbnailImage()
