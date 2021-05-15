@@ -22988,7 +22988,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Communication
+  m_text: Holograms
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce,
@@ -67705,7 +67705,7 @@ PrefabInstance:
     - target: {fileID: 5706826506686227152, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_text
-      value: Communication
+      value: Holograms
       objectReference: {fileID: 0}
     - target: {fileID: 5706826506686227152, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
