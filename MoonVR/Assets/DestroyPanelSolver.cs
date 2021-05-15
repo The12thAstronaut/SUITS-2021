@@ -187,10 +187,6 @@ public class DestroyPanelSolver : MonoBehaviour
                 
             }
 
-            else
-            {
-                Debug.Log(panels[i].GetComponent<Solver>());
-            }
 
         }
 
