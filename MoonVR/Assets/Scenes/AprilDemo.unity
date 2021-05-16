@@ -3395,7 +3395,7 @@ GameObject:
   - component: {fileID: 131583093}
   - component: {fileID: 131583092}
   m_Layer: 0
-  m_Name: Suit_WristMenuButton
+  m_Name: Settings_WristMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3862,7 +3862,7 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 20f25674b9512834f88938d45ed495d7, type: 3}
   iconQuadRenderer: {fileID: 583595468}
   iconQuadTextureNameID: _MainTex
-  iconQuadTexture: {fileID: 2800000, guid: e48afa6a134f4b34f95dcf3b2c18ebcb, type: 3}
+  iconQuadTexture: {fileID: 2800000, guid: 9f7fa0468a5e73641bcfc86bb0626937, type: 3}
   defaultButtonQuadMaterial: {fileID: 2100000, guid: fa419ab56051229449e3b813df8f295f,
     type: 2}
   iconSet: {fileID: 11400000, guid: 8b386ef895f7c924f8c4b03d1d3ed683, type: 2}
@@ -6136,7 +6136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Suit
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce,
@@ -12490,7 +12490,7 @@ GameObject:
   - component: {fileID: 354135354}
   - component: {fileID: 354135353}
   m_Layer: 0
-  m_Name: Settings_WristMenuButton
+  m_Name: Suit_WristMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12539,7 +12539,7 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 20f25674b9512834f88938d45ed495d7, type: 3}
   iconQuadRenderer: {fileID: 385846177}
   iconQuadTextureNameID: _MainTex
-  iconQuadTexture: {fileID: 2800000, guid: 9f7fa0468a5e73641bcfc86bb0626937, type: 3}
+  iconQuadTexture: {fileID: 2800000, guid: e48afa6a134f4b34f95dcf3b2c18ebcb, type: 3}
   defaultButtonQuadMaterial: {fileID: 2100000, guid: fa419ab56051229449e3b813df8f295f,
     type: 2}
   iconSet: {fileID: 11400000, guid: 8b386ef895f7c924f8c4b03d1d3ed683, type: 2}
@@ -14315,7 +14315,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6d1a4ca20cf183c45bbb6494fc2e2299, type: 2}
+  - {fileID: 2100000, guid: 249c5a3d2a3f6544a90b7149dadb42f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18775,7 +18775,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 249c5a3d2a3f6544a90b7149dadb42f9, type: 2}
+  - {fileID: 2100000, guid: 6d1a4ca20cf183c45bbb6494fc2e2299, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -57851,12 +57851,12 @@ MonoBehaviour:
   panels:
   - {fileID: 1908414526}
   - {fileID: 1252713699}
-  - {fileID: 245373464}
+  - {fileID: 1267666187}
   - {fileID: 1195922579}
   - {fileID: 1736233190}
   - {fileID: 1844212082}
   - {fileID: 890606681}
-  - {fileID: 1267666187}
+  - {fileID: 245373464}
   buttons:
   - {fileID: 1612290441}
   - {fileID: 2030972941}
@@ -70149,7 +70149,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: Suit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce,
