@@ -72596,9 +72596,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d933a7f433960b34e81818a8de9b1491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lander: {fileID: 1680444576}
-  geology: {fileID: 346257635}
-  rover: {fileID: 213460780}
+  lander: {fileID: 496551070}
+  geology: {fileID: 1284964531}
+  rover: {fileID: 820584850}
   camera: {fileID: 40389641}
   compassRing: {fileID: 2129866924}
   compassNeedle:
@@ -95150,7 +95150,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6070785955580232788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
