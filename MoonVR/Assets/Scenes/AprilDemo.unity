@@ -8452,6 +8452,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2518192144872299378, guid: 97e5836c23a56d24ba6c131d8ff03a73,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2795464403359543558, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_Mesh
@@ -72862,9 +72867,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d933a7f433960b34e81818a8de9b1491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lander: {fileID: 21689378}
-  geology: {fileID: 853665146}
-  rover: {fileID: 1290487157}
+  lander: {fileID: 2526995138529988478}
+  geology: {fileID: 2526995138073901264}
+  rover: {fileID: 2526995138106953108}
   camera: {fileID: 40389641}
   compassRing: {fileID: 2129866924}
   compassNeedle:
