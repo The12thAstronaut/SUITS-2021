@@ -114,6 +114,8 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
             {
                 thumbnailImage.sprite = thumbnailPlaceHolderImage;
             }
+
+            sceneController.StopCamera();
         }
 
         /// <summary>
@@ -181,6 +183,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
             sceneController.OpenMainMenu();
             gameObject.SetActive(false);
             mainPanel.SetActive(true);
+            sceneController.StopCamera();
         }
         
         private async Task<Sprite> LoadThumbnailImage()
