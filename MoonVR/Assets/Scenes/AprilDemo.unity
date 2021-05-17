@@ -24559,7 +24559,7 @@ PrefabInstance:
     - target: {fileID: 759717650348761834, guid: 24fbc619b06f41240ab10f637cde6e17,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 828838689807954120, guid: 24fbc619b06f41240ab10f637cde6e17,
         type: 3}
@@ -24634,7 +24634,7 @@ PrefabInstance:
     - target: {fileID: 3038703190853915287, guid: 24fbc619b06f41240ab10f637cde6e17,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3158254548347493402, guid: 24fbc619b06f41240ab10f637cde6e17,
         type: 3}
@@ -95797,7 +95797,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6070785955580232788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
