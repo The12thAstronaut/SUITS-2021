@@ -91,7 +91,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
             SetButtonsInteractiveState(false);
             hintTextInstance.SetActive(true);
             isWaitingForAirtap = true;
-            messageLabel.text = "Look at object and do Airtap to take photo.";
+            messageLabel.text = "Look at object and do Airtap near Hololens to take photo.";
         }
 
         /// <summary>
