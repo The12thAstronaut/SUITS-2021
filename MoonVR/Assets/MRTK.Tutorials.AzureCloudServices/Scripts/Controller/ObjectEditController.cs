@@ -74,7 +74,7 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
                 thumbnailImage.sprite = thumbnailPlaceHolderImage;
             }
             
-            sceneController.StartCamera();
+            //sceneController.StartCamera();
         }
 
         /// <summary>
@@ -82,6 +82,8 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
         /// </summary>
         public void TakeThumbnailPhoto()
         {
+            sceneController.StartCamera();
+
             if (!sceneController.IsCameraActive)
             {
                 messageLabel.text = "Camera is not ready or accessible.";
@@ -92,6 +94,8 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Controller
             hintTextInstance.SetActive(true);
             isWaitingForAirtap = true;
             messageLabel.text = "Look at object and do Airtap near Hololens to take photo.";
+
+            sceneController.StartCamera();
         }
 
         /// <summary>
