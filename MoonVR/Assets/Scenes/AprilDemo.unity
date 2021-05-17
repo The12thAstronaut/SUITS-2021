@@ -56599,7 +56599,7 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 20f25674b9512834f88938d45ed495d7, type: 3}
   iconQuadRenderer: {fileID: 1859037762}
   iconQuadTextureNameID: _MainTex
-  iconQuadTexture: {fileID: 2800000, guid: 2604f17689de2b64fa64ce3446806a56, type: 3}
+  iconQuadTexture: {fileID: 2800000, guid: d0663cd76310f4246bf29d2bd2ae70d8, type: 3}
   defaultButtonQuadMaterial: {fileID: 2100000, guid: fa419ab56051229449e3b813df8f295f,
     type: 2}
   iconSet: {fileID: 11400000, guid: 8b386ef895f7c924f8c4b03d1d3ed683, type: 2}
@@ -68425,7 +68425,7 @@ Transform:
   m_GameObject: {fileID: 1859037760}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_LocalScale: {x: 0.41302398, y: 0.41302398, z: 0.41302398}
   m_Children: []
   m_Father: {fileID: 2137050935}
   m_RootOrder: 1
@@ -68448,7 +68448,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e98fea8063bd1e14b8acd0e587a92d4c, type: 2}
+  - {fileID: 2100000, guid: 23472311b6b59b3459b0ab170cac7c3f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74126,8 +74126,10 @@ MonoBehaviour:
   titleLabel: {fileID: 1180127510}
   previousTask: {fileID: 5487525928906032788}
   nextTask: {fileID: 5487525930012960431}
+  doneButton: {fileID: 0}
   previousTaskIcon: {fileID: 3126786010410657847}
   nextTaskIcon: {fileID: 3126786009302976524}
+  doneIcon: {fileID: 0}
   taskList:
   - POWER EV-1 and 2 are set to OFF
   - WATER SUPPLY EV-1 and 2 is set to CLOSE
@@ -96795,7 +96797,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6070785955580232788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
