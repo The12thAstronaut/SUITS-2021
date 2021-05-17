@@ -6,15 +6,12 @@ using TMPro;
 
 public class LaurenDistance : MonoBehaviour
 {
-    public GameObject lander;
-    public GameObject geology;
-    public GameObject rover;
+    public GameObject[] target;
 
     public GameObject camera;
     public GameObject compassRing;
     public GameObject[] compassNeedle;
 
-    private List<GameObject> target = new List<GameObject>();
     float lockPos = 0;
 
     public Interactable landerButton;
@@ -61,7 +58,7 @@ public class LaurenDistance : MonoBehaviour
             compassNeedle[0].SetActive(false);
         }
 
-        target.Add(lander);
+       
     }
 
     public void StartGeoNav()
@@ -82,7 +79,7 @@ public class LaurenDistance : MonoBehaviour
             compassNeedle[1].SetActive(false);
         }
 
-        target.Add(geology);
+        
 
     }
 
@@ -105,27 +102,27 @@ public class LaurenDistance : MonoBehaviour
             compassNeedle[2].SetActive(false);
         }
 
-        target.Add(rover);
+        
 
     }
 
     private void LanderNav()
     {
-        float distance = Vector3.Distance(camera.transform.position, lander.transform.position);
+        float distance = Vector3.Distance(camera.transform.position, target[0].transform.position);
 
         waypointDist[0].SetText(distance.ToString("0.#") + " m");
     }
 
     private void GeoNav()
     {
-        float distance = Vector3.Distance(camera.transform.position, geology.transform.position);
+        float distance = Vector3.Distance(camera.transform.position, target[1].transform.position);
 
         waypointDist[1].SetText(distance.ToString("0.#") + " m");
     }
 
     private void RoverNav()
     {
-        float distance = Vector3.Distance(camera.transform.position, rover.transform.position);
+        float distance = Vector3.Distance(camera.transform.position, target[2].transform.position);
 
         waypointDist[2].SetText(distance.ToString("0.#") + " m");
     }
@@ -137,11 +134,10 @@ public class LaurenDistance : MonoBehaviour
 
         for (int i = 0; i < compassNeedle.Length; i++)
         {
-            if (compassNeedle[i].activeInHierarchy)
-            {
-                compassNeedle[i].transform.LookAt(target[i].transform);
-                compassNeedle[i].transform.rotation = Quaternion.Euler(lockPos, compassNeedle[i].transform.rotation.eulerAngles.y, lockPos);            
-            }
+
+            compassNeedle[i].transform.LookAt(target[i].transform);
+            compassNeedle[i].transform.rotation = Quaternion.Euler(lockPos, compassNeedle[i].transform.rotation.eulerAngles.y, lockPos);
+
         }
 
         for (int i = 0; i < waypointName.Length; i++)
