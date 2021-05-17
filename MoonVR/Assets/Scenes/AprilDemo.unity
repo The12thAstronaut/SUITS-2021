@@ -63129,7 +63129,7 @@ MonoBehaviour:
   menuButtons: []
   ScoutModel: {fileID: 572604641}
   ScoutLight: {fileID: 864597205}
-  wristPanelContent: {fileID: 1571134165}
+  wristPanelContent: {fileID: 1790482366}
 --- !u!4 &1793270546
 Transform:
   m_ObjectHideFlags: 0
