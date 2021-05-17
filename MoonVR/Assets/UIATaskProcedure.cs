@@ -11,9 +11,11 @@ public class UIATaskProcedure : MonoBehaviour
     public TextMeshPro titleLabel;
     public Interactable previousTask;
     public Interactable nextTask;
+    public Interactable doneButton;
 
     public GameObject previousTaskIcon;
     public GameObject nextTaskIcon;
+    public GameObject doneIcon;
 
     public List<string> taskList = new List<string>();
     public List<string> title = new List<string>();
@@ -31,6 +33,7 @@ public class UIATaskProcedure : MonoBehaviour
         previousTaskIcon.SetActive(false);
         nextTask.OnClick.AddListener(() => ButtonPressed());
         previousTask.OnClick.AddListener(() => ReverseTask());
+        doneButton.OnClick.AddListener(() => TaskDone());
 
 
         if (titleLabel != null)
@@ -56,6 +59,7 @@ public class UIATaskProcedure : MonoBehaviour
         else
         {
             nextTaskIcon.SetActive(false);
+            doneIcon.SetActive(true);
             currentTask.SetText(taskList[taskList.Count - 1]);
             counter = taskList.Count -1;
         }
@@ -88,6 +92,16 @@ public class UIATaskProcedure : MonoBehaviour
             currentTask.SetText(taskList[taskList.Count -1]);
             counter = taskList.Count -1;
         }
+    }
+
+    public void TaskDone()
+    {
+        counter = 0;
+        currentTask.SetText(taskList[counter]);
+        nextTaskIcon.SetActive(true);
+        doneIcon.SetActive(false);
+        previousTaskIcon.SetActive(false);
+
     }
 
     // Update is called once per frame
