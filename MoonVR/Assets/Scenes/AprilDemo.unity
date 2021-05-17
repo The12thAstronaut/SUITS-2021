@@ -65181,7 +65181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _liveDataUrl: https://newsuits2021customvison.cognitiveservices.azure.com/customvision/v3.0/Prediction/431e01a2-94dd-48f8-a8db-ffe4f4ff9e85/detect/iterations/Iteration1/image
   _predictionKey: 659c5714bf594a9fbd26366faee7e4bc
-  _labelObject: {fileID: 194704, guid: 87d5aa043215a47cba8b74ae3490a936, type: 3}
+  _labelObject: {fileID: 1083549605185280, guid: afaef0108a478c44a9eac26658bc29bf,
+    type: 3}
   _labelContainer: {fileID: 1316478716}
   startButton: {fileID: 329323413}
   stopButton: {fileID: 329323412}
@@ -96794,7 +96795,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6070785955580232788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
