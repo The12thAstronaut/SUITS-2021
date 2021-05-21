@@ -17,4 +17,19 @@ https://microgravityuniversity.jsc.nasa.gov/nasasuits.cfm
 
 ![Alt text](/Pictures/NASA_SUITS_Logov4.png?raw=true "12th Astronaut Logo")
 
+For updating the Hololens 2, please do the following:
+1. Make sure the Hololens 2 is on, and navigate to the "Network and Internet"
+2. Assuming you are connected to the Wifi, note down the IP Address.
+3. Download the folder from the "Master" branch on Github, and unzip it if needed.
+4. Open the .sln file with Visual Studios
+5. Make sure the solution configuration is set to "Release", "ARM", and "Remote Machine".
+6. In the Solution Explorer, right click and go to Properties
+7. Under Configuration Properties, click "Debugging" and make sure "Remote Machine" is set as Debugger To Launch
+8. Next to "Machine Name", write down the IP Address and click "Apply"
+9. Exit out of that window
+10. Make sure the Hololens 2 is on
+11. Navigate to "Debug" and select Start Without Debugging OR press Ctrl+F5
+12. Give it time, and the new code will upload to the Hololens 2
+13. Done!
+
 
