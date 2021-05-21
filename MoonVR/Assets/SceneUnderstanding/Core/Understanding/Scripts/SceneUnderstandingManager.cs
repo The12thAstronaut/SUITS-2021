@@ -1408,8 +1408,8 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
                     }
                 }
 
-                string fileName = string.Format("SU_{0}_{1}-{2}-{3}_{4}-{5}-{6}.obj",
-                                                soKind.ToString(), year, month, day, hour, min, sec);
+                string fileName = string.Format("SU_{0}_{1}-{2}-{3}.obj",
+                                                soKind.ToString(), year, month, day);
 
                 if (allObjectsOfAKind.Count > 0)
                 {

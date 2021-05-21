@@ -220,6 +220,67 @@ MonoBehaviour:
   TranslationSpeed: 0.5
   TranslationShiftMultiplier: 2
   RotationSpeed: 5
+--- !u!1 &620760147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620760149}
+  - component: {fileID: 620760148}
+  - component: {fileID: 620760150}
+  m_Layer: 0
+  m_Name: meshSaverManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &620760148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620760147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e650e1e3f00124eadf7fdd6d9b909e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SuManager: {fileID: 630412908}
+  bStorage: {fileID: 620760150}
+--- !u!4 &620760149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620760147}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.51928437, y: 1.4843165, z: -5.8434877}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &620760150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620760147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87dd26c63fbfd6a49a2c32d4ca48a55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConnectionString: DefaultEndpointsProtocol=https;AccountName=suits2021storage;AccountKey=DPbm86zbM9u6F0ZuCZ2bK73nGOXwM9gZKyUlrmVdFQljx7GoYK2xExeMFkfuJS/gyQqR1UhnEDKTBIpnUbqvEQ==;EndpointSuffix=core.windows.net
+  BlockBlobContainerName: neilblob
+  PageBlobContainerName: neilblob
 --- !u!114 &630412908 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1654952326856315522, guid: a9b7988b52547e14899219ced698f6b2,
@@ -525,8 +586,18 @@ PrefabInstance:
     - target: {fileID: 1654952326856315522, guid: a9b7988b52547e14899219ced698f6b2,
         type: 3}
       propertyPath: QuerySceneFromDevice
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1654952326856315522, guid: a9b7988b52547e14899219ced698f6b2,
+        type: 3}
+      propertyPath: SceneObjectMeshMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: affe476c29a98ae458ecc27b37fa23fc, type: 2}
+    - target: {fileID: 1654952326856315522, guid: a9b7988b52547e14899219ced698f6b2,
+        type: 3}
+      propertyPath: SceneObjectQuadMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: affe476c29a98ae458ecc27b37fa23fc, type: 2}
     - target: {fileID: 1654952326856315524, guid: a9b7988b52547e14899219ced698f6b2,
         type: 3}
       propertyPath: m_Name
@@ -685,6 +756,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneUnderstandingMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426562319953196663, guid: 9e92419956a00654aafabc6885e89266,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426562319953196664, guid: 9e92419956a00654aafabc6885e89266,
         type: 3}
