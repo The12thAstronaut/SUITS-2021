@@ -40,7 +40,7 @@ public class LaurenSuitEmergencyChecker : MonoBehaviour
 
     public void checkForEmergencies()
     {
-        if (tS != null)
+        if (tS.GetBpmText() != null)
         {
 
             //checkPrimaryOxygen();
