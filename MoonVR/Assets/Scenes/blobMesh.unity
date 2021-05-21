@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5886,6 +5886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 192820413}
   - component: {fileID: 192820412}
+  - component: {fileID: 192820414}
   m_Layer: 0
   m_Name: BlobManager
   m_TagString: Untagged
@@ -5922,6 +5923,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &192820414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192820411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf91772e59effdc478493c7b4907aa27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuerySceneFromDevice: 0
+  SUSerializedScenePaths: []
+  SceneRoot: {fileID: 0}
+  BoundingSphereRadiusInMeters: 10
+  AutoRefresh: 1
+  AutoRefreshIntervalInSeconds: 10
+  SceneObjectRequestMode: 2
+  MeshQuality: 1
+  RequestInferredRegions: 1
+  ColorForBackgroundObjects: {r: 0.953, g: 0.475, b: 0.875, a: 1}
+  ColorForWallObjects: {r: 0.953, g: 0.494, b: 0.475, a: 1}
+  ColorForFloorObjects: {r: 0.733, g: 0.953, b: 0.475, a: 1}
+  ColorForCeilingObjects: {r: 0.475, g: 0.596, b: 0.953, a: 1}
+  ColorForPlatformsObjects: {r: 0.204, g: 0.792, b: 0.714, a: 1}
+  ColorForUnknownObjects: {r: 1, g: 1, b: 1, a: 1}
+  ColorForInferredObjects: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  ColorForWorldObjects: {r: 0, g: 1, b: 1, a: 1}
+  LayerForBackgroundObjects: 0
+  LayerForWallObjects: 0
+  LayerForFloorObjects: 0
+  LayerForCeilingObjects: 0
+  LayerForPlatformsObjects: 0
+  LayerForUnknownObjects: 0
+  LayerForInferredObjects: 0
+  LayerForWorldObjects: 0
+  SceneObjectMeshMaterial: {fileID: 0}
+  SceneObjectQuadMaterial: {fileID: 0}
+  SceneObjectWireframeMaterial: {fileID: 0}
+  TransparentOcclussion: {fileID: 0}
+  RenderSceneObjects: 1
+  RenderPlatformSceneObjects: 1
+  RenderBackgroundSceneObjects: 1
+  RenderUnknownSceneObjects: 1
+  RenderWorldMesh: 0
+  RenderCompletelyInferredSceneObjects: 1
+  AddColliders: 0
+  IsInGhostMode: 0
+  OnLoadStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLoadFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  TimeElapsedSinceLastAutoRefresh: 0
 --- !u!1 &196331580
 GameObject:
   m_ObjectHideFlags: 0
