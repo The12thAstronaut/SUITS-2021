@@ -21,27 +21,27 @@ public string BlobConnectionString;
 
     public async void loadMesh(string cxnstr)
     {
-        BlobModel bm = new BlobModel("cat.obj", "obj", cxnstr);
+        BlobModel bm = new BlobModel("cow.obj", "obj", cxnstr);
         if (await bm.exists())
         {
-            await bm.download("catmodel.obj"); 
+            await bm.download("cow.obj"); 
             Debug.Log("Downloaded.");
 
             Mesh meshHold = new Mesh();
             ObjImporter newMesh = new ObjImporter();
-            meshHold = newMesh.ImportFile("./Assets/Resources/catmodel.obj");
+            meshHold = newMesh.ImportFile("./Assets/Resources/cow.obj");
             Debug.Log("Imported");
 
             GameObject myCat = new GameObject();
             MeshRenderer meshRenderer = myCat.AddComponent<MeshRenderer>();
             MeshFilter filter = myCat.AddComponent<MeshFilter>();
             filter.mesh = meshHold;
-                                            //./Assets/Resources/metal01.mat
+            //./Assets/Resources/metal01.mat
             Material catMaterial = Resources.Load("metal01", typeof(Material)) as Material;
             myCat.GetComponent<MeshRenderer>().material = catMaterial;
 
             Instantiate(myCat);
-            myCat.transform.position = new Vector3(47, -365, -59);
+            myCat.transform.position = new Vector3(0, 200, 0);
 
             Debug.Log("Done");
         }
