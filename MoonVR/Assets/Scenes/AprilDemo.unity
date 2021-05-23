@@ -13982,10 +13982,55 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1775212137}
     m_Modifications:
+    - target: {fileID: 5497929481156897955, guid: b87599de109f4f243803815259fcd632,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497929481156897955, guid: b87599de109f4f243803815259fcd632,
+        type: 3}
+      propertyPath: m_GlobalPointSize
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497929481156897957, guid: b87599de109f4f243803815259fcd632,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.4041932
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497929481156897957, guid: b87599de109f4f243803815259fcd632,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2183
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497929481156897957, guid: b87599de109f4f243803815259fcd632,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2183
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497929481156897957, guid: b87599de109f4f243803815259fcd632,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -741
+      objectReference: {fileID: 0}
     - target: {fileID: 5497929481166896304, guid: b87599de109f4f243803815259fcd632,
         type: 3}
       propertyPath: m_textAlignment
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497929481343916019, guid: b87599de109f4f243803815259fcd632,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497929481343916019, guid: b87599de109f4f243803815259fcd632,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497929481343916019, guid: b87599de109f4f243803815259fcd632,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5855039240462168195, guid: b87599de109f4f243803815259fcd632,
         type: 3}
@@ -97160,7 +97205,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6070785955580232788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
