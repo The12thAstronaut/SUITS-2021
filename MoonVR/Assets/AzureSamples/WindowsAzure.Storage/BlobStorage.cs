@@ -20,7 +20,7 @@ public class BlobStorage : BaseStorage
 		ClearOutput();
 		WriteLine("-- Testing Blob Storage --");
 		await BasicStorageBlockBlobOperationsAsync();
-		await BasicStoragePageBlobOperationsAsync();
+		// await BasicStoragePageBlobOperationsAsync();
 	}
 
 	private async Task BasicStorageBlockBlobOperationsAsync()
@@ -91,15 +91,15 @@ public class BlobStorage : BaseStorage
 
 		WriteLine("File written to " + path);
 
-		// Clean up after the demo 
-		WriteLine("5. Delete block Blob");
-		await blockBlob.DeleteAsync();
+		// // Clean up after the demo 
+		// WriteLine("5. Delete block Blob");
+		// await blockBlob.DeleteAsync();
 
-		// When you delete a container it could take several seconds before you can recreate a container with the same
-		// name - hence to enable you to run the demo in quick succession the container is not deleted. If you want 
-		// to delete the container uncomment the line of code below. 
-		WriteLine("6. Delete Container -- Note that it will take a few seconds before you can recreate a container with the same name");
-		await container.DeleteAsync();
+		// // When you delete a container it could take several seconds before you can recreate a container with the same
+		// // name - hence to enable you to run the demo in quick succession the container is not deleted. If you want 
+		// // to delete the container uncomment the line of code below. 
+		// WriteLine("6. Delete Container -- Note that it will take a few seconds before you can recreate a container with the same name");
+		// await container.DeleteAsync();
 
 		WriteLine("-- Test Complete --");
 	}

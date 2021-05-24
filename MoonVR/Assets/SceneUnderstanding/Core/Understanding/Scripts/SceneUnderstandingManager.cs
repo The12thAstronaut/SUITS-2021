@@ -1518,7 +1518,8 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
             }
             else
             {
-                string folder = Path.GetTempPath();
+                // string folder = Path.GetTempPath();
+                string folder = Application.dataPath + "/StreamingAssets";
                 string file = Path.Combine(folder, fileName);
                 File.WriteAllText(file, data);
                 Debug.Log("SceneUnderstandingManager.SaveStringToDiskAsync: Scene Objects saved at " + file);
