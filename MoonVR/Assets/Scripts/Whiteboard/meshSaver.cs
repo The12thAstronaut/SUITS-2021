@@ -14,7 +14,7 @@ public class meshSaver : MonoBehaviour
         //Starting at time 2 seconds, save mesh every 10 seconds
         InvokeRepeating("SaveData", 2.0f, 10.0f);
         //Starting at time 4 seconds, upload mesh to blob every 60 seconds
-        // InvokeRepeating("UploadToBlob", 4.0f, 60.0f);
+        InvokeRepeating("UploadToBlob", 4.0f, 60.0f);
     }
 
     // Update is called once per frame

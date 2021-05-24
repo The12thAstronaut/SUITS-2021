@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using UnityEngine;
+using System.Collections.Generic;
 using Random = System.Random;
 
 #if WINDOWS_UWP && ENABLE_DOTNET
@@ -14,6 +15,8 @@ public class BlobStorage : BaseStorage
 {
 	public string BlockBlobContainerName = "democontainerblockblob";
 	public string PageBlobContainerName = "democontainerpageblob";
+	public string objPath;
+	public List<string> objList = new List<string>();
 
 	public async void BlobStorageTest()
 	{
@@ -27,7 +30,27 @@ public class BlobStorage : BaseStorage
 	{
 		WriteLine("Testing BlockBlob");
 
-		const string ImageToUpload = "HelloWorld.png";
+		const string ImageToUpload = "SU_Floor_2021-5-24.obj";
+		//Get name of all OBJ files in the streaming assets folder		
+		//Set obj path to streaming assets folder and print names of all obj files
+		objPath = Application.dataPath + "/StreamingAssets";
+		DirectoryInfo dir = new DirectoryInfo(objPath);
+		FileInfo[] info = dir.GetFiles("*.*");
+		foreach (FileInfo f in info) 
+			{
+				//Add mesh file name string to list of strings		
+				objList.Add(Path.GetFileName(f.FullName).ToString());
+			}
+		//Print the list of OBJ files
+
+		foreach (var meshName in objList)
+		{
+			print(meshName);
+		}
+
+		// Work In Progress upload obj from list, that isn't a static string
+		// string ImageToUpload = objList[0];
+		
 
 		// Create a blob client for interacting with the blob service.
 		CloudBlobClient blobClient = StorageAccount.CreateCloudBlobClient();
