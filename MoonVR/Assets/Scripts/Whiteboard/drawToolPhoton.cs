@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpinningHologram;
 
 public class drawToolPhoton : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class drawToolPhoton : MonoBehaviour
     private GameObject currentSpline;
     private objectID objectID;
     public PhotonMessageInfo Info;
+
+    private spinning_hologram spinningArrow;
 
 
     public bool drawingMode;
@@ -59,6 +62,12 @@ public class drawToolPhoton : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha3) && drawingMode == true)
         {
             updateHologramArrow();
+
+            spinningArrow.Hologram = gameObject;
+            spinningArrow.rotateSpeed = 10;
+            spinningArrow.Spin();
+
+
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha4) && drawingMode == true)
