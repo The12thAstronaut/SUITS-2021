@@ -65563,6 +65563,8 @@ MonoBehaviour:
   - Bye Scout
   - Show Menu
   - Hide Menu
+  - Next Task
+  - Previous Task
   confidence: 1
   speed: 1
   isScoutActivated: 0
@@ -65571,6 +65573,8 @@ MonoBehaviour:
   ScoutModel: {fileID: 572604641}
   ScoutLight: {fileID: 864597205}
   wristPanelContent: {fileID: 1790482366}
+  previousTaskButton: {fileID: 3126786010410657847}
+  nextTaskButton: {fileID: 3126786009302976524}
 --- !u!4 &1793270546
 Transform:
   m_ObjectHideFlags: 0
