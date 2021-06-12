@@ -65531,6 +65531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1793270546}
   - component: {fileID: 1793270545}
+  - component: {fileID: 1793270547}
   m_Layer: 0
   m_Name: Voice Manager
   m_TagString: Untagged
@@ -65563,11 +65564,15 @@ MonoBehaviour:
   - Bye Scout
   - Show Menu
   - Hide Menu
+  - Next Task
+  - Previous Task
+  - UIA
   confidence: 1
   speed: 1
   isScoutActivated: 0
   buttonCollection: {fileID: 610473653}
   menuButtons: []
+  panels: []
   ScoutModel: {fileID: 572604641}
   ScoutLight: {fileID: 864597205}
   wristPanelContent: {fileID: 1790482366}
@@ -65585,6 +65590,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1793270547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793270544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4555122fd4984245b0d4219836749a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTask: {fileID: 2060839003}
+  titleLabel: {fileID: 1180127510}
+  previousTask: {fileID: 5487525928906032788}
+  nextTask: {fileID: 5487525930012960431}
+  doneButton: {fileID: 555616333}
+  previousTaskIcon: {fileID: 3126786010410657847}
+  nextTaskIcon: {fileID: 3126786009302976524}
+  doneIcon: {fileID: 555616324}
+  taskList:
+  - POWER EV-1 and 2 are set to OFF
+  - WATER SUPPLY EV-1 and 2 is set to CLOSE
+  - OXYGEN EV-1 and 2 are set to CLOSE
+  - Switch O2 Vent to OPEN
+  - "O2 Vent \u2013 CLOSE"
+  - Check that O2 VENT is set to CLOSED
+  - Switch OXYGEN EV-1 to OPEN
+  - Switch OXYGEN EV-1 to CLOSE
+  - 'Switch O2 Vent to OPEN '
+  - Check that O2 VENT is set to CLOSED
+  - Switch OXYGEN EV-1 to OPEN
+  - Switch OXYGEN EV-1 to CLOSE
+  - Check that UIA POWER EV-1 is set to OFF
+  - Switch DCU POWER to BATT
+  - Switch UIA POWER EV-1 to ON
+  title:
+  - UIA Procedure
+  UIA: {fileID: 1481286058}
+  DCU: {fileID: 2118713875}
+  switches:
+  - {fileID: 1529751660}
+  - {fileID: 467713105}
+  - {fileID: 1023402916}
+  - {fileID: 552288265}
+  - {fileID: 877586338}
+  - {fileID: 1468148019}
+  - {fileID: 1769178989}
+  - {fileID: 2073164457}
+  - {fileID: 5724406}
+  - {fileID: 1128014250}
+  dcuBatt: {fileID: 1220117521}
 --- !u!1 &1800326222
 GameObject:
   m_ObjectHideFlags: 0
@@ -97779,7 +97836,7 @@ GameObject:
   - component: {fileID: 3126786009302976526}
   m_Layer: 0
   m_Name: Next Task
-  m_TagString: Untagged
+  m_TagString: NextTask
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98405,7 +98462,7 @@ GameObject:
   - component: {fileID: 3126786010410657848}
   m_Layer: 0
   m_Name: Previous Task
-  m_TagString: Untagged
+  m_TagString: PrevTask
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102355,7 +102412,7 @@ GameObject:
   - component: {fileID: 2979745885160287439}
   m_Layer: 0
   m_Name: Button1
-  m_TagString: Untagged
+  m_TagString: UIA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

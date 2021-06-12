@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - NextTask
+  - PrevTask
+  - UIA
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,7 @@ public class voiceManager : MonoBehaviour
     public bool isScoutActivated;
     public GameObject buttonCollection;
     public GameObject[] menuButtons;
+    public GameObject[] panels;
     public GameObject ScoutModel;
     public GameObject ScoutLight;
     public GameObject wristPanelContent;
@@ -128,6 +129,24 @@ public class voiceManager : MonoBehaviour
                     isScoutActivated = false;
                     ScoutModel.SetActive(false);
                     ScoutLight.SetActive(false);
+                    word = "none";
+                    break;
+                case "UIA":
+                    print("UIA");
+                    var uiaButton = GameObject.FindWithTag("UIA");
+                    uiaButton.GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
+                    word = "none";
+                    break;
+                case "Next Task":
+                    print("Showing Next Task");
+                    var nextButton = GameObject.FindWithTag("NextTask");   
+                    nextButton.GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
+                    word = "none";
+                    break;
+                case "Previous Task":
+                    print("Showing Previous Task");
+                    var prevButton = GameObject.FindWithTag("PrevTask");
+                    prevButton.GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
                     word = "none";
                     break;
             }
