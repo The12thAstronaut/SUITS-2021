@@ -6,53 +6,57 @@ using UnityEngine.Events;
 using Microsoft.MixedReality.Toolkit.UI;
 
 
-public class spinning_hologram : MonoBehaviour
+namespace SpinningHologram
 {
-    public GameObject Hologram;
-    public float rotateSpeed;
-
-    //position variables
-    Vector3 posOffset = new Vector3();
-    Vector3 tempPos = new Vector3();
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class spinning_hologram : MonoBehaviour
     {
-        Hologram.SetActive(true);
+        public GameObject Hologram;
+        public float rotateSpeed;
 
-        //initial position
-        posOffset = Hologram.transform.position;
-
-    }
-
-
-    void Spin()
-    {
-
-        posOffset = Hologram.transform.position;
-
-        //rotate around z axis
-
-        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, Space.World);
-
-        //sin wave
-        tempPos = posOffset;
-        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.25f) * 0.0002f;
-
-        Hologram.transform.position = tempPos;
-    }
+        //position variables
+        Vector3 posOffset = new Vector3();
+        Vector3 tempPos = new Vector3();
 
 
-    // Update is called once per frame
-    void Update()
+        // Start is called before the first frame update
+        void Start()
+        {
+            Hologram.SetActive(true);
 
-    {
+            //initial position
+            posOffset = Hologram.transform.position;
 
-        Spin();
+        }
+
+
+        public void Spin()
+        {
+
+            posOffset = Hologram.transform.position;
+
+            //rotate around z axis
+
+            transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, Space.World);
+
+            //sin wave
+            tempPos = posOffset;
+            tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 0.25f) * 0.0002f;
+
+            Hologram.transform.position = tempPos;
+        }
+
+
+        // Update is called once per frame
+        void Update()
+
+        {
+
+            Spin();
 
 
 
 
+        }
     }
 }
+

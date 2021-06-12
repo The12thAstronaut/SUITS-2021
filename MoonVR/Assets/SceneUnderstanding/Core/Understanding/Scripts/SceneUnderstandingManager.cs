@@ -465,1074 +465,1074 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
 
             if (suScene != null)
             {
-                // Retrieve a transformation matrix that will allow us orient the Scene Understanding Objects into
-                // their correct corresponding position in the unity world
-                System.Numerics.Matrix4x4? sceneToUnityTransformAsMatrix4x4 = GetSceneToUnityTransformAsMatrix4x4(suScene);
+                // // Retrieve a transformation matrix that will allow us orient the Scene Understanding Objects into
+                // // their correct corresponding position in the unity world
+                // System.Numerics.Matrix4x4? sceneToUnityTransformAsMatrix4x4 = GetSceneToUnityTransformAsMatrix4x4(suScene);
 
-                if (sceneToUnityTransformAsMatrix4x4 != null)
-                {
-                    // If there was previously a scene displayed in the game world, destroy it
-                    // to avoid overlap with the new scene about to be displayed
-                    DestroyAllGameObjectsUnderParent(SceneRoot.transform);
+                // if (sceneToUnityTransformAsMatrix4x4 != null)
+                // {
+                //     // If there was previously a scene displayed in the game world, destroy it
+                //     // to avoid overlap with the new scene about to be displayed
+                //     DestroyAllGameObjectsUnderParent(SceneRoot.transform);
 
-                    // Allow from one frame to yield the coroutine back to the main thread
-                    yield return null;
+                //     // Allow from one frame to yield the coroutine back to the main thread
+                //     yield return null;
 
-                    // Using the transformation matrix generated above, port its values into the tranform of the scene root (Numerics.matrix -> GameObject.Transform)
-                    SetUnityTransformFromMatrix4x4(SceneRoot.transform, sceneToUnityTransformAsMatrix4x4.Value, RunOnDevice);
+                //     // Using the transformation matrix generated above, port its values into the tranform of the scene root (Numerics.matrix -> GameObject.Transform)
+                //     SetUnityTransformFromMatrix4x4(SceneRoot.transform, sceneToUnityTransformAsMatrix4x4.Value, RunOnDevice);
 
-                    if (!RunOnDevice)
-                    {
-                        // If the scene is not running on a device, orient the scene root relative to the floor of the scene
-                        // and unity's up vector
-                        OrientSceneForPC(SceneRoot, suScene);
-                    }
+                //     if (!RunOnDevice)
+                //     {
+                //         // If the scene is not running on a device, orient the scene root relative to the floor of the scene
+                //         // and unity's up vector
+                //         OrientSceneForPC(SceneRoot, suScene);
+                //     }
 
 
-                    // After the scene has been oriented, loop through all the scene objects and
-                    // generate their corresponding Unity Object
-                    IEnumerable<SceneUnderstanding.SceneObject> sceneObjects = suScene.SceneObjects;
+                //     // After the scene has been oriented, loop through all the scene objects and
+                //     // generate their corresponding Unity Object
+                //     IEnumerable<SceneUnderstanding.SceneObject> sceneObjects = suScene.SceneObjects;
 
-                    int i = 0;
-                    foreach (SceneUnderstanding.SceneObject sceneObject in sceneObjects)
-                    {
-                        if (DisplaySceneObject(sceneObject))
-                        {
-                            if (++i % NumberOfSceneObjectsToLoadPerFrame == 0)
-                            {
-                                // Allow a certain number of objects to load before yielding back to main thread
+                //     int i = 0;
+                //     foreach (SceneUnderstanding.SceneObject sceneObject in sceneObjects)
+                //     {
+                //         if (DisplaySceneObject(sceneObject))
+                //         {
+                //             if (++i % NumberOfSceneObjectsToLoadPerFrame == 0)
+                //             {
+                //                 // Allow a certain number of objects to load before yielding back to main thread
                                 yield return null;
-                            }
-                        }
-                    }
-                }
+                //             }
+                //         }
+                //     }
+                // }
 
-                // When all objects have been loaded, finish.
-                Debug.Log("SceneUnderStandingManager.DisplayData: Display Completed");
+                // // When all objects have been loaded, finish.
+                // Debug.Log("SceneUnderStandingManager.DisplayData: Display Completed");
 
-                // Run CallBacks for Onload Finished
-                OnLoadFinished.Invoke();
+                // // Run CallBacks for Onload Finished
+                // OnLoadFinished.Invoke();
 
-                // Let the task complete
-                completionSource.SetResult(true);
+                // // Let the task complete
+                // completionSource.SetResult(true);
             }
         }
 
-        /// <summary>
-        /// Create a Unity Game Object for an individual Scene Understanding Object
-        /// </summary>
-        /// <param name="suObject">The Scene Understanding Object to generate in Unity</param>
-        private bool DisplaySceneObject(SceneUnderstanding.SceneObject suObject)
-        {
-            if (suObject == null)
-            {
-                Debug.LogWarning("SceneUnderstandingManager.DisplaySceneObj: Object is null");
-                return false;
-            }
-
-            // If requested, scene objects can be excluded from the generation, the World Mesh is considered
-            // a separate object hence is not affected by this filter
-            if (RenderSceneObjects == false && suObject.Kind != SceneUnderstanding.SceneObjectKind.World)
-            {
-                return false;
-            }
-
-            // If an individual type of object is requested to not be rendered, avoid generation of unity object
-            SceneUnderstanding.SceneObjectKind kind = suObject.Kind;
-            switch (kind)
-            {
-                case SceneUnderstanding.SceneObjectKind.World:
-                    if (!RenderWorldMesh)
-                        return false;
-                    break;
-                case SceneUnderstanding.SceneObjectKind.Platform:
-                    if (!RenderPlatformSceneObjects)
-                        return false;
-                    break;
-                case SceneUnderstanding.SceneObjectKind.Background:
-                    if (!RenderBackgroundSceneObjects)
-                        return false;
-                    break;
-                case SceneUnderstanding.SceneObjectKind.Unknown:
-                    if (!RenderUnknownSceneObjects)
-                        return false;
-                    break;
-                case SceneUnderstanding.SceneObjectKind.CompletelyInferred:
-                    if (!RenderCompletelyInferredSceneObjects)
-                        return false;
-                    break;
-            }
-
-            // This gameobject will hold all the geometry that represents the Scene Understanding Object
-            GameObject unityParentHolderObject = new GameObject(suObject.Kind.ToString());
-            unityParentHolderObject.transform.parent = SceneRoot.transform;
-
-            // Scene Understanding uses a Right Handed Coordinate System and Unity uses a left handed one, convert.
-            System.Numerics.Matrix4x4 converted4x4LocationMatrix = ConvertRightHandedMatrix4x4ToLeftHanded(suObject.GetLocationAsMatrix());
-            // From the converted Matrix pass its values into the unity transform (Numerics -> Unity.Transform)
-            SetUnityTransformFromMatrix4x4(unityParentHolderObject.transform, converted4x4LocationMatrix, true);
-
-            // This list will keep track of all the individual objects that represent the geometry of
-            // the Scene Understanding Object
-            List<GameObject> unityGeometryObjects = null;
-            switch (kind)
-            {
-                // Create all the geometry and store it in the list
-                case SceneUnderstanding.SceneObjectKind.World:
-                    unityGeometryObjects = CreateWorldMeshInUnity(suObject);
-                    break;
-                default:
-                    unityGeometryObjects = CreateSUObjectInUnity(suObject);
-                    break;
-            }
-
-            // For all the Unity Game Objects that represent The Scene Understanding Object
-            // Of this iteration, make sure they are all children of the UnityParent object
-            // And that their local postion and rotation is relative to their parent
-            foreach (GameObject geometryObject in unityGeometryObjects)
-            {
-                geometryObject.transform.parent = unityParentHolderObject.transform;
-                geometryObject.transform.localPosition = Vector3.zero;
-                geometryObject.transform.localRotation = Quaternion.identity;
-            }
-
-            if (RunOnDevice)
-            {
-                // If the Scene is running on a device, add a World Anchor to align the Unity object
-                // to the XR scene
-                unityParentHolderObject.AddComponent<UnityEngine.XR.WSA.WorldAnchor>();
-            }
-
-            //Return that the Scene Object was indeed represented as a unity object and wasn't skipped
-            return true;
-        }
-
-        /// <summary>
-        /// Create a world Mesh Unity Object that represents the World Mesh Scene Understanding Object
-        /// </summary>
-        /// <param name="suObject">The Scene Understanding Object to generate in Unity</param>
-        private List<GameObject> CreateWorldMeshInUnity(SceneUnderstanding.SceneObject suObject)
-        {
-            // The World Mesh Object is different from the rest of the Scene Understanding Objects
-            // in the Sense that its unity representation is not affected by the filters or Request Modes
-            // in this component, the World Mesh Renders even of the Scene Objects are disabled and
-            // the World Mesh is always represented with a WireFrame Material, different to the Scene
-            // Understanding Objects whose materials vary depending on the Settings in the component
-
-            IEnumerable<SceneUnderstanding.SceneMesh> suMeshes = suObject.Meshes;
-            Mesh unityMesh = GenerateUnityMeshFromSceneObjectMeshes(suMeshes);
-
-            GameObject gameObjToReturn = new GameObject(suObject.Kind.ToString());
-            gameObjToReturn.layer = LayerForWorldObjects;
-            Material tempMaterial = GetMaterial(SceneObjectKind.World, RenderMode.Wireframe);
-            AddMeshToUnityObject(gameObjToReturn, unityMesh, ColorForWorldObjects, tempMaterial);
-
-            if (AddColliders)
-            {
-                // Generate a unity mesh for physics
-                Mesh unityColliderMesh = GenerateUnityMeshFromSceneObjectMeshes(suObject.ColliderMeshes);
-
-                MeshCollider col = gameObjToReturn.AddComponent<MeshCollider>();
-                col.sharedMesh = unityColliderMesh;
-            }
-
-            // Also the World Mesh is represented as one big Mesh in Unity, different to the rest of SceneObjects
-            // Where their multiple meshes are represented in separate game objects
-            return new List<GameObject> { gameObjToReturn };
-        }
-
-        /// <summary>
-        /// Create a list of Unity GameObjects that represent all the Meshes/Geometry in a Scene
-        /// Understanding Object
-        /// </summary>
-        /// <param name="suObject">The Scene Understanding Object to generate in Unity</param>
-        private List<GameObject> CreateSUObjectInUnity(SceneUnderstanding.SceneObject suObject)
-        {
-            // Each SU object has a specific type, query for its correspoding color
-            // according to its type
-            Color? color = GetColor(suObject.Kind);
-            int layer = GetLayer(suObject.Kind);
-
-            List<GameObject> listOfGeometryGameObjToReturn = new List<GameObject>();
-            if (SceneObjectRequestMode == RenderMode.Quad || SceneObjectRequestMode == RenderMode.QuadWithMask)
-            {
-                // If the Request Settings are requesting quads, create a gameobject in unity for
-                // each quad in the Scene Object
-                foreach (SceneUnderstanding.SceneQuad quad in suObject.Quads)
-                {
-                    Mesh unityMesh = GenerateUnityMeshFromSceneObjectQuad(quad);
-
-                    Material tempMaterial = GetMaterial(suObject.Kind, SceneObjectRequestMode);
-
-                    GameObject gameObjectToReturn = new GameObject(suObject.Kind.ToString());
-                    gameObjectToReturn.layer = layer;
-                    AddMeshToUnityObject(gameObjectToReturn, unityMesh, color, tempMaterial);
-
-                    if (SceneObjectRequestMode == RenderMode.QuadWithMask)
-                    {
-                        ApplyQuadRegionMask(quad, gameObjectToReturn, color.Value);
-                    }
-
-                    if (AddColliders)
-                    {
-                        gameObjectToReturn.AddComponent<BoxCollider>();
-                    }
-
-                    // Add to list
-                    listOfGeometryGameObjToReturn.Add(gameObjectToReturn);
-                }
-            }
-            else // if Render.Mode == Mesh or == WireFrame
-            {
-                // If the Request Settings are requesting Meshes or WireFrame, create a gameobject in unity for
-                // each Mesh, and apply either the default material or the wireframe material
-                for (int i = 0; i < suObject.Meshes.Count; i++)
-                {
-                    SceneUnderstanding.SceneMesh suGeometryMesh = suObject.Meshes[i];
-                    SceneUnderstanding.SceneMesh suColliderMesh = suObject.ColliderMeshes[i];
-
-                    // Generate the unity mesh for the Scene Understanding mesh.
-                    Mesh unityMesh = GenerateUnityMeshFromSceneObjectMeshes(new List<SceneUnderstanding.SceneMesh> { suGeometryMesh });
-                    GameObject gameObjectToReturn = new GameObject(suObject.Kind.ToString() + "Mesh");
-                    gameObjectToReturn.layer = layer;
-
-                    Material tempMaterial = GetMaterial(suObject.Kind, SceneObjectRequestMode);
-
-                    // Add the created Mesh into the Unity Object
-                    AddMeshToUnityObject(gameObjectToReturn, unityMesh, color, tempMaterial);
-
-                    if (AddColliders)
-                    {
-                        // Generate a unity mesh for physics
-                        Mesh unityColliderMesh = GenerateUnityMeshFromSceneObjectMeshes(new List<SceneUnderstanding.SceneMesh> { suColliderMesh });
-
-                        MeshCollider col = gameObjectToReturn.AddComponent<MeshCollider>();
-                        col.sharedMesh = unityColliderMesh;
-                    }
-
-                    listOfGeometryGameObjToReturn.Add(gameObjectToReturn);
-                }
-            }
-
-            // Return all the Geometry GameObjects that represent a Scene
-            // Understanding Object
-            return listOfGeometryGameObjToReturn;
-        }
-
-        /// <summary>
-        /// Create a unity Mesh from a set of Scene Understanding Meshes
-        /// </summary>
-        /// <param name="suMeshes">The Scene Understanding mesh to generate in Unity</param>
-        private Mesh GenerateUnityMeshFromSceneObjectMeshes(IEnumerable<SceneUnderstanding.SceneMesh> suMeshes)
-        {
-            if (suMeshes == null)
-            {
-                Debug.LogWarning("SceneUnderstandingManager.GenerateUnityMeshFromSceneObjectMeshes: Meshes is null.");
-                return null;
-            }
-
-            // Retrieve the data and store it as Indices and Vertices
-            List<int> combinedMeshIndices = new List<int>();
-            List<Vector3> combinedMeshVertices = new List<Vector3>();
-
-            foreach (SceneUnderstanding.SceneMesh suMesh in suMeshes)
-            {
-                if (suMesh == null)
-                {
-                    Debug.LogWarning("SceneUnderstandingManager.GenerateUnityMeshFromSceneObjectMeshes: Mesh is null.");
-                    continue;
-                }
-
-                uint[] meshIndices = new uint[suMesh.TriangleIndexCount];
-                suMesh.GetTriangleIndices(meshIndices);
-
-                System.Numerics.Vector3[] meshVertices = new System.Numerics.Vector3[suMesh.VertexCount];
-                suMesh.GetVertexPositions(meshVertices);
-
-                uint indexOffset = (uint)combinedMeshVertices.Count;
-
-                // Store the Indices and Vertices
-                for (int i = 0; i < meshVertices.Length; i++)
-                {
-                    // Here Z is negated because Unity Uses Left handed Coordinate system and Scene Understanding uses Right Handed
-                    combinedMeshVertices.Add(new Vector3(meshVertices[i].X, meshVertices[i].Y, -meshVertices[i].Z));
-                }
-
-                for (int i = 0; i < meshIndices.Length; i++)
-                {
-                    combinedMeshIndices.Add((int)(meshIndices[i] + indexOffset));
-                }
-            }
-
-            Mesh unityMesh = new Mesh();
-
-            // Unity has a limit of 65,535 vertices in a mesh.
-            // This limit exists because by default Unity uses 16-bit index buffers.
-            // Starting with 2018.1, Unity allows one to use 32-bit index buffers.
-            if (combinedMeshVertices.Count > 65535)
-            {
-                Debug.Log("SceneUnderstandingManager.GenerateUnityMeshForSceneObjectMeshes: CombinedMeshVertices count is " + combinedMeshVertices.Count + ". Will be using a 32-bit index buffer.");
-                unityMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
-            }
-
-            // Apply the Indices and Vertices
-            unityMesh.SetVertices(combinedMeshVertices);
-            unityMesh.SetIndices(combinedMeshIndices.ToArray(), MeshTopology.Triangles, 0);
-            unityMesh.RecalculateNormals();
-
-            return unityMesh;
-        }
-
-        /// <summary>
-        /// Create a Unity Mesh from a Scene Understanding Quad
-        /// </summary>
-        /// <param name="suQuad">The Scene Understanding quad to generate in Unity</param>
-        private Mesh GenerateUnityMeshFromSceneObjectQuad(SceneUnderstanding.SceneQuad suQuad)
-        {
-            if (suQuad == null)
-            {
-                Debug.LogWarning("SceneUnderstandingManager.GenerateUnityMeshForSceneObjectQuad: Quad is null.");
-                return null;
-            }
-
-            float widthInMeters = suQuad.Extents.X;
-            float heightInMeters = suQuad.Extents.Y;
-
-            // Bounds of the quad.
-            List<Vector3> vertices = new List<Vector3>()
-            {
-                new Vector3(-widthInMeters / 2, -heightInMeters / 2, 0),
-                    new Vector3( widthInMeters / 2, -heightInMeters / 2, 0),
-                    new Vector3(-widthInMeters / 2,  heightInMeters / 2, 0),
-                    new Vector3( widthInMeters / 2,  heightInMeters / 2, 0)
-            };
-
-            List<int> triangles = new List<int>()
-            {
-                1, 3, 0,
-                3, 2, 0
-            };
-
-            List<Vector2> uvs = new List<Vector2>()
-            {
-                new Vector2(0, 0),
-                    new Vector2(1, 0),
-                    new Vector2(0, 1),
-                    new Vector2(1, 1)
-            };
-
-            Mesh unityMesh = new Mesh();
-            unityMesh.SetVertices(vertices);
-            unityMesh.SetIndices(triangles.ToArray(), MeshTopology.Triangles, 0);
-            unityMesh.SetUVs(0, uvs);
-
-            return unityMesh;
-        }
-
-        /// <summary>
-        /// Get the corresponding color for each SceneObject Kind
-        /// </summary>
-        /// <param name="kind">The Scene Understanding kind from which to query the color</param>
-        private Color? GetColor(SceneObjectKind kind)
-        {
-            switch (kind)
-            {
-                case SceneUnderstanding.SceneObjectKind.Background:
-                    return ColorForBackgroundObjects;
-                case SceneUnderstanding.SceneObjectKind.Wall:
-                    return ColorForWallObjects;
-                case SceneUnderstanding.SceneObjectKind.Floor:
-                    return ColorForFloorObjects;
-                case SceneUnderstanding.SceneObjectKind.Ceiling:
-                    return ColorForCeilingObjects;
-                case SceneUnderstanding.SceneObjectKind.Platform:
-                    return ColorForPlatformsObjects;
-                case SceneUnderstanding.SceneObjectKind.Unknown:
-                    return ColorForUnknownObjects;
-                case SceneUnderstanding.SceneObjectKind.CompletelyInferred:
-                    return ColorForInferredObjects;
-                case SceneUnderstanding.SceneObjectKind.World:
-                    return ColorForWorldObjects;
-                default:
-                    return null;
-            }
-        }
-
-        /// <summary>
-        /// Get the corresponding layer for each SceneObject Kind
-        /// </summary>
-        /// <param name="kind">The Scene Understanding kind from which to query the layer</param>
-        private int GetLayer(SceneObjectKind kind)
-        {
-            switch (kind)
-            {
-                case SceneUnderstanding.SceneObjectKind.Background:
-                    return LayerForBackgroundObjects;
-                case SceneUnderstanding.SceneObjectKind.Wall:
-                    return LayerForWallObjects;
-                case SceneUnderstanding.SceneObjectKind.Floor:
-                    return LayerForFloorObjects;
-                case SceneUnderstanding.SceneObjectKind.Ceiling:
-                    return LayerForCeilingObjects;
-                case SceneUnderstanding.SceneObjectKind.Platform:
-                    return LayerForPlatformsObjects;
-                case SceneUnderstanding.SceneObjectKind.Unknown:
-                    return LayerForUnknownObjects;
-                case SceneUnderstanding.SceneObjectKind.CompletelyInferred:
-                    return LayerForInferredObjects;
-                case SceneUnderstanding.SceneObjectKind.World:
-                    return LayerForWorldObjects;
-                default:
-                    return 0;
-            }
-        }
-
-        /// <summary>
-        /// Get the cached material for each SceneObject Kind
-        /// </summary>
-        /// <param name="kind">
-        /// The <see cref="SceneObjectKind"/> to obtain the material for.
-        /// </param>
-        /// <param name="mode">
-        /// The <see cref="RenderMode"/> to obtain the material for.
-        /// </param>
-        /// <remarks>
-        /// If <see cref="IsInGhostMode"/> is true, the ghost material will be returned.
-        /// </remarks>
-        private Material GetMaterial(SceneObjectKind kind, RenderMode mode)
-        {
-            // If in ghost mode, just return transparent
-            if (IsInGhostMode) { return TransparentOcclussion; }
-
-            // Make sure we have a cache
-            if (materialCache == null) { materialCache = new Dictionary<SceneObjectKind, Dictionary<RenderMode, Material>>(); }
-
-            // Find or create cache specific to this Kind
-            Dictionary<RenderMode, Material> kindModeCache;
-            if (!materialCache.TryGetValue(kind, out kindModeCache))
-            {
-                kindModeCache = new Dictionary<RenderMode, Material>();
-                materialCache[kind] = kindModeCache;
-            }
-
-            // Find or create material specific to this Mode
-            Material mat;
-            if (!kindModeCache.TryGetValue(mode, out mat))
-            {
-                // Determine the source material by kind
-                Material sourceMat;
-                switch (mode)
-                {
-                    case RenderMode.Quad:
-                    case RenderMode.QuadWithMask:
-                        sourceMat = SceneObjectQuadMaterial;
-                        break;
-                    case RenderMode.Wireframe:
-                        sourceMat = SceneObjectWireframeMaterial;
-                        break;
-                    default:
-                        sourceMat = SceneObjectMeshMaterial;
-                        break;
-                }
-
-                // Create an instance
-                mat = Instantiate(sourceMat);
-
-                // Set color to match the kind
-                Color? color = GetColor(kind);
-                if (color != null)
-                {
-                    mat.color = color.Value;
-                    mat.SetColor("_WireColor", color.Value);
-                }
-
-                // Store
-                kindModeCache[mode] = mat;
-            }
-
-            // Return the found or created material
-            return mat;
-        }
-
-
-        /// <summary>
-        /// Function to add a Mesh to a Unity Object
-        /// </summary>
-        /// <param name="unityObject">The unity object to where the mesh will be applied </param>
-        /// <param name="mesh"> Mesh to be applied                                       </param>
-        /// <param name="color"> Color to apply to the Mesh                              </param>
-        /// <param name="material"> Material to apply to the unity Mesh Renderer         </param>
-        private void AddMeshToUnityObject(GameObject unityObject, Mesh mesh, Color? color, Material material)
-        {
-            if (unityObject == null || mesh == null || material == null)
-            {
-                Debug.Log("SceneUnderstandingManager.AddMeshToUnityObject: One or more arguments are null");
-            }
-
-            MeshFilter mf = unityObject.AddComponent<MeshFilter>();
-            mf.sharedMesh = mesh;
-
-            MeshRenderer mr = unityObject.AddComponent<MeshRenderer>();
-            mr.sharedMaterial = material;
-        }
-
-        /// <summary>
-        /// Apply Region mask to a Scene Object
-        /// </summary>
-        private void ApplyQuadRegionMask(SceneUnderstanding.SceneQuad quad, GameObject gameobject, Color color)
-        {
-            if (quad == null || gameobject == null)
-            {
-                Debug.LogWarning("SceneUnderstandingManager.ApplyQuadRegionMask: One or more arguments are null.");
-                return;
-            }
-
-            // Resolution of the mask.
-            ushort width = 256;
-            ushort height = 256;
-
-            byte[] mask = new byte[width * height];
-            quad.GetSurfaceMask(width, height, mask);
-
-            MeshRenderer meshRenderer = gameobject.GetComponent<MeshRenderer>();
-            if (meshRenderer == null || meshRenderer.sharedMaterial == null || meshRenderer.sharedMaterial.HasProperty("_MainTex") == false)
-            {
-                Debug.LogWarning("SceneUnderstandingManager.ApplyQuadRegionMask: Mesh renderer component is null or does not have a valid material.");
-                return;
-            }
-
-            // Create a new texture.
-            Texture2D texture = new Texture2D(width, height);
-            texture.filterMode = FilterMode.Bilinear;
-            texture.wrapMode = TextureWrapMode.Clamp;
-
-            // Transfer the invalidation mask onto the texture.
-            Color[] pixels = texture.GetPixels();
-            for (int i = 0; i < pixels.Length; ++i)
-            {
-                byte value = mask[i];
-
-                if (value == (byte)SceneUnderstanding.SceneRegionSurfaceKind.NotSurface)
-                {
-                    pixels[i] = Color.clear;
-                }
-                else
-                {
-                    pixels[i] = color;
-                }
-            }
-
-            texture.SetPixels(pixels);
-            texture.Apply(true);
-
-            // Set the texture on the material.
-            meshRenderer.sharedMaterial.mainTexture = texture;
-        }
-
-        #endregion
-
-        #region Utility Functions
-
-        /// <summary>
-        /// Function to destroy all children under a Unity Transform
-        /// </summary>
-        /// <param name="parentTransform"> Parent Transform to remove children from </param>
-        private void DestroyAllGameObjectsUnderParent(Transform parentTransform)
-        {
-            if (parentTransform == null)
-            {
-                Debug.LogWarning("SceneUnderstandingManager.DestroyAllGameObjectsUnderParent: Parent is null.");
-                return;
-            }
-
-            foreach (Transform child in parentTransform)
-            {
-                Destroy(child.gameObject);
-            }
-        }
-
-        /// <summary>
-        /// Function to return the correspoding transformation matrix to pass geometry
-        /// from the Scene Understanding Coordinate System to the Unity one
-        /// </summary>
-        /// <param name="scene"> Scene from which to get the Scene Understanding Coordinate System </param>
-        private System.Numerics.Matrix4x4? GetSceneToUnityTransformAsMatrix4x4(SceneUnderstanding.Scene scene)
-        {
-            System.Numerics.Matrix4x4? sceneToUnityTransform = System.Numerics.Matrix4x4.Identity;
-
-            if (RunOnDevice)
-            {
-                Windows.Perception.Spatial.SpatialCoordinateSystem sceneCoordinateSystem = Microsoft.Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview.CreateCoordinateSystemForNode(scene.OriginSpatialGraphNodeId);
-                HolograhicFrameData holoFrameData = Marshal.PtrToStructure<HolograhicFrameData>(UnityEngine.XR.XRDevice.GetNativePtr());
-                Windows.Perception.Spatial.SpatialCoordinateSystem unityCoordinateSystem = Microsoft.Windows.Perception.Spatial.SpatialCoordinateSystem.FromNativePtr(holoFrameData.ISpatialCoordinateSystemPtr);
-
-                sceneToUnityTransform = sceneCoordinateSystem.TryGetTransformTo(unityCoordinateSystem);
-
-                if (sceneToUnityTransform != null)
-                {
-                    sceneToUnityTransform = ConvertRightHandedMatrix4x4ToLeftHanded(sceneToUnityTransform.Value);
-                }
-                else
-                {
-                    Debug.LogWarning("SceneUnderstandingManager.GetSceneToUnityTransform: Scene to Unity transform is null.");
-                }
-            }
-
-            return sceneToUnityTransform;
-        }
-
-        /// <summary>
-        /// Converts a right handed tranformation matrix into a left handed one
-        /// </summary>
-        /// <param name="matrix"> Matrix to convert </param>
-        private System.Numerics.Matrix4x4 ConvertRightHandedMatrix4x4ToLeftHanded(System.Numerics.Matrix4x4 matrix)
-        {
-            matrix.M13 = -matrix.M13;
-            matrix.M23 = -matrix.M23;
-            matrix.M43 = -matrix.M43;
-
-            matrix.M31 = -matrix.M31;
-            matrix.M32 = -matrix.M32;
-            matrix.M34 = -matrix.M34;
-
-            return matrix;
-        }
-
-        /// <summary>
-        /// Passes all the values from a 4x4 tranformation matrix into a Unity Tranform
-        /// </summary>
-        /// <param name="targetTransform"> Transform to pass the values into                                    </param>
-        /// <param name="matrix"> Matrix from which the values to pass are gathered                             </param>
-        /// <param name="updateLocalTransformOnly"> Flag to update local transform or global transform in unity </param>
-        private void SetUnityTransformFromMatrix4x4(Transform targetTransform, System.Numerics.Matrix4x4 matrix, bool updateLocalTransformOnly = false)
-        {
-            if (targetTransform == null)
-            {
-                Debug.LogWarning("SceneUnderstandingManager.SetUnityTransformFromMatrix4x4: Unity transform is null.");
-                return;
-            }
-
-            Vector3 unityTranslation;
-            Quaternion unityQuat;
-            Vector3 unityScale;
-
-            System.Numerics.Vector3 vector3;
-            System.Numerics.Quaternion quaternion;
-            System.Numerics.Vector3 scale;
-
-            System.Numerics.Matrix4x4.Decompose(matrix, out scale, out quaternion, out vector3);
-
-            unityTranslation = new Vector3(vector3.X, vector3.Y, vector3.Z);
-            unityQuat = new Quaternion(quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
-            unityScale = new Vector3(scale.X, scale.Y, scale.Z);
-
-            if (updateLocalTransformOnly)
-            {
-                targetTransform.localPosition = unityTranslation;
-                targetTransform.localRotation = unityQuat;
-            }
-            else
-            {
-                targetTransform.SetPositionAndRotation(unityTranslation, unityQuat);
-            }
-        }
-
-        /// <summary>
-        /// Orients a GameObject relative to Unity's Up vector and Scene Understanding's Largest floor's normal vector
-        /// </summary>
-        /// <param name="sceneRoot"> Unity object to orient                       </param>
-        /// <param name="suScene"> SU object to obtain the largest floor's normal </param>
-        private void OrientSceneForPC(GameObject sceneRoot, SceneUnderstanding.Scene suScene)
-        {
-            if (suScene == null)
-            {
-                Debug.Log("SceneUnderstandingManager.OrientSceneForPC: Scene Understanding Scene Data is null.");
-            }
-
-            IEnumerable<SceneUnderstanding.SceneObject> sceneObjects = suScene.SceneObjects;
-
-            float largestFloorAreaFound = 0.0f;
-            SceneUnderstanding.SceneObject suLargestFloorObj = null;
-            SceneUnderstanding.SceneQuad suLargestFloorQuad = null;
-            foreach (SceneUnderstanding.SceneObject sceneObject in sceneObjects)
-            {
-                if (sceneObject.Kind == SceneUnderstanding.SceneObjectKind.Floor)
-                {
-                    IEnumerable<SceneUnderstanding.SceneQuad> quads = sceneObject.Quads;
-
-                    if (quads != null)
-                    {
-                        foreach (SceneUnderstanding.SceneQuad quad in quads)
-                        {
-                            float quadArea = quad.Extents.X * quad.Extents.Y;
-
-                            if (quadArea > largestFloorAreaFound)
-                            {
-                                largestFloorAreaFound = quadArea;
-                                suLargestFloorObj = sceneObject;
-                                suLargestFloorQuad = quad;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (suLargestFloorQuad != null)
-            {
-                float quadWith = suLargestFloorQuad.Extents.X;
-                float quadHeight = suLargestFloorQuad.Extents.Y;
-
-                System.Numerics.Vector3 p1 = new System.Numerics.Vector3(-quadWith / 2, -quadHeight / 2, 0);
-                System.Numerics.Vector3 p2 = new System.Numerics.Vector3(quadWith / 2, -quadHeight / 2, 0);
-                System.Numerics.Vector3 p3 = new System.Numerics.Vector3(-quadWith / 2, quadHeight / 2, 0);
-
-                System.Numerics.Matrix4x4 floorTransform = suLargestFloorObj.GetLocationAsMatrix();
-                floorTransform = ConvertRightHandedMatrix4x4ToLeftHanded(floorTransform);
-
-                System.Numerics.Vector3 tp1 = System.Numerics.Vector3.Transform(p1, floorTransform);
-                System.Numerics.Vector3 tp2 = System.Numerics.Vector3.Transform(p2, floorTransform);
-                System.Numerics.Vector3 tp3 = System.Numerics.Vector3.Transform(p3, floorTransform);
-
-                System.Numerics.Vector3 p21 = tp2 - tp1;
-                System.Numerics.Vector3 p31 = tp3 - tp1;
-
-                System.Numerics.Vector3 floorNormal = System.Numerics.Vector3.Cross(p31, p21);
-
-                Vector3 floorNormalUnity = new Vector3(floorNormal.X, floorNormal.Y, floorNormal.Z);
-
-                Quaternion rotation = Quaternion.FromToRotation(floorNormalUnity, Vector3.up);
-                SceneRoot.transform.rotation = rotation;
-            }
-        }
-
-
-
-        #endregion
-
-        #region Out of PlayMode Functions
-
-        /// <summary>
-        /// This function will generate the Unity Scene that represents the Scene
-        /// Understanding Scene without needing to use the play button
-        /// </summary>
+//         /// <summary>
+//         /// Create a Unity Game Object for an individual Scene Understanding Object
+//         /// </summary>
+//         /// <param name="suObject">The Scene Understanding Object to generate in Unity</param>
+//         private bool DisplaySceneObject(SceneUnderstanding.SceneObject suObject)
+//         {
+//             if (suObject == null)
+//             {
+//                 Debug.LogWarning("SceneUnderstandingManager.DisplaySceneObj: Object is null");
+//                 return false;
+//             }
+
+//             // If requested, scene objects can be excluded from the generation, the World Mesh is considered
+//             // a separate object hence is not affected by this filter
+//             if (RenderSceneObjects == false && suObject.Kind != SceneUnderstanding.SceneObjectKind.World)
+//             {
+//                 return false;
+//             }
+
+//             // If an individual type of object is requested to not be rendered, avoid generation of unity object
+//             SceneUnderstanding.SceneObjectKind kind = suObject.Kind;
+//             switch (kind)
+//             {
+//                 case SceneUnderstanding.SceneObjectKind.World:
+//                     if (!RenderWorldMesh)
+//                         return false;
+//                     break;
+//                 case SceneUnderstanding.SceneObjectKind.Platform:
+//                     if (!RenderPlatformSceneObjects)
+//                         return false;
+//                     break;
+//                 case SceneUnderstanding.SceneObjectKind.Background:
+//                     if (!RenderBackgroundSceneObjects)
+//                         return false;
+//                     break;
+//                 case SceneUnderstanding.SceneObjectKind.Unknown:
+//                     if (!RenderUnknownSceneObjects)
+//                         return false;
+//                     break;
+//                 case SceneUnderstanding.SceneObjectKind.CompletelyInferred:
+//                     if (!RenderCompletelyInferredSceneObjects)
+//                         return false;
+//                     break;
+//             }
+
+//             // This gameobject will hold all the geometry that represents the Scene Understanding Object
+//             GameObject unityParentHolderObject = new GameObject(suObject.Kind.ToString());
+//             unityParentHolderObject.transform.parent = SceneRoot.transform;
+
+//             // Scene Understanding uses a Right Handed Coordinate System and Unity uses a left handed one, convert.
+//             System.Numerics.Matrix4x4 converted4x4LocationMatrix = ConvertRightHandedMatrix4x4ToLeftHanded(suObject.GetLocationAsMatrix());
+//             // From the converted Matrix pass its values into the unity transform (Numerics -> Unity.Transform)
+//             SetUnityTransformFromMatrix4x4(unityParentHolderObject.transform, converted4x4LocationMatrix, true);
+
+//             // This list will keep track of all the individual objects that represent the geometry of
+//             // the Scene Understanding Object
+//             List<GameObject> unityGeometryObjects = null;
+//             switch (kind)
+//             {
+//                 // Create all the geometry and store it in the list
+//                 case SceneUnderstanding.SceneObjectKind.World:
+//                     unityGeometryObjects = CreateWorldMeshInUnity(suObject);
+//                     break;
+//                 default:
+//                     unityGeometryObjects = CreateSUObjectInUnity(suObject);
+//                     break;
+//             }
+
+//             // For all the Unity Game Objects that represent The Scene Understanding Object
+//             // Of this iteration, make sure they are all children of the UnityParent object
+//             // And that their local postion and rotation is relative to their parent
+//             foreach (GameObject geometryObject in unityGeometryObjects)
+//             {
+//                 geometryObject.transform.parent = unityParentHolderObject.transform;
+//                 geometryObject.transform.localPosition = Vector3.zero;
+//                 geometryObject.transform.localRotation = Quaternion.identity;
+//             }
+
+//             if (RunOnDevice)
+//             {
+//                 // If the Scene is running on a device, add a World Anchor to align the Unity object
+//                 // to the XR scene
+//                 unityParentHolderObject.AddComponent<UnityEngine.XR.WSA.WorldAnchor>();
+//             }
+
+//             //Return that the Scene Object was indeed represented as a unity object and wasn't skipped
+//             return true;
+//         }
+
+//         /// <summary>
+//         /// Create a world Mesh Unity Object that represents the World Mesh Scene Understanding Object
+//         /// </summary>
+//         /// <param name="suObject">The Scene Understanding Object to generate in Unity</param>
+//         private List<GameObject> CreateWorldMeshInUnity(SceneUnderstanding.SceneObject suObject)
+//         {
+//             // The World Mesh Object is different from the rest of the Scene Understanding Objects
+//             // in the Sense that its unity representation is not affected by the filters or Request Modes
+//             // in this component, the World Mesh Renders even of the Scene Objects are disabled and
+//             // the World Mesh is always represented with a WireFrame Material, different to the Scene
+//             // Understanding Objects whose materials vary depending on the Settings in the component
+
+//             IEnumerable<SceneUnderstanding.SceneMesh> suMeshes = suObject.Meshes;
+//             Mesh unityMesh = GenerateUnityMeshFromSceneObjectMeshes(suMeshes);
+
+//             GameObject gameObjToReturn = new GameObject(suObject.Kind.ToString());
+//             gameObjToReturn.layer = LayerForWorldObjects;
+//             Material tempMaterial = GetMaterial(SceneObjectKind.World, RenderMode.Wireframe);
+//             AddMeshToUnityObject(gameObjToReturn, unityMesh, ColorForWorldObjects, tempMaterial);
+
+//             if (AddColliders)
+//             {
+//                 // Generate a unity mesh for physics
+//                 Mesh unityColliderMesh = GenerateUnityMeshFromSceneObjectMeshes(suObject.ColliderMeshes);
+
+//                 MeshCollider col = gameObjToReturn.AddComponent<MeshCollider>();
+//                 col.sharedMesh = unityColliderMesh;
+//             }
+
+//             // Also the World Mesh is represented as one big Mesh in Unity, different to the rest of SceneObjects
+//             // Where their multiple meshes are represented in separate game objects
+//             return new List<GameObject> { gameObjToReturn };
+//         }
+
+//         /// <summary>
+//         /// Create a list of Unity GameObjects that represent all the Meshes/Geometry in a Scene
+//         /// Understanding Object
+//         /// </summary>
+//         /// <param name="suObject">The Scene Understanding Object to generate in Unity</param>
+//         private List<GameObject> CreateSUObjectInUnity(SceneUnderstanding.SceneObject suObject)
+//         {
+//             // Each SU object has a specific type, query for its correspoding color
+//             // according to its type
+//             Color? color = GetColor(suObject.Kind);
+//             int layer = GetLayer(suObject.Kind);
+
+//             List<GameObject> listOfGeometryGameObjToReturn = new List<GameObject>();
+//             if (SceneObjectRequestMode == RenderMode.Quad || SceneObjectRequestMode == RenderMode.QuadWithMask)
+//             {
+//                 // If the Request Settings are requesting quads, create a gameobject in unity for
+//                 // each quad in the Scene Object
+//                 foreach (SceneUnderstanding.SceneQuad quad in suObject.Quads)
+//                 {
+//                     Mesh unityMesh = GenerateUnityMeshFromSceneObjectQuad(quad);
+
+//                     Material tempMaterial = GetMaterial(suObject.Kind, SceneObjectRequestMode);
+
+//                     GameObject gameObjectToReturn = new GameObject(suObject.Kind.ToString());
+//                     gameObjectToReturn.layer = layer;
+//                     AddMeshToUnityObject(gameObjectToReturn, unityMesh, color, tempMaterial);
+
+//                     if (SceneObjectRequestMode == RenderMode.QuadWithMask)
+//                     {
+//                         ApplyQuadRegionMask(quad, gameObjectToReturn, color.Value);
+//                     }
+
+//                     if (AddColliders)
+//                     {
+//                         gameObjectToReturn.AddComponent<BoxCollider>();
+//                     }
+
+//                     // Add to list
+//                     listOfGeometryGameObjToReturn.Add(gameObjectToReturn);
+//                 }
+//             }
+//             else // if Render.Mode == Mesh or == WireFrame
+//             {
+//                 // If the Request Settings are requesting Meshes or WireFrame, create a gameobject in unity for
+//                 // each Mesh, and apply either the default material or the wireframe material
+//                 for (int i = 0; i < suObject.Meshes.Count; i++)
+//                 {
+//                     SceneUnderstanding.SceneMesh suGeometryMesh = suObject.Meshes[i];
+//                     SceneUnderstanding.SceneMesh suColliderMesh = suObject.ColliderMeshes[i];
+
+//                     // Generate the unity mesh for the Scene Understanding mesh.
+//                     Mesh unityMesh = GenerateUnityMeshFromSceneObjectMeshes(new List<SceneUnderstanding.SceneMesh> { suGeometryMesh });
+//                     GameObject gameObjectToReturn = new GameObject(suObject.Kind.ToString() + "Mesh");
+//                     gameObjectToReturn.layer = layer;
+
+//                     Material tempMaterial = GetMaterial(suObject.Kind, SceneObjectRequestMode);
+
+//                     // Add the created Mesh into the Unity Object
+//                     AddMeshToUnityObject(gameObjectToReturn, unityMesh, color, tempMaterial);
+
+//                     if (AddColliders)
+//                     {
+//                         // Generate a unity mesh for physics
+//                         Mesh unityColliderMesh = GenerateUnityMeshFromSceneObjectMeshes(new List<SceneUnderstanding.SceneMesh> { suColliderMesh });
+
+//                         MeshCollider col = gameObjectToReturn.AddComponent<MeshCollider>();
+//                         col.sharedMesh = unityColliderMesh;
+//                     }
+
+//                     listOfGeometryGameObjToReturn.Add(gameObjectToReturn);
+//                 }
+//             }
+
+//             // Return all the Geometry GameObjects that represent a Scene
+//             // Understanding Object
+//             return listOfGeometryGameObjToReturn;
+//         }
+
+//         /// <summary>
+//         /// Create a unity Mesh from a set of Scene Understanding Meshes
+//         /// </summary>
+//         /// <param name="suMeshes">The Scene Understanding mesh to generate in Unity</param>
+//         private Mesh GenerateUnityMeshFromSceneObjectMeshes(IEnumerable<SceneUnderstanding.SceneMesh> suMeshes)
+//         {
+//             if (suMeshes == null)
+//             {
+//                 Debug.LogWarning("SceneUnderstandingManager.GenerateUnityMeshFromSceneObjectMeshes: Meshes is null.");
+//                 return null;
+//             }
+
+//             // Retrieve the data and store it as Indices and Vertices
+//             List<int> combinedMeshIndices = new List<int>();
+//             List<Vector3> combinedMeshVertices = new List<Vector3>();
+
+//             foreach (SceneUnderstanding.SceneMesh suMesh in suMeshes)
+//             {
+//                 if (suMesh == null)
+//                 {
+//                     Debug.LogWarning("SceneUnderstandingManager.GenerateUnityMeshFromSceneObjectMeshes: Mesh is null.");
+//                     continue;
+//                 }
+
+//                 uint[] meshIndices = new uint[suMesh.TriangleIndexCount];
+//                 suMesh.GetTriangleIndices(meshIndices);
+
+//                 System.Numerics.Vector3[] meshVertices = new System.Numerics.Vector3[suMesh.VertexCount];
+//                 suMesh.GetVertexPositions(meshVertices);
+
+//                 uint indexOffset = (uint)combinedMeshVertices.Count;
+
+//                 // Store the Indices and Vertices
+//                 for (int i = 0; i < meshVertices.Length; i++)
+//                 {
+//                     // Here Z is negated because Unity Uses Left handed Coordinate system and Scene Understanding uses Right Handed
+//                     combinedMeshVertices.Add(new Vector3(meshVertices[i].X, meshVertices[i].Y, -meshVertices[i].Z));
+//                 }
+
+//                 for (int i = 0; i < meshIndices.Length; i++)
+//                 {
+//                     combinedMeshIndices.Add((int)(meshIndices[i] + indexOffset));
+//                 }
+//             }
+
+//             Mesh unityMesh = new Mesh();
+
+//             // Unity has a limit of 65,535 vertices in a mesh.
+//             // This limit exists because by default Unity uses 16-bit index buffers.
+//             // Starting with 2018.1, Unity allows one to use 32-bit index buffers.
+//             if (combinedMeshVertices.Count > 65535)
+//             {
+//                 Debug.Log("SceneUnderstandingManager.GenerateUnityMeshForSceneObjectMeshes: CombinedMeshVertices count is " + combinedMeshVertices.Count + ". Will be using a 32-bit index buffer.");
+//                 unityMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+//             }
+
+//             // Apply the Indices and Vertices
+//             unityMesh.SetVertices(combinedMeshVertices);
+//             unityMesh.SetIndices(combinedMeshIndices.ToArray(), MeshTopology.Triangles, 0);
+//             unityMesh.RecalculateNormals();
+
+//             return unityMesh;
+//         }
+
+//         /// <summary>
+//         /// Create a Unity Mesh from a Scene Understanding Quad
+//         /// </summary>
+//         /// <param name="suQuad">The Scene Understanding quad to generate in Unity</param>
+//         private Mesh GenerateUnityMeshFromSceneObjectQuad(SceneUnderstanding.SceneQuad suQuad)
+//         {
+//             if (suQuad == null)
+//             {
+//                 Debug.LogWarning("SceneUnderstandingManager.GenerateUnityMeshForSceneObjectQuad: Quad is null.");
+//                 return null;
+//             }
+
+//             float widthInMeters = suQuad.Extents.X;
+//             float heightInMeters = suQuad.Extents.Y;
+
+//             // Bounds of the quad.
+//             List<Vector3> vertices = new List<Vector3>()
+//             {
+//                 new Vector3(-widthInMeters / 2, -heightInMeters / 2, 0),
+//                     new Vector3( widthInMeters / 2, -heightInMeters / 2, 0),
+//                     new Vector3(-widthInMeters / 2,  heightInMeters / 2, 0),
+//                     new Vector3( widthInMeters / 2,  heightInMeters / 2, 0)
+//             };
+
+//             List<int> triangles = new List<int>()
+//             {
+//                 1, 3, 0,
+//                 3, 2, 0
+//             };
+
+//             List<Vector2> uvs = new List<Vector2>()
+//             {
+//                 new Vector2(0, 0),
+//                     new Vector2(1, 0),
+//                     new Vector2(0, 1),
+//                     new Vector2(1, 1)
+//             };
+
+//             Mesh unityMesh = new Mesh();
+//             unityMesh.SetVertices(vertices);
+//             unityMesh.SetIndices(triangles.ToArray(), MeshTopology.Triangles, 0);
+//             unityMesh.SetUVs(0, uvs);
+
+//             return unityMesh;
+//         }
+
+//         /// <summary>
+//         /// Get the corresponding color for each SceneObject Kind
+//         /// </summary>
+//         /// <param name="kind">The Scene Understanding kind from which to query the color</param>
+//         private Color? GetColor(SceneObjectKind kind)
+//         {
+//             switch (kind)
+//             {
+//                 case SceneUnderstanding.SceneObjectKind.Background:
+//                     return ColorForBackgroundObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Wall:
+//                     return ColorForWallObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Floor:
+//                     return ColorForFloorObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Ceiling:
+//                     return ColorForCeilingObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Platform:
+//                     return ColorForPlatformsObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Unknown:
+//                     return ColorForUnknownObjects;
+//                 case SceneUnderstanding.SceneObjectKind.CompletelyInferred:
+//                     return ColorForInferredObjects;
+//                 case SceneUnderstanding.SceneObjectKind.World:
+//                     return ColorForWorldObjects;
+//                 default:
+//                     return null;
+//             }
+//         }
+
+//         /// <summary>
+//         /// Get the corresponding layer for each SceneObject Kind
+//         /// </summary>
+//         /// <param name="kind">The Scene Understanding kind from which to query the layer</param>
+//         private int GetLayer(SceneObjectKind kind)
+//         {
+//             switch (kind)
+//             {
+//                 case SceneUnderstanding.SceneObjectKind.Background:
+//                     return LayerForBackgroundObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Wall:
+//                     return LayerForWallObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Floor:
+//                     return LayerForFloorObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Ceiling:
+//                     return LayerForCeilingObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Platform:
+//                     return LayerForPlatformsObjects;
+//                 case SceneUnderstanding.SceneObjectKind.Unknown:
+//                     return LayerForUnknownObjects;
+//                 case SceneUnderstanding.SceneObjectKind.CompletelyInferred:
+//                     return LayerForInferredObjects;
+//                 case SceneUnderstanding.SceneObjectKind.World:
+//                     return LayerForWorldObjects;
+//                 default:
+//                     return 0;
+//             }
+//         }
+
+//         /// <summary>
+//         /// Get the cached material for each SceneObject Kind
+//         /// </summary>
+//         /// <param name="kind">
+//         /// The <see cref="SceneObjectKind"/> to obtain the material for.
+//         /// </param>
+//         /// <param name="mode">
+//         /// The <see cref="RenderMode"/> to obtain the material for.
+//         /// </param>
+//         /// <remarks>
+//         /// If <see cref="IsInGhostMode"/> is true, the ghost material will be returned.
+//         /// </remarks>
+//         private Material GetMaterial(SceneObjectKind kind, RenderMode mode)
+//         {
+//             // If in ghost mode, just return transparent
+//             if (IsInGhostMode) { return TransparentOcclussion; }
+
+//             // Make sure we have a cache
+//             if (materialCache == null) { materialCache = new Dictionary<SceneObjectKind, Dictionary<RenderMode, Material>>(); }
+
+//             // Find or create cache specific to this Kind
+//             Dictionary<RenderMode, Material> kindModeCache;
+//             if (!materialCache.TryGetValue(kind, out kindModeCache))
+//             {
+//                 kindModeCache = new Dictionary<RenderMode, Material>();
+//                 materialCache[kind] = kindModeCache;
+//             }
+
+//             // Find or create material specific to this Mode
+//             Material mat;
+//             if (!kindModeCache.TryGetValue(mode, out mat))
+//             {
+//                 // Determine the source material by kind
+//                 Material sourceMat;
+//                 switch (mode)
+//                 {
+//                     case RenderMode.Quad:
+//                     case RenderMode.QuadWithMask:
+//                         sourceMat = SceneObjectQuadMaterial;
+//                         break;
+//                     case RenderMode.Wireframe:
+//                         sourceMat = SceneObjectWireframeMaterial;
+//                         break;
+//                     default:
+//                         sourceMat = SceneObjectMeshMaterial;
+//                         break;
+//                 }
+
+//                 // Create an instance
+//                 mat = Instantiate(sourceMat);
+
+//                 // Set color to match the kind
+//                 Color? color = GetColor(kind);
+//                 if (color != null)
+//                 {
+//                     mat.color = color.Value;
+//                     mat.SetColor("_WireColor", color.Value);
+//                 }
+
+//                 // Store
+//                 kindModeCache[mode] = mat;
+//             }
+
+//             // Return the found or created material
+//             return mat;
+//         }
+
+
+//         /// <summary>
+//         /// Function to add a Mesh to a Unity Object
+//         /// </summary>
+//         /// <param name="unityObject">The unity object to where the mesh will be applied </param>
+//         /// <param name="mesh"> Mesh to be applied                                       </param>
+//         /// <param name="color"> Color to apply to the Mesh                              </param>
+//         /// <param name="material"> Material to apply to the unity Mesh Renderer         </param>
+//         private void AddMeshToUnityObject(GameObject unityObject, Mesh mesh, Color? color, Material material)
+//         {
+//             if (unityObject == null || mesh == null || material == null)
+//             {
+//                 Debug.Log("SceneUnderstandingManager.AddMeshToUnityObject: One or more arguments are null");
+//             }
+
+//             MeshFilter mf = unityObject.AddComponent<MeshFilter>();
+//             mf.sharedMesh = mesh;
+
+//             MeshRenderer mr = unityObject.AddComponent<MeshRenderer>();
+//             mr.sharedMaterial = material;
+//         }
+
+//         /// <summary>
+//         /// Apply Region mask to a Scene Object
+//         /// </summary>
+//         private void ApplyQuadRegionMask(SceneUnderstanding.SceneQuad quad, GameObject gameobject, Color color)
+//         {
+//             if (quad == null || gameobject == null)
+//             {
+//                 Debug.LogWarning("SceneUnderstandingManager.ApplyQuadRegionMask: One or more arguments are null.");
+//                 return;
+//             }
+
+//             // Resolution of the mask.
+//             ushort width = 256;
+//             ushort height = 256;
+
+//             byte[] mask = new byte[width * height];
+//             quad.GetSurfaceMask(width, height, mask);
+
+//             MeshRenderer meshRenderer = gameobject.GetComponent<MeshRenderer>();
+//             if (meshRenderer == null || meshRenderer.sharedMaterial == null || meshRenderer.sharedMaterial.HasProperty("_MainTex") == false)
+//             {
+//                 Debug.LogWarning("SceneUnderstandingManager.ApplyQuadRegionMask: Mesh renderer component is null or does not have a valid material.");
+//                 return;
+//             }
+
+//             // Create a new texture.
+//             Texture2D texture = new Texture2D(width, height);
+//             texture.filterMode = FilterMode.Bilinear;
+//             texture.wrapMode = TextureWrapMode.Clamp;
+
+//             // Transfer the invalidation mask onto the texture.
+//             Color[] pixels = texture.GetPixels();
+//             for (int i = 0; i < pixels.Length; ++i)
+//             {
+//                 byte value = mask[i];
+
+//                 if (value == (byte)SceneUnderstanding.SceneRegionSurfaceKind.NotSurface)
+//                 {
+//                     pixels[i] = Color.clear;
+//                 }
+//                 else
+//                 {
+//                     pixels[i] = color;
+//                 }
+//             }
+
+//             texture.SetPixels(pixels);
+//             texture.Apply(true);
+
+//             // Set the texture on the material.
+//             meshRenderer.sharedMaterial.mainTexture = texture;
+//         }
+
+//         #endregion
+
+//         #region Utility Functions
+
+//         /// <summary>
+//         /// Function to destroy all children under a Unity Transform
+//         /// </summary>
+//         /// <param name="parentTransform"> Parent Transform to remove children from </param>
+//         private void DestroyAllGameObjectsUnderParent(Transform parentTransform)
+//         {
+//             if (parentTransform == null)
+//             {
+//                 Debug.LogWarning("SceneUnderstandingManager.DestroyAllGameObjectsUnderParent: Parent is null.");
+//                 return;
+//             }
+
+//             foreach (Transform child in parentTransform)
+//             {
+//                 Destroy(child.gameObject);
+//             }
+//         }
+
+//         /// <summary>
+//         /// Function to return the correspoding transformation matrix to pass geometry
+//         /// from the Scene Understanding Coordinate System to the Unity one
+//         /// </summary>
+//         /// <param name="scene"> Scene from which to get the Scene Understanding Coordinate System </param>
+//         private System.Numerics.Matrix4x4? GetSceneToUnityTransformAsMatrix4x4(SceneUnderstanding.Scene scene)
+//         {
+//             System.Numerics.Matrix4x4? sceneToUnityTransform = System.Numerics.Matrix4x4.Identity;
+
+//             if (RunOnDevice)
+//             {
+//                 Windows.Perception.Spatial.SpatialCoordinateSystem sceneCoordinateSystem = Microsoft.Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview.CreateCoordinateSystemForNode(scene.OriginSpatialGraphNodeId);
+//                 HolograhicFrameData holoFrameData = Marshal.PtrToStructure<HolograhicFrameData>(UnityEngine.XR.XRDevice.GetNativePtr());
+//                 Windows.Perception.Spatial.SpatialCoordinateSystem unityCoordinateSystem = Microsoft.Windows.Perception.Spatial.SpatialCoordinateSystem.FromNativePtr(holoFrameData.ISpatialCoordinateSystemPtr);
+
+//                 sceneToUnityTransform = sceneCoordinateSystem.TryGetTransformTo(unityCoordinateSystem);
+
+//                 if (sceneToUnityTransform != null)
+//                 {
+//                     sceneToUnityTransform = ConvertRightHandedMatrix4x4ToLeftHanded(sceneToUnityTransform.Value);
+//                 }
+//                 else
+//                 {
+//                     Debug.LogWarning("SceneUnderstandingManager.GetSceneToUnityTransform: Scene to Unity transform is null.");
+//                 }
+//             }
+
+//             return sceneToUnityTransform;
+//         }
+
+//         /// <summary>
+//         /// Converts a right handed tranformation matrix into a left handed one
+//         /// </summary>
+//         /// <param name="matrix"> Matrix to convert </param>
+//         private System.Numerics.Matrix4x4 ConvertRightHandedMatrix4x4ToLeftHanded(System.Numerics.Matrix4x4 matrix)
+//         {
+//             matrix.M13 = -matrix.M13;
+//             matrix.M23 = -matrix.M23;
+//             matrix.M43 = -matrix.M43;
+
+//             matrix.M31 = -matrix.M31;
+//             matrix.M32 = -matrix.M32;
+//             matrix.M34 = -matrix.M34;
+
+//             return matrix;
+//         }
+
+//         /// <summary>
+//         /// Passes all the values from a 4x4 tranformation matrix into a Unity Tranform
+//         /// </summary>
+//         /// <param name="targetTransform"> Transform to pass the values into                                    </param>
+//         /// <param name="matrix"> Matrix from which the values to pass are gathered                             </param>
+//         /// <param name="updateLocalTransformOnly"> Flag to update local transform or global transform in unity </param>
+//         private void SetUnityTransformFromMatrix4x4(Transform targetTransform, System.Numerics.Matrix4x4 matrix, bool updateLocalTransformOnly = false)
+//         {
+//             if (targetTransform == null)
+//             {
+//                 Debug.LogWarning("SceneUnderstandingManager.SetUnityTransformFromMatrix4x4: Unity transform is null.");
+//                 return;
+//             }
+
+//             Vector3 unityTranslation;
+//             Quaternion unityQuat;
+//             Vector3 unityScale;
+
+//             System.Numerics.Vector3 vector3;
+//             System.Numerics.Quaternion quaternion;
+//             System.Numerics.Vector3 scale;
+
+//             System.Numerics.Matrix4x4.Decompose(matrix, out scale, out quaternion, out vector3);
+
+//             unityTranslation = new Vector3(vector3.X, vector3.Y, vector3.Z);
+//             unityQuat = new Quaternion(quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
+//             unityScale = new Vector3(scale.X, scale.Y, scale.Z);
+
+//             if (updateLocalTransformOnly)
+//             {
+//                 targetTransform.localPosition = unityTranslation;
+//                 targetTransform.localRotation = unityQuat;
+//             }
+//             else
+//             {
+//                 targetTransform.SetPositionAndRotation(unityTranslation, unityQuat);
+//             }
+//         }
+
+//         /// <summary>
+//         /// Orients a GameObject relative to Unity's Up vector and Scene Understanding's Largest floor's normal vector
+//         /// </summary>
+//         /// <param name="sceneRoot"> Unity object to orient                       </param>
+//         /// <param name="suScene"> SU object to obtain the largest floor's normal </param>
+//         private void OrientSceneForPC(GameObject sceneRoot, SceneUnderstanding.Scene suScene)
+//         {
+//             if (suScene == null)
+//             {
+//                 Debug.Log("SceneUnderstandingManager.OrientSceneForPC: Scene Understanding Scene Data is null.");
+//             }
+
+//             IEnumerable<SceneUnderstanding.SceneObject> sceneObjects = suScene.SceneObjects;
+
+//             float largestFloorAreaFound = 0.0f;
+//             SceneUnderstanding.SceneObject suLargestFloorObj = null;
+//             SceneUnderstanding.SceneQuad suLargestFloorQuad = null;
+//             foreach (SceneUnderstanding.SceneObject sceneObject in sceneObjects)
+//             {
+//                 if (sceneObject.Kind == SceneUnderstanding.SceneObjectKind.Floor)
+//                 {
+//                     IEnumerable<SceneUnderstanding.SceneQuad> quads = sceneObject.Quads;
+
+//                     if (quads != null)
+//                     {
+//                         foreach (SceneUnderstanding.SceneQuad quad in quads)
+//                         {
+//                             float quadArea = quad.Extents.X * quad.Extents.Y;
+
+//                             if (quadArea > largestFloorAreaFound)
+//                             {
+//                                 largestFloorAreaFound = quadArea;
+//                                 suLargestFloorObj = sceneObject;
+//                                 suLargestFloorQuad = quad;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+
+//             if (suLargestFloorQuad != null)
+//             {
+//                 float quadWith = suLargestFloorQuad.Extents.X;
+//                 float quadHeight = suLargestFloorQuad.Extents.Y;
+
+//                 System.Numerics.Vector3 p1 = new System.Numerics.Vector3(-quadWith / 2, -quadHeight / 2, 0);
+//                 System.Numerics.Vector3 p2 = new System.Numerics.Vector3(quadWith / 2, -quadHeight / 2, 0);
+//                 System.Numerics.Vector3 p3 = new System.Numerics.Vector3(-quadWith / 2, quadHeight / 2, 0);
+
+//                 System.Numerics.Matrix4x4 floorTransform = suLargestFloorObj.GetLocationAsMatrix();
+//                 floorTransform = ConvertRightHandedMatrix4x4ToLeftHanded(floorTransform);
+
+//                 System.Numerics.Vector3 tp1 = System.Numerics.Vector3.Transform(p1, floorTransform);
+//                 System.Numerics.Vector3 tp2 = System.Numerics.Vector3.Transform(p2, floorTransform);
+//                 System.Numerics.Vector3 tp3 = System.Numerics.Vector3.Transform(p3, floorTransform);
+
+//                 System.Numerics.Vector3 p21 = tp2 - tp1;
+//                 System.Numerics.Vector3 p31 = tp3 - tp1;
+
+//                 System.Numerics.Vector3 floorNormal = System.Numerics.Vector3.Cross(p31, p21);
+
+//                 Vector3 floorNormalUnity = new Vector3(floorNormal.X, floorNormal.Y, floorNormal.Z);
+
+//                 Quaternion rotation = Quaternion.FromToRotation(floorNormalUnity, Vector3.up);
+//                 SceneRoot.transform.rotation = rotation;
+//             }
+//         }
+
+
+
+//         #endregion
+
+//         #region Out of PlayMode Functions
+
+//         /// <summary>
+//         /// This function will generate the Unity Scene that represents the Scene
+//         /// Understanding Scene without needing to use the play button
+//         /// </summary>
         public void BakeScene()
         {
-            Debug.Log("[IN EDITOR] SceneUnderStandingManager.BakeScene: Bake Started");
-            DestroyImmediate(SceneRoot.gameObject);
-            if (!QuerySceneFromDevice)
-            {
-                SceneRoot = SceneRoot == null ? new GameObject("Scene Root") : SceneRoot;
-                SceneUnderstanding.Scene suScene = null;
+//             Debug.Log("[IN EDITOR] SceneUnderStandingManager.BakeScene: Bake Started");
+//             DestroyImmediate(SceneRoot.gameObject);
+//             if (!QuerySceneFromDevice)
+//             {
+//                 SceneRoot = SceneRoot == null ? new GameObject("Scene Root") : SceneRoot;
+//                 SceneUnderstanding.Scene suScene = null;
 
-                foreach (TextAsset serializedScene in SUSerializedScenePaths)
-                {
-                    if (serializedScene)
-                    {
-                        byte[] sceneBytes = serializedScene.bytes;
-                        SceneFragment frag = SceneFragment.Deserialize(sceneBytes);
-                        SceneFragment[] sceneFragmentsArray = new SceneFragment[1] { frag };
-                        suScene = SceneUnderstanding.Scene.FromFragments(sceneFragmentsArray);
-                    }
-                }
+//                 foreach (TextAsset serializedScene in SUSerializedScenePaths)
+//                 {
+//                     if (serializedScene)
+//                     {
+//                         byte[] sceneBytes = serializedScene.bytes;
+//                         SceneFragment frag = SceneFragment.Deserialize(sceneBytes);
+//                         SceneFragment[] sceneFragmentsArray = new SceneFragment[1] { frag };
+//                         suScene = SceneUnderstanding.Scene.FromFragments(sceneFragmentsArray);
+//                     }
+//                 }
 
-                if (suScene != null)
-                {
-                    System.Numerics.Matrix4x4? sceneToUnityTransformAsMatrix4x4 = GetSceneToUnityTransformAsMatrix4x4(suScene);
+//                 if (suScene != null)
+//                 {
+//                     System.Numerics.Matrix4x4? sceneToUnityTransformAsMatrix4x4 = GetSceneToUnityTransformAsMatrix4x4(suScene);
 
-                    if (sceneToUnityTransformAsMatrix4x4 != null)
-                    {
-                        SetUnityTransformFromMatrix4x4(SceneRoot.transform, sceneToUnityTransformAsMatrix4x4.Value, RunOnDevice);
+//                     if (sceneToUnityTransformAsMatrix4x4 != null)
+//                     {
+//                         SetUnityTransformFromMatrix4x4(SceneRoot.transform, sceneToUnityTransformAsMatrix4x4.Value, RunOnDevice);
 
-                        if (!RunOnDevice)
-                        {
-                            OrientSceneForPC(SceneRoot, suScene);
-                        }
+//                         if (!RunOnDevice)
+//                         {
+//                             OrientSceneForPC(SceneRoot, suScene);
+//                         }
 
-                        IEnumerable<SceneUnderstanding.SceneObject> sceneObjects = suScene.SceneObjects;
-                        foreach (SceneUnderstanding.SceneObject sceneObject in sceneObjects)
-                        {
-                            DisplaySceneObject(sceneObject);
-                        }
-                    }
-                }
+//                         IEnumerable<SceneUnderstanding.SceneObject> sceneObjects = suScene.SceneObjects;
+//                         foreach (SceneUnderstanding.SceneObject sceneObject in sceneObjects)
+//                         {
+//                             DisplaySceneObject(sceneObject);
+//                         }
+//                     }
+//                 }
 
-                Debug.Log("[IN EDITOR] SceneUnderStandingManager.BakeScene: Display Completed");
-            }
+//                 Debug.Log("[IN EDITOR] SceneUnderStandingManager.BakeScene: Display Completed");
+//             }
         }
 
-        #endregion
+//         #endregion
 
-        #region Save To Disk Functions
+//         #region Save To Disk Functions
 
-        /// <summary>
-        /// Get the latest bytes from a Scene Queried from device
-        /// </summary>
-        private byte[] GetLatestSceneBytes()
-        {
-            byte[] sceneBytes = null;
-            lock (SUDataLock)
-            {
-                if (LatestSUSceneData != null)
-                {
-                    int sceneLength = LatestSUSceneData.Length;
-                    sceneBytes = new byte[sceneLength];
+//         /// <summary>
+//         /// Get the latest bytes from a Scene Queried from device
+//         /// </summary>
+//         private byte[] GetLatestSceneBytes()
+//         {
+//             byte[] sceneBytes = null;
+//             lock (SUDataLock)
+//             {
+//                 if (LatestSUSceneData != null)
+//                 {
+//                     int sceneLength = LatestSUSceneData.Length;
+//                     sceneBytes = new byte[sceneLength];
 
-                    Array.Copy(LatestSUSceneData, sceneBytes, sceneLength);
-                }
-            }
+//                     Array.Copy(LatestSUSceneData, sceneBytes, sceneLength);
+//                 }
+//             }
 
-            return sceneBytes;
-        }
+//             return sceneBytes;
+//         }
 
-        /// <summary>
-        /// Save a serialized scene bytes to disk
-        /// </summary>
-        // Await is conditionally compiled out based on platform but needs to be awaitable
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+//         /// <summary>
+//         /// Save a serialized scene bytes to disk
+//         /// </summary>
+//         // Await is conditionally compiled out based on platform but needs to be awaitable
+// #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public async Task SaveBytesToDiskAsync()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            DateTime currentDate = DateTime.Now;
-            int year = currentDate.Year;
-            int month = currentDate.Month;
-            int day = currentDate.Day;
-            int hour = currentDate.Hour;
-            int min = currentDate.Minute;
-            int sec = currentDate.Second;
+//             DateTime currentDate = DateTime.Now;
+//             int year = currentDate.Year;
+//             int month = currentDate.Month;
+//             int day = currentDate.Day;
+//             int hour = currentDate.Hour;
+//             int min = currentDate.Minute;
+//             int sec = currentDate.Second;
 
-            if (QuerySceneFromDevice)
-            {
-                string fileName = string.Format("SU_{0}-{1}-{2}_{3}-{4}-{5}.bytes",
-                                                year, month, day, hour, min, sec);
+//             if (QuerySceneFromDevice)
+//             {
+//                 string fileName = string.Format("SU_{0}-{1}-{2}_{3}-{4}-{5}.bytes",
+//                                                 year, month, day, hour, min, sec);
 
-                byte[] OnDeviceBytes = GetLatestSceneBytes();
+//                 byte[] OnDeviceBytes = GetLatestSceneBytes();
 
-#if WINDOWS_UWP
-                var folder = WindowsStorage.ApplicationData.Current.LocalFolder;
-                var file = await folder.CreateFileAsync(fileName, WindowsStorage.CreationCollisionOption.GenerateUniqueName);
-                await WindowsStorage.FileIO.WriteBytesAsync(file, OnDeviceBytes);
-#else
-                Debug.Log("Save on Device is only supported in Universal Windows Applications");
-#endif
-            }
-            else
-            {
-                int fragmentNumber = 0;
-                foreach (TextAsset serializedScene in SUSerializedScenePaths)
-                {
-                    byte[] fragmentBytes = serializedScene.bytes;
+// #if WINDOWS_UWP
+//                 var folder = WindowsStorage.ApplicationData.Current.LocalFolder;
+//                 var file = await folder.CreateFileAsync(fileName, WindowsStorage.CreationCollisionOption.GenerateUniqueName);
+//                 await WindowsStorage.FileIO.WriteBytesAsync(file, OnDeviceBytes);
+// #else
+//                 Debug.Log("Save on Device is only supported in Universal Windows Applications");
+// #endif
+//             }
+//             else
+//             {
+//                 int fragmentNumber = 0;
+//                 foreach (TextAsset serializedScene in SUSerializedScenePaths)
+//                 {
+//                     byte[] fragmentBytes = serializedScene.bytes;
 
-                    string fileName = string.Format("SU_Frag{0}-{1}-{2}-{3}_{4}-{5}-{6}.bytes",
-                                                    fragmentNumber++, year, month, day, hour, min, sec);
+//                     string fileName = string.Format("SU_Frag{0}-{1}-{2}-{3}_{4}-{5}-{6}.bytes",
+//                                                     fragmentNumber++, year, month, day, hour, min, sec);
 
-                    string folder = Path.GetTempPath();
-                    string file = Path.Combine(folder, fileName);
-                    File.WriteAllBytes(file, fragmentBytes);
-                    Debug.Log("SceneUnderstandingManager.SaveBytesToDisk: Scene Fragment saved at " + file);
-                }
-            }
+//                     string folder = Path.GetTempPath();
+//                     string file = Path.Combine(folder, fileName);
+//                     File.WriteAllBytes(file, fragmentBytes);
+//                     Debug.Log("SceneUnderstandingManager.SaveBytesToDisk: Scene Fragment saved at " + file);
+//                 }
+//             }
         }
 
-        /// <summary>
-        /// Save the generated Unity Objects from Scene Understanding as Obj files
-        /// to disk
-        /// </summary>
+//         /// <summary>
+//         /// Save the generated Unity Objects from Scene Understanding as Obj files
+//         /// to disk
+//         /// </summary>
         public async Task SaveObjsToDiskAsync()
         {
-            DateTime currentDate = DateTime.Now;
-            int year = currentDate.Year;
-            int month = currentDate.Month;
-            int day = currentDate.Day;
-            int hour = currentDate.Hour;
-            int min = currentDate.Minute;
-            int sec = currentDate.Second;
+//             DateTime currentDate = DateTime.Now;
+//             int year = currentDate.Year;
+//             int month = currentDate.Month;
+//             int day = currentDate.Day;
+//             int hour = currentDate.Hour;
+//             int min = currentDate.Minute;
+//             int sec = currentDate.Second;
 
-            // List of all SceneObjectKind enum values.
-            List<SceneUnderstanding.SceneObjectKind> sceneObjectKinds = new List<SceneObjectKind>();
-            sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Background);
-            sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Ceiling);
-            sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.CompletelyInferred);
-            sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Floor);
-            sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Platform);
-            sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Unknown);
-            sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Wall);
-            sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.World);
+//             // List of all SceneObjectKind enum values.
+//             List<SceneUnderstanding.SceneObjectKind> sceneObjectKinds = new List<SceneObjectKind>();
+//             sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Background);
+//             sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Ceiling);
+//             sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.CompletelyInferred);
+//             sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Floor);
+//             sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Platform);
+//             sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Unknown);
+//             sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.Wall);
+//             sceneObjectKinds.Add(SceneUnderstanding.SceneObjectKind.World);
 
-            List<Task> tasks = new List<Task>();
-            SceneUnderstanding.Scene scene = null;
-            if (QuerySceneFromDevice)
-            {
-                SceneFragment sceneFragment = GetLatestSceneSerialization();
-                if (sceneFragment == null)
-                {
-                    Debug.LogWarning("SceneUnderstandingManager.SaveObjsToDisk: Nothing to save.");
-                    return;
-                }
+//             List<Task> tasks = new List<Task>();
+//             SceneUnderstanding.Scene scene = null;
+//             if (QuerySceneFromDevice)
+//             {
+//                 SceneFragment sceneFragment = GetLatestSceneSerialization();
+//                 if (sceneFragment == null)
+//                 {
+//                     Debug.LogWarning("SceneUnderstandingManager.SaveObjsToDisk: Nothing to save.");
+//                     return;
+//                 }
 
-                // Deserialize the scene.
-                SceneFragment[] sceneFragmentsArray = new SceneFragment[1] { sceneFragment };
-                scene = SceneUnderstanding.Scene.FromFragments(sceneFragmentsArray);
-            }
-            else
-            {
-                SceneFragment[] sceneFragments = new SceneFragment[SUSerializedScenePaths.Count];
-                int index = 0;
-                foreach (TextAsset serializedScene in SUSerializedScenePaths)
-                {
-                    if (serializedScene != null)
-                    {
-                        byte[] sceneData = serializedScene.bytes;
-                        SceneFragment frag = SceneFragment.Deserialize(sceneData);
-                        sceneFragments[index++] = frag;
-                    }
-                }
+//                 // Deserialize the scene.
+//                 SceneFragment[] sceneFragmentsArray = new SceneFragment[1] { sceneFragment };
+//                 scene = SceneUnderstanding.Scene.FromFragments(sceneFragmentsArray);
+//             }
+//             else
+//             {
+//                 SceneFragment[] sceneFragments = new SceneFragment[SUSerializedScenePaths.Count];
+//                 int index = 0;
+//                 foreach (TextAsset serializedScene in SUSerializedScenePaths)
+//                 {
+//                     if (serializedScene != null)
+//                     {
+//                         byte[] sceneData = serializedScene.bytes;
+//                         SceneFragment frag = SceneFragment.Deserialize(sceneData);
+//                         sceneFragments[index++] = frag;
+//                     }
+//                 }
 
-                // Deserialize the scene.
-                scene = SceneUnderstanding.Scene.FromFragments(sceneFragments);
-            }
+//                 // Deserialize the scene.
+//                 scene = SceneUnderstanding.Scene.FromFragments(sceneFragments);
+//             }
 
-            if (scene == null)
-            {
-                Debug.LogWarning("SceneUnderstandingManager.SaveObjsToDiskAsync: Scene is null");
-                return;
-            }
+//             if (scene == null)
+//             {
+//                 Debug.LogWarning("SceneUnderstandingManager.SaveObjsToDiskAsync: Scene is null");
+//                 return;
+//             }
 
-            foreach (SceneUnderstanding.SceneObjectKind soKind in sceneObjectKinds)
-            {
-                List<SceneUnderstanding.SceneObject> allObjectsOfAKind = new List<SceneObject>();
-                foreach (SceneUnderstanding.SceneObject sceneObject in scene.SceneObjects)
-                {
-                    if (sceneObject.Kind == soKind)
-                    {
-                        allObjectsOfAKind.Add(sceneObject);
-                    }
-                }
+//             foreach (SceneUnderstanding.SceneObjectKind soKind in sceneObjectKinds)
+//             {
+//                 List<SceneUnderstanding.SceneObject> allObjectsOfAKind = new List<SceneObject>();
+//                 foreach (SceneUnderstanding.SceneObject sceneObject in scene.SceneObjects)
+//                 {
+//                     if (sceneObject.Kind == soKind)
+//                     {
+//                         allObjectsOfAKind.Add(sceneObject);
+//                     }
+//                 }
 
-                string fileName = string.Format("SU_{0}_{1}-{2}-{3}.obj",
-                                                soKind.ToString(), year, month, day);
+//                 string fileName = string.Format("SU_{0}_{1}-{2}-{3}.obj",
+//                                                 soKind.ToString(), year, month, day);
 
-                if (allObjectsOfAKind.Count > 0)
-                {
-                    tasks.Add(SaveAllSceneObjectsOfAKindAsOneObj(allObjectsOfAKind, GetColor(soKind), fileName));
-                }
-            }
-            await Task.WhenAll(tasks);
+//                 if (allObjectsOfAKind.Count > 0)
+//                 {
+//                     tasks.Add(SaveAllSceneObjectsOfAKindAsOneObj(allObjectsOfAKind, GetColor(soKind), fileName));
+//                 }
+//             }
+//             await Task.WhenAll(tasks);
         }
 
-        /// <summary>
-        /// Save the generated Unity Objects from Scene Understanding as Obj files
-        /// to disk (all objects of one kind as one obj file)
-        /// </summary>
-        private async Task SaveAllSceneObjectsOfAKindAsOneObj(List<SceneUnderstanding.SceneObject> sceneObjects, Color? color, string fileName)
-        {
-            if (sceneObjects == null)
-            {
-                return;
-            }
+//         /// <summary>
+//         /// Save the generated Unity Objects from Scene Understanding as Obj files
+//         /// to disk (all objects of one kind as one obj file)
+//         /// </summary>
+//         private async Task SaveAllSceneObjectsOfAKindAsOneObj(List<SceneUnderstanding.SceneObject> sceneObjects, Color? color, string fileName)
+//         {
+//             if (sceneObjects == null)
+//             {
+//                 return;
+//             }
 
-            List<System.Numerics.Vector3> combinedMeshVertices = new List<System.Numerics.Vector3>();
-            List<uint> combinedMeshIndices = new List<uint>();
+//             List<System.Numerics.Vector3> combinedMeshVertices = new List<System.Numerics.Vector3>();
+//             List<uint> combinedMeshIndices = new List<uint>();
 
-            // Go through each scene object, retrieve its meshes and add them to the combined lists, defined above.
-            foreach (SceneUnderstanding.SceneObject so in sceneObjects)
-            {
-                if (so == null)
-                {
-                    continue;
-                }
+//             // Go through each scene object, retrieve its meshes and add them to the combined lists, defined above.
+//             foreach (SceneUnderstanding.SceneObject so in sceneObjects)
+//             {
+//                 if (so == null)
+//                 {
+//                     continue;
+//                 }
 
-                IEnumerable<SceneUnderstanding.SceneMesh> meshes = so.Meshes;
-                if (meshes == null)
-                {
-                    continue;
-                }
+//                 IEnumerable<SceneUnderstanding.SceneMesh> meshes = so.Meshes;
+//                 if (meshes == null)
+//                 {
+//                     continue;
+//                 }
 
-                foreach (SceneUnderstanding.SceneMesh mesh in meshes)
-                {
-                    // Get the mesh vertices.
-                    var mvList = new System.Numerics.Vector3[mesh.VertexCount];
-                    mesh.GetVertexPositions(mvList);
+//                 foreach (SceneUnderstanding.SceneMesh mesh in meshes)
+//                 {
+//                     // Get the mesh vertices.
+//                     var mvList = new System.Numerics.Vector3[mesh.VertexCount];
+//                     mesh.GetVertexPositions(mvList);
 
-                    // Transform the vertices using the transformation matrix.
-                    TransformVertices(so.GetLocationAsMatrix(), mvList);
+//                     // Transform the vertices using the transformation matrix.
+//                     TransformVertices(so.GetLocationAsMatrix(), mvList);
 
-                    // Store the current set of vertices in the combined list. As we add indices, we'll offset it by this value.
-                    uint indexOffset = (uint)combinedMeshVertices.Count;
+//                     // Store the current set of vertices in the combined list. As we add indices, we'll offset it by this value.
+//                     uint indexOffset = (uint)combinedMeshVertices.Count;
 
-                    // Add the new set of mesh vertices to the existing set.
-                    combinedMeshVertices.AddRange(mvList);
+//                     // Add the new set of mesh vertices to the existing set.
+//                     combinedMeshVertices.AddRange(mvList);
 
-                    // Get the mesh indices.
-                    uint[] mi = new uint[mesh.TriangleIndexCount];
-                    mesh.GetTriangleIndices(mi);
+//                     // Get the mesh indices.
+//                     uint[] mi = new uint[mesh.TriangleIndexCount];
+//                     mesh.GetTriangleIndices(mi);
 
-                    // Add the new set of mesh indices to the existing set.
-                    for (int i = 0; i < mi.Length; ++i)
-                    {
-                        combinedMeshIndices.Add((uint)(mi[i] + indexOffset));
-                    }
-                }
-            }
+//                     // Add the new set of mesh indices to the existing set.
+//                     for (int i = 0; i < mi.Length; ++i)
+//                     {
+//                         combinedMeshIndices.Add((uint)(mi[i] + indexOffset));
+//                     }
+//                 }
+//             }
 
-            // Write as string to file.
-            StringBuilder sb = new StringBuilder();
+//             // Write as string to file.
+//             StringBuilder sb = new StringBuilder();
 
-            for (int i = 0; i < combinedMeshVertices.Count; ++i)
-            {
-                sb.Append(string.Format("v {0} {1} {2} {3} {4} {5}\n", combinedMeshVertices[i].X, combinedMeshVertices[i].Y, combinedMeshVertices[i].Z, color.Value.r, color.Value.g, color.Value.b));
-            }
+//             for (int i = 0; i < combinedMeshVertices.Count; ++i)
+//             {
+//                 sb.Append(string.Format("v {0} {1} {2} {3} {4} {5}\n", combinedMeshVertices[i].X, combinedMeshVertices[i].Y, combinedMeshVertices[i].Z, color.Value.r, color.Value.g, color.Value.b));
+//             }
 
-            for (int i = 0; i < combinedMeshIndices.Count; i += 3)
-            {
-                // Indices start at index 1 (as opposed to 0) in objs.
-                sb.Append(string.Format("f {0} {1} {2}\n", combinedMeshIndices[i] + 1, combinedMeshIndices[i + 1] + 1, combinedMeshIndices[i + 2] + 1));
-            }
+//             for (int i = 0; i < combinedMeshIndices.Count; i += 3)
+//             {
+//                 // Indices start at index 1 (as opposed to 0) in objs.
+//                 sb.Append(string.Format("f {0} {1} {2}\n", combinedMeshIndices[i] + 1, combinedMeshIndices[i + 1] + 1, combinedMeshIndices[i + 2] + 1));
+//             }
 
-            await SaveStringToDiskAsync(sb.ToString(), fileName);
-        }
+//             await SaveStringToDiskAsync(sb.ToString(), fileName);
+//         }
 
-        /// <summary>
-        /// Save a string to disk
-        /// this string is the obj file that represents the SU Geometry
-        /// </summary>
-// Await is conditionally compiled out based on platform but needs to be awaitable
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        private async Task SaveStringToDiskAsync(string data, string fileName)
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
-        {
-            if (string.IsNullOrEmpty(data))
-            {
-                Debug.LogWarning("SceneUnderstandingManager.SaveStringToDiskAsync: Nothing to save.");
-                return;
-            }
+//         /// <summary>
+//         /// Save a string to disk
+//         /// this string is the obj file that represents the SU Geometry
+//         /// </summary>
+// // Await is conditionally compiled out based on platform but needs to be awaitable
+// #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+//         private async Task SaveStringToDiskAsync(string data, string fileName)
+// #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+//         {
+//             if (string.IsNullOrEmpty(data))
+//             {
+//                 Debug.LogWarning("SceneUnderstandingManager.SaveStringToDiskAsync: Nothing to save.");
+//                 return;
+//             }
 
-            if (QuerySceneFromDevice)
-            {
-#if WINDOWS_UWP
-                var folder = WindowsStorage.ApplicationData.Current.LocalFolder;
-                var file = await folder.CreateFileAsync(fileName, WindowsStorage.CreationCollisionOption.GenerateUniqueName);
-                await WindowsStorage.FileIO.AppendTextAsync(file, data);
-#else
-                Debug.Log("Save on Device is only supported in Universal Windows Applications");
-#endif
-            }
-            else
-            {
-                // string folder = Path.GetTempPath();
-                string folder = Application.dataPath + "/StreamingAssets";
-                string file = Path.Combine(folder, fileName);
-                File.WriteAllText(file, data);
-                Debug.Log("SceneUnderstandingManager.SaveStringToDiskAsync: Scene Objects saved at " + file);
-            }
-        }
+//             if (QuerySceneFromDevice)
+//             {
+// #if WINDOWS_UWP
+//                 var folder = WindowsStorage.ApplicationData.Current.LocalFolder;
+//                 var file = await folder.CreateFileAsync(fileName, WindowsStorage.CreationCollisionOption.GenerateUniqueName);
+//                 await WindowsStorage.FileIO.AppendTextAsync(file, data);
+// #else
+//                 Debug.Log("Save on Device is only supported in Universal Windows Applications");
+// #endif
+//             }
+//             else
+//             {
+//                 // string folder = Path.GetTempPath();
+//                 string folder = Application.dataPath + "/StreamingAssets";
+//                 string file = Path.Combine(folder, fileName);
+//                 File.WriteAllText(file, data);
+//                 Debug.Log("SceneUnderstandingManager.SaveStringToDiskAsync: Scene Objects saved at " + file);
+//             }
+//         }
 
-        private void TransformVertices(System.Numerics.Matrix4x4 transformationMatrix, System.Numerics.Vector3[] vertices)
-        {
-            for (int i = 0; i < vertices.Length; ++i)
-            {
-                vertices[i] = System.Numerics.Vector3.Transform(vertices[i], transformationMatrix);
-            }
-        }
+//         private void TransformVertices(System.Numerics.Matrix4x4 transformationMatrix, System.Numerics.Vector3[] vertices)
+//         {
+//             for (int i = 0; i < vertices.Length; ++i)
+//             {
+//                 vertices[i] = System.Numerics.Vector3.Transform(vertices[i], transformationMatrix);
+//             }
+//         }
 
         #endregion
 
