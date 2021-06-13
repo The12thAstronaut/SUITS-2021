@@ -26,7 +26,7 @@ public class ClientAPI : MonoBehaviour
 
             if (www.isNetworkError)
             {
-                //Debug.Log(www.error);
+                Debug.Log(www.error);
             }
             else
             {
@@ -34,6 +34,7 @@ public class ClientAPI : MonoBehaviour
                 {
                     // handle the result
                     string result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                    //Debug.Log(result);     //used to see if values are being registered 
 
                     result = "{\"result\":[" + result + "]}";
 

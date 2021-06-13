@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +17,8 @@ public class voiceManager : MonoBehaviour
     public GameObject ScoutModel;
     public GameObject ScoutLight;
     public GameObject wristPanelContent;
+    public GameObject previousTaskButton;
+    public GameObject nextTaskButton;
 
     protected PhraseRecognizer recognizer;
     protected string word = "none";
@@ -113,6 +115,16 @@ public class voiceManager : MonoBehaviour
                     menuButtons[7].GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
                     word = "none";
                     break;
+                case "Next Task":
+                    print("Going to next task");
+                    nextTaskButton.GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
+                    word = "none";
+                    break;
+                case "Previous Task":
+                    print("Going to previous task");
+                    previousTaskButton.GetComponent<PressableButtonHoloLens2>().ButtonPressed.Invoke();
+                    word = "none";
+                    break;    
                 case "Show Menu":
                     print("Turning On Menu");
                     wristPanelContent.SetActive(true);

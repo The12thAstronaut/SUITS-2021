@@ -11,9 +11,11 @@ public class UIATaskProcedure : MonoBehaviour
     public TextMeshPro titleLabel;
     public Interactable previousTask;
     public Interactable nextTask;
+    public Interactable doneButton;
 
     public GameObject previousTaskIcon;
     public GameObject nextTaskIcon;
+    public GameObject doneIcon;
 
     public List<string> taskList = new List<string>();
     public List<string> title = new List<string>();
@@ -31,6 +33,7 @@ public class UIATaskProcedure : MonoBehaviour
         previousTaskIcon.SetActive(false);
         nextTask.OnClick.AddListener(() => ButtonPressed());
         previousTask.OnClick.AddListener(() => ReverseTask());
+        doneButton.OnClick.AddListener(() => TaskDone());
 
 
         if (titleLabel != null)
@@ -46,16 +49,19 @@ public class UIATaskProcedure : MonoBehaviour
     {
         nextTaskIcon.SetActive(true);
         previousTaskIcon.SetActive(true);
+        doneIcon.SetActive(true);
 
         counter = counter + 1;
         if (counter < taskList.Count - 1)
         {
             currentTask.SetText(taskList[counter]);
+            doneIcon.SetActive(false);
         }
 
         else
         {
             nextTaskIcon.SetActive(false);
+            doneIcon.SetActive(true);
             currentTask.SetText(taskList[taskList.Count - 1]);
             counter = taskList.Count -1;
         }
@@ -68,16 +74,19 @@ public class UIATaskProcedure : MonoBehaviour
 
         nextTaskIcon.SetActive(true);
         previousTaskIcon.SetActive(true);
+        doneIcon.SetActive(true);
 
         counter = counter - 1;
         if (1 <= counter && counter < taskList.Count)
         {
             currentTask.SetText(taskList[counter]);
+            doneIcon.SetActive(false);
         }
 
         else if (counter < 1)
         {
             previousTaskIcon.SetActive(false);
+            doneIcon.SetActive(false);
             currentTask.SetText(taskList[0]);
             counter = 0;
         }
@@ -87,7 +96,18 @@ public class UIATaskProcedure : MonoBehaviour
             nextTaskIcon.SetActive(false);
             currentTask.SetText(taskList[taskList.Count -1]);
             counter = taskList.Count -1;
+            doneIcon.SetActive(false);
         }
+    }
+
+    public void TaskDone()
+    {
+        counter = 0;
+        currentTask.SetText(taskList[counter]);
+        nextTaskIcon.SetActive(true);
+        doneIcon.SetActive(false);
+        previousTaskIcon.SetActive(false);
+
     }
 
     // Update is called once per frame

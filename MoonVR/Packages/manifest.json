@@ -2,19 +2,22 @@
   "scopedRegistries": [
     {
       "name": "Microsoft Mixed Reality",
-      "url": "https://pkgs.dev.azure.com/aipmr/MixedReality-Unity-Packages/_packaging/Unity-packages/npm/registry/",
       "scopes": [
         "com.microsoft.mixedreality",
         "com.microsoft.spatialaudio"
-      ]
+      ],
+      "url": "https://pkgs.dev.azure.com/aipmr/MixedReality-Unity-Packages/_packaging/Unity-packages/npm/registry/"
     }
   ],
   "dependencies": {
     "com.microsoft.azure.spatial-anchors-sdk.core": "file:../Assets/com.microsoft.azure.spatial-anchors-sdk.core-2.7.1.tgz",
     "com.microsoft.azure.spatial-anchors-sdk.windows": "file:../Assets/com.microsoft.azure.spatial-anchors-sdk.windows-2.7.1.tgz",
+    "com.microsoft.mixedreality.sceneunderstanding": "file:MixedReality/com.microsoft.mixedreality.sceneunderstanding-0.6.0.tgz",
     "com.microsoft.mixedreality.toolkit.examples": "2.5.1",
     "com.microsoft.mixedreality.toolkit.foundation": "2.5.1",
     "com.microsoft.mixedreality.toolkit.tools": "2.5.1",
+    "com.microsoft.windows.mixedreality.dotnetwinrt": "file:MixedReality/com.microsoft.windows.mixedreality.dotnetwinrt-0.5.1052.tgz",
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.1.4",
     "com.unity.ide.vscode": "1.2.3",
