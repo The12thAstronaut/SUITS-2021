@@ -10949,7 +10949,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &276668795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30065,7 +30065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &819311994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45470,7 +45470,7 @@ PrefabInstance:
     - target: {fileID: 6188020846163673595, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7186661928812897254, guid: 97e5836c23a56d24ba6c131d8ff03a73,
         type: 3}
@@ -51573,7 +51573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1374968846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55335,13 +55335,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1532157854}
   - component: {fileID: 1532157855}
+  - component: {fileID: 1532157856}
   m_Layer: 0
   m_Name: ChatBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1532157854
 Transform:
   m_ObjectHideFlags: 0
@@ -55372,6 +55373,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeString: 
+--- !u!114 &1532157856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532157853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa51967ade2d9a4fba6cfffb966c938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userCamera: {fileID: 40389641}
 --- !u!4 &1532458053 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1143709754146887748, guid: 97e5836c23a56d24ba6c131d8ff03a73,
@@ -65780,6 +65794,7 @@ MonoBehaviour:
   ScoutModel: {fileID: 572604641}
   ScoutLight: {fileID: 864597205}
   wristPanelContent: {fileID: 1790482366}
+  chatBubble: {fileID: 1532157853}
 --- !u!4 &1793270546
 Transform:
   m_ObjectHideFlags: 0
@@ -97854,7 +97869,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6070785955580232788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

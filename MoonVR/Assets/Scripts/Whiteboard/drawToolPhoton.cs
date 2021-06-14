@@ -36,7 +36,7 @@ public class drawToolPhoton : MonoBehaviour
     {
         PV = GetComponent<PhotonView>();
         whiteboardObjectParent = GameObject.Find("WhiteboardObjectParent");
-        drawingMode = true;
+        drawingMode = false;
         lastSplineID = 0;       //Initialize SplineID at 0
     }
 
