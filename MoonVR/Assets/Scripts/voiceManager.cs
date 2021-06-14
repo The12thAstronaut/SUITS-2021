@@ -17,6 +17,7 @@ public class voiceManager : MonoBehaviour
     public GameObject ScoutModel;
     public GameObject ScoutLight;
     public GameObject wristPanelContent;
+    public GameObject chatBubble;
 
     protected PhraseRecognizer recognizer;
     protected string word = "none";
@@ -65,6 +66,7 @@ public class voiceManager : MonoBehaviour
             isScoutActivated = true;
             ScoutModel.SetActive(true);
             ScoutLight.SetActive(true);
+            chatBubble.SetActive(true);
         }
 
         //If "Hey Scout" has been said, listen for menu name keywords
@@ -128,6 +130,7 @@ public class voiceManager : MonoBehaviour
                     isScoutActivated = false;
                     ScoutModel.SetActive(false);
                     ScoutLight.SetActive(false);
+                    chatBubble.SetActive(false);
                     word = "none";
                     break;
             }
