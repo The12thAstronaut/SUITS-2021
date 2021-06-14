@@ -256,5 +256,16 @@ namespace MRTK.Tutorials.AzureCloudServices.Scripts.Managers
             var blockBlob = blobContainer.GetBlockBlobReference(blobName);
             return await blockBlob.DeleteIfExistsAsync();
         }
+
+        /// <summary>
+        /// Data manager instance method for getting blob timestamp.
+        /// </summary>
+        /// <param name="blobName">Name of the Blob to get the time it was created</param>
+        /// <returns></returns>
+        public string GetBlobTimestamp(string blobName)
+        {
+            CloudBlob blockBlob = blobContainer.GetBlobReference(blobName);
+            return blockBlob.Properties.LastModified.ToString();
+        }
     }
 }
