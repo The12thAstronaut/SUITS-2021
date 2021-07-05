@@ -1,16 +1,21 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Events;
 
 public class ClientAPI : MonoBehaviour
 {
-    public string url;
     public TelemetryStream telemetryStream;
-    
+    public string url;
 
-    void Update()
+    IEnumerator Start()
     {
-        StartCoroutine(Get(url));
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            StartCoroutine(Get(url));
+        }
     }
 
     public IEnumerator Get(string url)
@@ -21,22 +26,42 @@ public class ClientAPI : MonoBehaviour
 
             if (www.isNetworkError)
             {
-                //Debug.Log(www.error);
+                Debug.Log(www.error);
             }
             else
             {
                 if (www.isDone)
                 {
                     // handle the result
-                    var result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
-                    result = "{\"result\":" + result + "}";
-                    var data = JsonHelper.FromJson<Suit>(result);
+                    string result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                    //Debug.Log(result);     //used to see if values are being registered 
 
-                    foreach (var item in data)
-                    {
-                        telemetryStream.DisplayTelemData(item.heart_bpm, item.p_sub, item.p_suit, item.t_sub, item.v_fan, item.p_o2, item.rate_o2, item.p_h2o_g, item.p_h2o_l, item.p_sop, item.t_battery, item.t_oxygen, item.t_water, item.create_date);
-                        break;
-                    }
+                    result = "{\"result\":[" + result + "]}";
+
+                    List<Suit> data = JsonHelper.FromJson<Suit>(result);
+
+                    Suit suit_data = data[0];
+
+                    telemetryStream.SetBpmText(suit_data.heart_bpm);
+                    telemetryStream.SetPSubText(suit_data.p_sub);
+                    telemetryStream.SetPSuitText(suit_data.p_suit);
+                    telemetryStream.SetTSubText(suit_data.t_sub); // temperature
+                    telemetryStream.SetVFanText(suit_data.v_fan);
+                    telemetryStream.SetPO2Text(suit_data.p_o2);
+                    telemetryStream.SetRO2Text(suit_data.rate_o2);
+                    telemetryStream.SetPH2OGText(suit_data.p_h2o_g);
+                    telemetryStream.SetPH2OLText(suit_data.p_h2o_l);
+                    telemetryStream.SetPSOPText(suit_data.p_sop);
+                    telemetryStream.SetBatLifeText(suit_data.t_battery);
+                    telemetryStream.SetOxLifeText(suit_data.t_oxygen);
+                    telemetryStream.SetH2OLifeText(suit_data.t_water);
+                    telemetryStream.SetDateText(suit_data.create_date);
+                    telemetryStream.SetEvaTimeText(suit_data.timer);
+                    telemetryStream.SetPrimO2Text(suit_data.ox_primary);
+                    telemetryStream.SetSecondaryO2Text(suit_data.ox_secondary);
+                    telemetryStream.SetRSOPText(suit_data.rate_sop);
+                    telemetryStream.SetBattCapText(suit_data.cap_battery);
+
 
                 }
                 else
@@ -46,6 +71,10 @@ public class ClientAPI : MonoBehaviour
                 }
             }
         }
+    }
 
+    void TelemetryUpdate()
+    {
+        Debug.Log("Updated telemetry stream.");
     }
 }

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
+    path: Assets/Scenes/newLaurenDemoscene.unity
+    guid: d068a9a7d6f29c6468dccfba39d8db0b
+  - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/AprilDemo.unity
+    guid: 774f4f86c08f76947b2e5fd194f1f3ff
   m_configObjects: {}
