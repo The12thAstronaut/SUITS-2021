@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Microsoft.MixedReality.Toolkit.UI
@@ -7,11 +8,20 @@ namespace Microsoft.MixedReality.Toolkit.UI
     public class MenuScript : MonoBehaviour
     {
         public GameObject[] panels;
-        public GameObject[] buttons;
+        public Interactable[] buttons;
         // Start is called before the first frame update
         void Start()
         {
             DisablePanels();
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                // Scope inside closures: https://stackoverflow.com/questions/750486/javascript-closure-inside-loops-simple-practical-example
+                int j = i;
+                buttons[j].OnClick.AddListener(() => {
+                    DisableAllExcept(j);
+                    panels[j].SetActive(buttons[j].IsToggled);
+                });
+            }
         }
 
         public void DisablePanels()
@@ -26,7 +36,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
         {
             for (int i = 0; i < buttons.Length; i++)
             {
-                buttons[i].GetComponent<Interactable>().IsToggled = false;
+                buttons[i].IsToggled = false;
             }
         }
 
@@ -36,10 +46,16 @@ namespace Microsoft.MixedReality.Toolkit.UI
             DisableButtons();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void DisableAllExcept(int i)
         {
-
+            for (int j = 0; j < buttons.Length; ++j)
+            {
+                if (i != j)
+                {
+                    buttons[j].IsToggled = false;
+                    panels[j].SetActive(false);
+                }
+            }
         }
     }
 }
