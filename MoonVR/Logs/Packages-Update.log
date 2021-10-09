@@ -92,3 +92,11 @@ The following packages were updated:
   com.unity.xr.openvr.standalone from version 1.0.5 to 2.0.5
 The following packages were removed:
   com.unity.package-manager-ui@2.0.8
+
+=== Fri Oct  8 20:46:07 2021
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were updated:
+  com.unity.timeline from version 1.2.6 to 1.2.14

@@ -1,14 +1,15 @@
 {
-  "scopedRegistries": [
-    {
-      "name": "MS Build for Unity",
-      "url": "https://pkgs.dev.azure.com/UnityDeveloperTools/MSBuildForUnity/_packaging/UnityDeveloperTools/npm/registry",
-      "scopes": [
-        "com.microsoft"
-      ]
-    }
-  ],
-  "dependencies": {
+    "scopedRegistries": [
+        {
+            "name": "MS Build for Unity",
+            "url": "https://pkgs.dev.azure.com/UnityDeveloperTools/MSBuildForUnity/_packaging/UnityDeveloperTools/npm/registry",
+            "scopes": [
+                "com.microsoft"
+            ]
+        }
+    ],
+    "dependencies": {
+    "com.ptc.vuforia.engine": "git+https://git-packages.developer.vuforia.com#9.8.11",
     "com.microsoft.msbuildforunity": "0.8.3",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
@@ -22,7 +23,7 @@
     "com.unity.purchasing": "2.0.6",
     "com.unity.test-framework": "1.1.16",
     "com.unity.textmeshpro": "2.0.1",
-    "com.unity.timeline": "1.2.6",
+    "com.unity.timeline": "1.2.14",
     "com.unity.ugui": "1.0.0",
     "com.unity.xr.legacyinputhelpers": "2.1.4",
     "com.unity.xr.oculus.standalone": "2.38.4",
