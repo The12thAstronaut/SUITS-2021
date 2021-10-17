@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RingMenuMonoBehavior : MonoBehaviour
+public class RingMenu : MonoBehaviour
 {
     public Ring Data;
     public RingCakePiece RingCakePiecePrefab;
     public float GapWidthDegree = 1f;
     public Action<string> callback;
     protected RingCakePiece[] Pieces;
-    protected RingMenu Parent;
+    // protected RingMenu Parent;
     public string Path;
 
     // Start is called before the first frame update
