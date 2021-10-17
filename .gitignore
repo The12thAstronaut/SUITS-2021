@@ -8,6 +8,16 @@ MoonVR/Builds/
 MoonVR/Assets/AssetStoreTools*
 !MoonVR/Library/LastSceneManagerSetup.txt
 
+#Library and Build files from UI_Erin
+UI_Erin/RingMenuUI/Library/
+
+UI_Erin/RingMenuUI/Temp/
+UI_Erin/RingMenuUI/Obj/
+UI_Erin/RingMenuUI/Build/
+UI_Erin/RingMenuUI/Builds/
+UI_Erin/RingMenuUI/Assets/AssetStoreTools*
+!UI_Erin/RingMenuUI/Library/LastSceneManagerSetup.txt
+
 #Files from UI and Research Team
 SUITS_Research/
 ModelExplorer/
