@@ -1,0 +1,45 @@
+
+Basic Rim Shader Use Guidelines:
+
+Properties:
+    _Color          			:The base color of the material, which determines the Albedo of the material
+	_RimPower       			:The number that control the power of the rim effect, the bigger the number, the more intense rim effect
+	_RimColor       			:The rim color of the material, which determines the color of the rim effect
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Basic Hologram shader Use Guidelines:
+
+Properties:
+		_MainTex				:The texture of the object
+    	_Color                  :The base color of the material, which determines the Albedo of the material
+		_HoloColor              :The color of the hologram
+		_HoloSpeed				:The speed of the hologram flashes
+		_HoloValue              :The value of the hologram, the higher the number, the more lines will show up on the model
+		_HoloDistance           :The gap between hologram lines, the bigger the number, the smaller the gap
+		_HoloDirection          :The direction of the hologram lines
+		_EmissionMultiplier     :The emission value multiplier
+
+		_GlitchStrength         :The strength of the glitch effect, the bigger the number, the more intense of the effect
+		_GlitchDensity          :The density of the glitch effect
+		_GlitchPeriod           :The time period of the glitch effect, the bigger the number, the faster the effect shows
+		_GlitchDirection        :The direction of the glitch effect
+
+----------------------------------------------------------------------------------------------------------------------------
+
+
+Distortion Rim Shader Use Guidelines:
+
+Properties:
+    _Distortion          		:The distortion amount, the higher it gets, the more distorted the background will be
+	_RimPower       			:The number that control the power of the rim effect, the bigger the number, the more intense rim effect
+	_RimColor       			:The rim color of the material, which determines the color of the rim effect
+	_Hollowness					:The amount where it ignores the distortion on the center of the object
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+If you have more questions or any suggestions, please contact me through my email or twitter
+
+Contact email: peter_lu@outlook.com
+Twitter: @PeterLLuu
