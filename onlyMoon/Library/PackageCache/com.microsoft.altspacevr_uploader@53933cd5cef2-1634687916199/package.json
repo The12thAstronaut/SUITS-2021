@@ -1,0 +1,15 @@
+{
+  "name": "com.microsoft.altspacevr_uploader",
+  "displayName": "AltspaceVR Uploader",
+  "version": "2.2.16",
+  "description": "Upload asset bundles for use in AltspaceVR",
+  "author": "Microsoft",
+  "license": "MIT",
+  "unity": "2020.3",
+  "dependencies": {
+    "com.unity.xr.management": "4.0.1",
+    "com.unity.xr.oculus": "1.8.1",
+    "com.unity.editorcoroutines": "1.0.0",
+    "com.unity.render-pipelines.universal": "10.5.0"
+  }
+}

@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/OnlyMoon.unity
+    guid: cfe3f5f512ffc3845aea88a9129a290a
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4611dac68f44baa4587e5f4fa82fdb56, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 578f4f51e4bf1804aa6359d2dd449601, type: 2}
