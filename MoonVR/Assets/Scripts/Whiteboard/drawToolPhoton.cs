@@ -17,6 +17,11 @@ public class drawToolPhoton : MonoBehaviour
 
     public GameObject hologramArrowSpin;
 
+    public GameObject LeftVRController;
+    public GameObject RightVRController;
+    public Vector3 LT;
+    public Vector3 RT;
+
 
     public GameObject splineToHide;
     public GameObject whiteboardObjectParent;
@@ -36,8 +41,18 @@ public class drawToolPhoton : MonoBehaviour
     {
         PV = GetComponent<PhotonView>();
         whiteboardObjectParent = GameObject.Find("WhiteboardObjectParent");
-        drawingMode = false;
+        drawingMode = true;
         lastSplineID = 0;       //Initialize SplineID at 0
+        if(RightVRController == null )
+        {
+            RightVRController = GameObject.Find("Right_Right OpenVR Controller");
+            print("Right VR controller found!");
+        }
+         if(LeftVRController == null )
+        {
+            LeftVRController = GameObject.Find("Left_Left OpenVR Controller");
+            print("Left VR controller found!");
+        }     
     }
 
     // Update is called once per frame
@@ -47,6 +62,18 @@ public class drawToolPhoton : MonoBehaviour
         if(Input.GetMouseButton(0) && drawingMode == true)
         {
             updateSplinePen();
+        }
+
+        //Spawn Transparent Sphere on Motion Controller Primary Trigger only if drawingMode is true
+        if(Input.GetAxis("Index_Primary_Trigger") == 1 && drawingMode == true)
+        {
+            updateVRSplinePen();
+        }
+
+        //Spawn Transparent Sphere on Motion Controller Secondary Trigger only if drawingMode is true
+        if(Input.GetAxis("Index_Secondary_Trigger") == 1 && drawingMode == true)
+        {
+            updateVRSplinePen();
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha1) && drawingMode == true)
@@ -176,6 +203,44 @@ public class drawToolPhoton : MonoBehaviour
         //Get objectID component from spline sphere and assign lastSplineID
         objectID = currentSpline.GetComponent(typeof(objectID)) as objectID;
         objectID.ID = SplineID;
+    }
+
+    void updateVRSplinePen(){
+
+        // Find VR controllers if they exist
+        if(LeftVRController != null )
+        {
+            // Get position of VR Controller
+            LT = LeftVRController.transform.position;
+        }
+
+        if(RightVRController != null )
+        {
+            // Get position of VR Controller
+            RT = RightVRController.transform.position;
+        }       
+
+        lastSplineID++;         //Increment lastSplineID by 1
+
+        if( PhotonNetwork.OfflineMode == true)
+        {
+            //SplineDraw() Offline Mode
+            SplineDraw( LT
+                      , Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360))
+                      , lastSplineID
+                      , Info );
+        }
+        else
+        {
+            //SplineDraw() RPC Online Mode
+            PV.RPC( "SplineDraw"
+                          , RpcTarget.All
+                          , new object[] { LT
+                                         , Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360))
+                                         , lastSplineID
+                                         }
+                          );
+        }
     }
 
     void updateSplinePen(){
