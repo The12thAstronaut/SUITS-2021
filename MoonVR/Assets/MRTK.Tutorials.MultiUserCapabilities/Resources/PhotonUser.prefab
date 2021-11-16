@@ -109,6 +109,10 @@ MonoBehaviour:
     type: 3}
   hologramArrowSpin: {fileID: 7730955913061742792, guid: 8310241c41638de4492030d01bfdd630,
     type: 3}
+  LeftVRController: {fileID: 0}
+  RightVRController: {fileID: 0}
+  LT: {x: 0, y: 0, z: 0}
+  RT: {x: 0, y: 0, z: 0}
   splineToHide: {fileID: 0}
   whiteboardObjectParent: {fileID: 0}
   lastSplineID: 0
