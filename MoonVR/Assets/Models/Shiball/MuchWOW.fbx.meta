@@ -15,7 +15,42 @@ ModelImporter:
   - first:
       74: 4396596066784612945
     second: Sphere.012|Sphere.012|Sphere.012|Sphere.012Action|Sphere.012|Sphere.012Act
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: cb527960e71d9154e92ee0d430de91d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: c6563c2414a72154fb8eecd8d9cf6569, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 2e5c222ac914a6f4aa118798570a2ff9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 3aa1c9e4087200a439c0bc84294e4143, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.005
+    second: {fileID: 2100000, guid: 720c1f52081ff9948809f43621354e0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: 3110a557d51cc61429b5596c6c30f014, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 7ed57a9e6023a774f8949451803beb75, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

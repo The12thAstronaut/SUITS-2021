@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8902737662762887043
 Transform:
   m_ObjectHideFlags: 0
@@ -384,6 +384,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MuchWOW
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79f2011603d54f74a8462bc13fca46e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f2011603d54f74a8462bc13fca46e7, type: 3}
 --- !u!4 &213098417601661737 stripped
@@ -477,7 +482,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f3360b36a4285414eae4a62a0459aa0a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3360b36a4285414eae4a62a0459aa0a, type: 3}
