@@ -264,7 +264,7 @@ public class drawToolPhoton : MonoBehaviour
             //SplineDraw() RPC Online Mode
             PV.RPC( "SplineDraw"
                             //Only draw whiteboard splines for peers with input access for the photon avatar
-                          , RpcTarget.InputAuthority
+                          , RpcTarget.OthersBuffered
                           , new object[] { (rayOrigin.position + (rayOrigin.TransformDirection(Vector3.forward)*2))
                                          , Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360))
                                          , lastSplineID
